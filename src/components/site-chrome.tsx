@@ -75,50 +75,22 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       {quizzing ? null : (
-        <footer className="bg-ink px-4 py-10 text-center text-xs leading-relaxed text-muted">
-          <p className="font-brush text-lg text-gold/85">{t(locale, "tagline")}</p>
-          <p className="mt-2">{t(locale, "footerLine")}</p>
+        <footer className="bg-ink px-4 py-5 text-center text-[11px] leading-relaxed text-muted">
+          <p className="font-brush text-base text-gold/85">{t(locale, "tagline")}</p>
           <p className="mt-1">
-            {locale === "zh" ? "此页已开光 · 自立像第八千八百八十八号起 · 号不回零" : "Consecrated. From No. 8888. The number only goes up."}
+            {locale === "zh" ? "此页已开光 · 非电影官方" : "Consecrated. Not the film."}
           </p>
-          <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-gold-soft">
-            <Link to="/xiang" className="inline-flex min-h-10 items-center no-underline">
+          <nav className="mt-2 flex flex-wrap items-center justify-center gap-x-4 text-gold-soft">
+            <Link to="/xiang" className="inline-flex min-h-9 items-center no-underline">
               {t(locale, "navXiang")}
             </Link>
-            <Link to="/yi" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navOffer")}
-            </Link>
-            <Link to="/qian" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navLot")}
-            </Link>
-            <Link to="/pai" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navSeal")}
-            </Link>
-            <a href="/poster.jpg" download="niulai-poster.jpg" className="inline-flex min-h-10 items-center no-underline">
-              {locale === "en" ? "Poster" : "海报"}
-            </a>
-            <Link to="/shi" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navStory")}
-            </Link>
-            <Link to="/bang" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navBoard")}
-            </Link>
-            <Link to="/wall" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navBook")}
-            </Link>
-          </nav>
-          <nav className="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-paper/50">
-            <Link to="/about" className="inline-flex min-h-10 items-center no-underline">
+            <Link to="/about" className="inline-flex min-h-9 items-center no-underline">
               {t(locale, "navAbout")}
             </Link>
-            <Link to="/privacy" className="inline-flex min-h-10 items-center no-underline">
-              {t(locale, "navPrivacy")}
-            </Link>
-            <Link to="/mian" className="inline-flex min-h-10 items-center no-underline">
+            <Link to="/mian" className="inline-flex min-h-9 items-center no-underline">
               {t(locale, "navTerms")}
             </Link>
           </nav>
-          <p className="mt-3">{t(locale, "footerSub")}</p>
         </footer>
       )}
     </div>

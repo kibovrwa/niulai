@@ -123,18 +123,9 @@ let mamaClip: HTMLAudioElement | null = null;
 export function playMama() {
   if (typeof window === "undefined") return;
   if (!mamaClip) {
-    mamaClip = new Audio("/art/mama.mp3");
+    mamaClip = new Audio("/art/mama.mp3?v=yuan");
     mamaClip.preload = "auto";
   }
   mamaClip.currentTime = 0;
-  void mamaClip.play().catch(() => {
-    const w = window as Window & { speechSynthesis?: SpeechSynthesis };
-    if (!w.speechSynthesis) return;
-    const u = new SpeechSynthesisUtterance("麻麻");
-    u.lang = "zh-CN";
-    u.rate = 0.7;
-    u.pitch = 1.6;
-    w.speechSynthesis.cancel();
-    w.speechSynthesis.speak(u);
-  });
+  void mamaClip.play();
 }

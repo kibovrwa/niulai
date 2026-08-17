@@ -3,7 +3,7 @@ import handler from "@tanstack/react-start/server-entry";
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
-      return await handler.fetch(request, env);
+      return await handler.fetch(request);
     } catch (err) {
       const message =
         err instanceof Error

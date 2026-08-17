@@ -6,9 +6,9 @@ export type Locale = (typeof LOCALES)[number];
 
 export const copy = {
   zh: {
-    brand: "牛来庙",
+    brand: "niulai 牛来庙",
     mark: "概念神",
-    tagline: "不是官方。是路边那座庙。",
+    tagline: "niulai.org · 不是官方。是路边那座庙。",
     register: "登记一贪",
     registeredTo: "已登记到",
     numberUnit: "号",
@@ -48,7 +48,7 @@ export const copy = {
     navTerms: "免责",
   },
   en: {
-    brand: "NIULAI",
+    brand: "niulai",
     mark: "the totem",
     tagline: "Not official. A roadside shrine.",
     register: "Make a wish",

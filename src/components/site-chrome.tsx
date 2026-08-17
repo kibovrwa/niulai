@@ -22,7 +22,10 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             className="h-8 w-8 rounded-full object-cover"
             crossOrigin="anonymous"
           />
-          <span className="font-display text-lg tracking-widest text-cow">牛来</span>
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-lg tracking-widest text-cow">牛来</span>
+            <span className="mt-0.5 text-[9px] tracking-[0.28em] text-gold-soft">niulai</span>
+          </span>
         </Link>
         <div className="pointer-events-auto flex h-9 items-center">
           <div className="flex h-7 items-center overflow-hidden rounded-sm border border-gold-soft/45">

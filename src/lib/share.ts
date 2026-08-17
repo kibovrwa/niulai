@@ -18,8 +18,8 @@ export function packShare(payload: SharePayload) {
 
 export function homeShare(): SharePayload {
   return {
-    title: "测你是哪种牛",
-    lines: ["测你是哪种牛", "核动力 / 美牛牛 / 套死"],
+    title: "测你是哪种牛 · niulai",
+    lines: ["测你是哪种牛", "核动力 / 美牛牛 / 套死", "niulai.org"],
     url: publicUrl("/ce"),
   };
 }
@@ -28,8 +28,8 @@ export function ceShare(from?: string): SharePayload {
   return {
     title: "测你是哪种牛",
     lines: from
-      ? ["有人把结果甩过来了", "你也测一个"]
-      : ["测你是哪种牛", "核动力 / 美牛牛 / 套死"],
+      ? ["有人把结果甩过来了", "你也测", "niulai.org"]
+      : ["测你是哪种牛", "核动力 / 美牛牛 / 套死", "niulai.org"],
     url: publicUrl(from ? `/ce?from=${from}` : "/ce"),
   };
 }
@@ -43,7 +43,7 @@ export function nbtiShare(input: {
 }): SharePayload {
   return {
     title: `我是「${input.name}」`,
-    lines: [`我是【${input.name}】`, input.punch, "你也测"],
+    lines: [`我是【${input.name}】`, input.punch, "你也测", "niulai.org"],
     url: publicUrl(`/ce?from=${input.code}`),
   };
 }

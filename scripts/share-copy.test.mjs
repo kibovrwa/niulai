@@ -22,7 +22,8 @@ for (const w of banned) {
 }
 
 assert.match(src, /我是【\$\{input\.name\}】/);
-assert.match(src, /你也测一个/);
+assert.match(src, /你也测/);
+assert.match(src, /niulai\.org/);
 assert.match(src, /你也来/);
 assert.match(bar, /复制去发/);
 

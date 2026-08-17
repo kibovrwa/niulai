@@ -67,6 +67,7 @@ def make(name: str, head: str, punch: str, tag: str) -> Image.Image:
     im.alpha_composite(COW, ((W - COW.width) // 2, 230))
     punch_size = 30 if len(punch) < 22 else 24
     d.text((W / 2, 930), punch, font=font(punch_size), fill=MUTED, anchor="mm")
+    d.text((W / 2, 972), "niulai.org", font=font(18), fill=CINN, anchor="mm")
     return im.convert("RGB")
 
 

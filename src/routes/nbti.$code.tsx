@@ -127,22 +127,28 @@ function NbtiPage() {
     <SiteChrome>
       <Hall totem={false}>
         <div className="overflow-hidden rounded-sm shadow-plaque">
-          <div ref={poster} className="px-5 pb-5 pt-6 text-center text-paper" style={{ background: "#1c4324" }}>
+          <div
+            ref={poster}
+            className="px-5 pb-5 pt-5 text-center text-ink"
+            style={{ background: "#f3e6c8" }}
+          >
+            <p className="text-[11px] tracking-[0.35em] text-muted">NBTI · 牛来庙</p>
+            <p className="mt-3 text-sm text-muted">你是</p>
+            <h1 className="mt-1 font-display text-4xl leading-tight">{r.type.name[locale]}</h1>
+            <p className="mt-1 font-display text-2xl tracking-[0.2em] text-cinnabar">{r.code}</p>
             <img
               src="/art/totem-god.jpg"
               alt=""
-              className="mx-auto h-20 w-20 rounded-full object-cover"
+              className="mx-auto mt-3 w-28"
               style={{ outline: "none" }}
             />
-            <p className="mt-3 font-display text-5xl tracking-[0.16em]">{r.code}</p>
-            <h1 className="mt-1 font-display text-3xl leading-tight">{r.type.name[locale]}</h1>
-            <p className="mt-2 font-brush text-xl text-gold-soft">{r.type.punch[locale]}</p>
-            <p className="mt-4 text-[11px] tracking-[0.35em] text-gold-soft">牛来指数</p>
-            <p className={`font-display text-5xl tabular-nums leading-none ${r.red ? "text-cow" : "text-paper"}`}>
+            <p className="mt-3 font-brush text-xl text-cinnabar">{r.type.punch[locale]}</p>
+            <p className="mt-4 text-[11px] tracking-[0.35em] text-muted">牛来指数</p>
+            <p className="font-display text-5xl tabular-nums leading-none text-cinnabar">
               {formatIndex(shown, r.dec)}
             </p>
             {delta !== null && rival ? (
-              <p className="mt-2 font-display text-cow">
+              <p className="mt-2 font-display text-cinnabar">
                 {delta === 0
                   ? `平了 · ${rival.code}`
                   : delta > 0
@@ -150,7 +156,7 @@ function NbtiPage() {
                     : `比对方低 ${Math.abs(delta)} 点`}
               </p>
             ) : null}
-            <p className="mt-1 text-xs text-paper/70">
+            <p className="mt-1 text-xs text-muted">
               {r.red ? "红盘" : "震荡"} · 击败 {r.beat}% 散户
               {cult
                 ? ` · 第 ${(cult.types[r.code] ?? 1).toLocaleString("zh-CN")} 个${r.type.name.zh}`

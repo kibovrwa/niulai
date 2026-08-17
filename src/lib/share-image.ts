@@ -1,10 +1,10 @@
-export async function nodeToPng(node: HTMLElement) {
+export async function nodeToPng(node: HTMLElement, bg = "#f3e6c8") {
   await inlineImages(node);
   const { toPng } = await import("html-to-image");
   return toPng(node, {
     pixelRatio: 2,
     cacheBust: false,
-    backgroundColor: "#1c4324",
+    backgroundColor: bg,
     skipFonts: true,
     style: { outline: "none" },
   });

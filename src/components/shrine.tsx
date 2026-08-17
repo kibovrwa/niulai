@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { BlessRain } from "@/components/bless-rain";
 import { CreedMark } from "@/components/creed-mark";
 import { TotemStage } from "@/components/totem-dress";
 import { loadBooklet } from "@/lib/booklet";
@@ -102,6 +103,7 @@ export function Shrine({
       />
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
       <CreedMark tone="dark" />
+      <BlessRain />
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
         <h1 className="font-display text-3xl tracking-widest text-paper">{t(locale, "shrineTitle")}</h1>

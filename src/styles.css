@@ -185,6 +185,81 @@
   color: rgb(26 22 16 / 0.055);
 }
 
+@keyframes bless-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(var(--bit-rot, 0deg));
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.92;
+  }
+  86% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(18px, 108vh, 0) rotate(calc(var(--bit-rot, 0deg) + 18deg));
+    opacity: 0;
+  }
+}
+
+.bless-rain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bless-bit {
+  position: absolute;
+  top: -8%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-brush);
+  line-height: 1;
+  animation-name: bless-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.bless-sm {
+  font-size: 0.95rem;
+}
+
+.bless-md {
+  font-size: 1.15rem;
+}
+
+.bless-lg {
+  font-size: 1.35rem;
+}
+
+.bless-coin {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #f6e08a, #d4a017 58%, #8a5a18);
+  color: #5c3a1e;
+  box-shadow: 0 0 0 1px rgb(26 22 16 / 0.25);
+}
+
+.bless-slip {
+  min-width: 3.1rem;
+  padding: 0.35rem 0.45rem;
+  background: #f3e6c8;
+  color: #9b2b1a;
+  box-shadow: 0 6px 14px rgb(26 22 16 / 0.22);
+}
+
+.bless-seal {
+  min-width: 2.4rem;
+  padding: 0.3rem 0.35rem;
+  border: 1.5px solid #c43a22;
+  color: #c43a22;
+  background: rgb(26 22 16 / 0.28);
+}
+
 .seal-chop {
   display: grid;
   place-items: center;
@@ -203,5 +278,9 @@
   .number-flash,
   .totem-bow {
     animation: none;
+  }
+
+  .bless-rain {
+    display: none;
   }
 }

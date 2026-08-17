@@ -19,7 +19,7 @@ def font(n):
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
     ):
         try:
-            return ImageFont.truetype(p, n)
+            return ImageFont.truetype("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc", n)
         except OSError:
             continue
     return ImageFont.load_default()

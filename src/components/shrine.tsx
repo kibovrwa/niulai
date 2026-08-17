@@ -192,6 +192,13 @@ export function Shrine({
             {t(locale, "repayNow")}
           </button>
         ) : null}
+        <a
+          href="/poster.jpg"
+          download="niulai-poster.jpg"
+          className="mt-2 flex min-h-11 w-full max-w-xs items-center justify-center rounded-sm border border-gold-soft/70 font-display tracking-widest text-gold-soft no-underline"
+        >
+          {locale === "en" ? "Save poster" : "转发海报"}
+        </a>
         <p className="mt-3 text-center text-xs text-gold-soft/80">
           香 {gongde} 炷 · 今日 · {todayLabel} · 已叩 {seals.bows}
         </p>

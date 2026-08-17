@@ -97,9 +97,12 @@ function createNeonSql(): Promise<Sql> {
     let run: Run;
     if (isCloudflareWorker()) {
       const { neon } = await import("@neondatabase/serverless");
-      const query = neon(connectionString);
+      const query = neon(connectionString) as unknown as {
+        (strings: TemplateStringsArray, ...values: unknown[]): Promise<unknown>;
+        query: (text: string, params?: unknown[]) => Promise<unknown>;
+      };
       run = async <T>(text: string, params: unknown[]) => {
-        const rows = params.length ? await query(text, params) : await query(text);
+        const rows = await query.query(text, params);
         return rows as T[];
       };
     } else {

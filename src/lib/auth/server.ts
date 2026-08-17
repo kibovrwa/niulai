@@ -33,11 +33,9 @@ import { bearer, genericOAuth } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { getCookie } from "@tanstack/react-start/server";
 import { randomBytes } from "node:crypto";
-import { Pool } from "pg";
-import { ensureDbReady, getPglite } from "../db";
+import { Pool as NeonPool } from "@neondatabase/serverless";
 import { emailAndPasswordEnabled } from "./email-password";
 import { GROK_PROVIDERS } from "./providers";
-import { pgliteDialect } from "./pglite-dialect";
 import {
   GROK_ISSUER_DEFAULT,
   PREVIEW_ALLOWED_HOSTS,
@@ -45,8 +43,15 @@ import {
   PREVIEW_CLIENT_SECRET,
 } from "./preview";
 
-// Kick (and share) PGLite bootstrap as soon as the auth server module loads.
-void ensureDbReady();
+// Kick PGLite only in Node preview — never on Cloudflare Workers.
+function onCloudflare() {
+  return typeof (globalThis as { WebSocketPair?: unknown }).WebSocketPair === "function";
+}
+if (!onCloudflare()) {
+  void import("../db").then((mod) => {
+    void mod.ensureDbReady();
+  });
+}
 
 /**
  * Preview secret must outlive module reloads: PGLite (and its session rows) is
@@ -125,6 +130,26 @@ const trustedOrigins: string[] = explicitBaseURL
 
 const databaseUrl = env("DATABASE_URL");
 
+function resolveAuthDatabase(): unknown {
+  if (databaseUrl) {
+    if (onCloudflare()) return new NeonPool({ connectionString: databaseUrl });
+    // Node / Vercel: lazy require so the Worker bundle does not init `pg`.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Pool } = require("pg") as typeof import("pg");
+    return new Pool({ connectionString: databaseUrl });
+  }
+  if (onCloudflare()) {
+    return new NeonPool({ connectionString: "postgres://n:n@127.0.0.1/n" });
+  }
+  const { getPglite } = require("../db") as typeof import("../db");
+  const { pgliteDialect } = require("./pglite-dialect") as typeof import("./pglite-dialect");
+  return { dialect: pgliteDialect(() => getPglite()), type: "postgres" as const };
+}
+
+const database = resolveAuthDatabase() as
+  | InstanceType<typeof NeonPool>
+  | { dialect: unknown; type: "postgres" };
+
 // Static broker OAuth endpoints (skip OIDC discovery on every sign-in / callback).
 // Discovery would cost an extra network hop to the broker before the popup can
 // even redirect to Google/X — the live-preview popup felt stuck on the app for
@@ -134,13 +159,7 @@ const grokAuthorizationUrl = `${issuerBase}/api/auth/oauth2/authorize`;
 const grokTokenUrl = `${issuerBase}/api/auth/oauth2/token`;
 const grokUserInfoUrl = `${issuerBase}/api/auth/oauth2/userinfo`;
 
-// Real Postgres when `DATABASE_URL` is set (deployed apps), else the app's
-// embedded PGLite (preview) via a Kysely dialect — so Better Auth persists to the
-// SAME DB as app data, including email/password users. Both use the Better Auth
-// schema from `migrations/0001_auth.sql`.
-const database = databaseUrl
-  ? new Pool({ connectionString: databaseUrl })
-  : { dialect: pgliteDialect(() => getPglite()), type: "postgres" as const };
+// Auth DB is resolved above — Neon HTTP on Cloudflare, pg/PGLite on Node.
 
 /** Session token cookie name — also read by the live-preview popup completion page. */
 export const SESSION_TOKEN_COOKIE = "__Host-grok-auth.session_token";

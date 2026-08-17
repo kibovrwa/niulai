@@ -210,3 +210,25 @@ export const createWish = createServerFn({ method: "POST" })
     `;
     return asWish(row);
   });
+
+export const repayWish = createServerFn({ method: "POST" })
+  .validator((input: { id: string; serial: number }) => ({
+    id: input.id.slice(0, 40),
+    serial: Number(input.serial) || 0,
+  }))
+  .handler(async ({ data }) => {
+    const sql = await getSql();
+    await sql`
+      create table if not exists repayments (
+        wish_id text primary key,
+        serial integer not null,
+        repaid_at timestamptz not null default now()
+      )
+    `;
+    await sql`
+      insert into repayments (wish_id, serial)
+      values (${data.id}, ${data.serial})
+      on conflict (wish_id) do nothing
+    `;
+    return { ok: true as const };
+  });

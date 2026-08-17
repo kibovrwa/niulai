@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState, type Ref } from "react";
 import { QrMark } from "@/components/qr-mark";
 import { ShareBar } from "@/components/share-bar";
-import { publicUrl, wishShare } from "@/lib/share";
+import { addGongde } from "@/lib/gongde";
+import { isRepaid, markRepaid } from "@/lib/repay";
+import { awardSeal } from "@/lib/seals";
+import { repayShare, publicUrl, wishShare } from "@/lib/share";
+import { repayWish } from "@/lib/wish-fns";
 import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
 import { cowTypeById, luckyMark, wishById } from "@/lib/wish-data";
@@ -22,9 +26,21 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
   const [url, setUrl] = useState("");
   const poster = useRef<HTMLDivElement>(null);
 
+  const [done, setDone] = useState(false);
+
   useEffect(() => {
     setUrl(publicUrl(`/w/${wish.id}`));
+    setDone(isRepaid(wish.id));
   }, [wish.id]);
+
+  function repay() {
+    if (done) return;
+    markRepaid(wish.id);
+    setDone(true);
+    awardSeal("repay");
+    addGongde(18);
+    void repayWish({ data: { id: wish.id, serial: wish.serial } });
+  }
 
   async function save() {
     if (!poster.current) return;
@@ -46,12 +62,27 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
           <p className="text-center text-sm text-muted">{spec.roast}</p>
           <ShareBar
             compact
-            payload={wishShare({ serial: wish.serial, label: wish.label, id: wish.id })}
+            payload={
+              done
+                ? repayShare({ serial: wish.serial, label: wish.label, id: wish.id })
+                : wishShare({ serial: wish.serial, label: wish.label, id: wish.id })
+            }
             saveLabel="做出图去发"
             saving={saving}
             onSave={() => void save()}
           />
           {shot ? <ShareShot src={shot} onClose={() => setShot(null)} /> : null}
+          {done ? (
+            <p className="text-center font-brush text-cinnabar">这号还过了</p>
+          ) : (
+            <button
+              type="button"
+              onClick={repay}
+              className="min-h-11 rounded-sm bg-cinnabar font-display tracking-widest text-paper"
+            >
+              灵了，还愿
+            </button>
+          )}
           <div className="grid grid-cols-2 gap-2">
             <button type="button" onClick={onAgain} className="min-h-11 rounded-sm bg-paper-deep font-display">
               再许一个

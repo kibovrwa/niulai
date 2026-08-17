@@ -64,6 +64,14 @@ export function lotShare(input: { rank: string; line: string }): SharePayload {
   };
 }
 
+export function repayShare(input: { serial: number; label: string; id: string }): SharePayload {
+  return {
+    title: `第${input.serial}号灵了`,
+    lines: [`第${input.serial}号「${input.label}」灵了`, "我来还愿", "你也去许一个"],
+    url: publicUrl(`/w/${input.id}`),
+  };
+}
+
 export function paiShare(input: { name?: string; bows: number }): SharePayload {
   return {
     title: "测你是哪种牛",

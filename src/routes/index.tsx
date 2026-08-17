@@ -7,7 +7,8 @@ import { Roadside } from "@/components/roadside";
 import { Shrine } from "@/components/shrine";
 import { SiteChrome } from "@/components/site-chrome";
 import { WishBox } from "@/components/wish-box";
-import { addSlip } from "@/lib/booklet";
+import { addSlip, loadBooklet } from "@/lib/booklet";
+import { isRepaid } from "@/lib/repay";
 import { readCult } from "@/lib/cult-fns";
 import { addGongde } from "@/lib/gongde";
 import { awardSeal } from "@/lib/seals";
@@ -60,6 +61,12 @@ function Home() {
   const [flashing, setFlashing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mine, setMine] = useState<WishRow | null>(null);
+  const [canRepay, setCanRepay] = useState(false);
+
+  useEffect(() => {
+    const last = loadBooklet().slips[0];
+    setCanRepay(Boolean(last && !isRepaid(last.id)));
+  }, [mine]);
 
   useEffect(() => {
     const t = window.setInterval(() => {
@@ -124,6 +131,20 @@ function Home() {
         flashing={flashing}
         receiving={receiving}
         onOffer={() => offer()}
+        canRepay={canRepay}
+        onRepay={() => {
+          const last = loadBooklet().slips[0];
+          if (!last) return;
+          setMine({
+            id: last.id,
+            serial: last.serial,
+            nickname: "我",
+            wishId: last.wishId,
+            label: last.label,
+            cowType: "tuomeng",
+            createdAt: last.at,
+          });
+        }}
       />
       <WishBox
         open={open}

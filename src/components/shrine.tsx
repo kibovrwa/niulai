@@ -15,7 +15,9 @@ type ShrineProps = {
   todayLabel: string;
   flashing?: boolean;
   receiving?: boolean;
+  canRepay?: boolean;
   onOffer: () => void;
+  onRepay?: () => void;
 };
 
 export function Shrine({
@@ -24,7 +26,9 @@ export function Shrine({
   todayLabel,
   flashing,
   receiving,
+  canRepay,
   onOffer,
+  onRepay,
 }: ShrineProps) {
   const [src, setSrc] = useState("/art/totem-god.jpg");
   const [mine, setMine] = useState<string | null>(null);
@@ -147,6 +151,15 @@ export function Shrine({
             抽一支
           </Link>
         </div>
+        {canRepay && onRepay ? (
+          <button
+            type="button"
+            onClick={onRepay}
+            className="mt-2 min-h-11 w-full max-w-xs rounded-sm border border-cow/70 font-display tracking-widest text-cow"
+          >
+            灵了，还愿
+          </button>
+        ) : null}
         <p className="mt-3 text-center text-xs text-gold-soft/80">
           今日 · {todayLabel} · 已叩 {seals.bows}
         </p>

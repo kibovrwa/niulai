@@ -295,7 +295,7 @@ export const TYPES: Record<string, TypeCard> = {
   SKCD: {
     name: { zh: "牛跃亭", en: "Yueting Bull" },
     line: { zh: "下周回国。仓先走。", en: "Back next week. The book left first." },
-    punch: { zh: "我先走。你们先拿着。", en: "I leave first. You hold." },
+    punch: { zh: "我先走。你们在粪里拿着。", en: "I leave. You hold the dung." },
     verdict: { zh: "神批：号是唯一诚实的东西。", en: "The number is the only honest thing." },
     rec: "yingyuan",
     read: {
@@ -323,10 +323,10 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXD: {
-    name: { zh: "为牛粪窒息", en: "Dung Bull" },
-    line: { zh: "吸进去了。出不来。", en: "Inhaled. Can't leave." },
-    punch: { zh: "我不是看戏。我是埋进去了。", en: "Not watching. Buried." },
-    verdict: { zh: "神批：安全最贵。你还是买了。", en: "Safety is expensive. You still bought." },
+    name: { zh: "牵牛花", en: "Morning Glory" },
+    line: { zh: "开一天。谢一天。", en: "Bloom a day. Fold a day." },
+    punch: { zh: "我开花。你来牵。", en: "I bloom. You pull." },
+    verdict: { zh: "神批：开得最快，谢得也最快。", en: "First to bloom. First to fold." },
     rec: "caitou",
     read: {
       face: { zh: "上半场评论员。下半场进场。", en: "Pundit then player." },
@@ -409,7 +409,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKCD: {
     past: { zh: "衙门盖章的。章比话真。", en: "A clerk of stamps." },
-    now: { zh: "牛跃亭。下周还没到。", en: "Next week hasn't come." },
+    now: { zh: "牛跃亭。先走的人，粪留给后来的。", en: "He left. The dung stayed." },
   },
   SKXL: {
     past: { zh: "结拜。酒比血浓。", en: "Sworn brothers. Wine thicker than blood." },
@@ -417,7 +417,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKXD: {
     past: { zh: "戏园子看客。看到一半上台。", en: "An audience member who climbed onstage." },
-    now: { zh: "为牛粪窒息。看一眼就埋进去了。", en: "One look. Buried." },
+    now: { zh: "牵牛花。开一天，谢一天。", en: "Bloom a day. Fold a day." },
   },
   NLBN: {
     past: { zh: "庙还没起的时候，它已经站在那里。", en: "It stood before the shrine." },

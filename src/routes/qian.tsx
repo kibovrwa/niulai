@@ -53,13 +53,29 @@ function QianPage() {
           </p>
 
           {lot ? (
-            <div ref={card} className="mt-6 rounded-sm bg-paper p-5 text-ink">
-              <p className="font-brush text-cinnabar">{lot.rank}</p>
-              <p className="mt-2 font-display text-5xl text-cinnabar">{lot.mark}</p>
-              <p className="mt-4 text-lg leading-relaxed">{lot.line}</p>
-              <p className="mt-4 text-xs text-muted">牛来图腾 · 灵不灵以后说</p>
-              <div className="mt-4">
-                <QrMark url={publicUrl("/qian")} label="扫码抽你的" size={140} />
+            <div
+              ref={card}
+              className="relative mt-6 overflow-hidden rounded-sm text-center"
+              style={{ background: "#1c4324", color: "#f3e6c8" }}
+            >
+              <img
+                src="/art/totem-god.jpg"
+                alt=""
+                className="mx-auto mt-5 h-28 w-28 rounded-full object-cover"
+                crossOrigin="anonymous"
+              />
+              <p className="mt-3 font-brush text-lg" style={{ color: "#e8c36a" }}>
+                {lot.rank}
+              </p>
+              <p className="font-display text-6xl leading-none" style={{ color: "#c23b2e" }}>
+                {lot.mark}
+              </p>
+              <p className="mx-auto mt-3 max-w-xs px-5 text-base leading-relaxed">{lot.line}</p>
+              <p className="mt-3 text-xs tracking-widest" style={{ color: "#c49a4a" }}>
+                牛来 · 灵不灵以后说
+              </p>
+              <div className="p-4">
+                <QrMark url={publicUrl("/qian")} label="扫码抽一签" size={128} />
               </div>
             </div>
           ) : (
@@ -88,6 +104,7 @@ function QianPage() {
           {lot ? (
             <div className="mt-4">
               <ShareBar
+                compact
                 payload={lotShare({ rank: lot.rank, line: lot.line })}
                 saveLabel="保存这签"
                 saving={saving}

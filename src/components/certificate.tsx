@@ -10,6 +10,7 @@ import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
 import { renderWishPoster } from "@/lib/wish-poster";
 import { cowTypeById, luckyMark, wishById } from "@/lib/wish-data";
+import { wishTheme } from "@/lib/wish-theme";
 import type { WishRow } from "@/lib/wish-fns";
 
 type CertificateProps = {
@@ -120,6 +121,7 @@ export function ShareSlip({
 }) {
   const spec = wishById(wish.wishId);
   const lucky = luckyMark(wish.serial);
+  const theme = wishTheme(wish.wishId);
   const [url, setUrl] = useState(playUrl ?? "");
 
   useEffect(() => {
@@ -134,7 +136,7 @@ export function ShareSlip({
     <div ref={posterRef} className="relative overflow-hidden bg-ink text-center text-paper">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url(/art/grass.jpg)" }}
+        style={{ backgroundImage: `url(${theme.scene})` }}
         aria-hidden
       />
       <div className="absolute inset-0 bg-linear-to-b from-ink/40 via-ink/15 to-ink/90" />
@@ -144,20 +146,17 @@ export function ShareSlip({
       <div className="relative z-10 px-4 pb-4 pt-5">
         <p className="font-brush text-sm tracking-widest text-gold-soft">此页已开光</p>
         <p className="mt-1 font-brush text-2xl text-gold-soft">第 {wish.serial} 号</p>
-        <img
-          src="/art/totem-god.jpg"
-          alt=""
-          className="mx-auto mt-2 w-[58%] object-contain"
-          style={{ outline: "none" }}
-          crossOrigin="anonymous"
-        />
+        <div className="h-[38vw] max-h-52" />
         <p className="mt-1 font-display text-lg tracking-widest text-gold-soft">信牛来，牛市一定来</p>
         <div className="mt-3 rounded-sm bg-paper px-3 py-3 text-ink">
           <p className="font-display text-2xl leading-snug">{wish.label}</p>
           <p className="mt-2 text-xs text-muted">
             {sameCount} 人同一贪 · {wish.nickname}
           </p>
-          <p className="mt-1 text-sm text-cinnabar">{spec.roast}</p>
+          <p className="mt-1 text-sm" style={{ color: theme.ink }}>
+            {theme.boast}
+          </p>
+          <p className="mt-1 text-[11px] tracking-widest text-muted">{theme.bits.join(" · ")}</p>
         </div>
         {url ? (
           <div className="mt-2 rounded-sm bg-paper px-2 py-2">

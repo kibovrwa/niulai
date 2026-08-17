@@ -41,14 +41,21 @@ export function seoHead({
   title,
   desc,
   path = "/",
+  image,
 }: {
   title: string;
   desc: string;
   path?: string;
+  image?: string;
 }) {
   const named = withBrand(title);
   const namedDesc = /牛来/.test(desc) ? desc.replaceAll("牛来图腾", BRAND) : `${BRAND}。${desc}`;
   const url = path.startsWith("http") ? path : `${SITE}${path}`;
+  const og = image
+    ? image.startsWith("http")
+      ? image
+      : `${SITE}${image}`
+    : `${SITE}/og-card.jpg?v=hui`;
   return {
     meta: [
       { title: named },
@@ -63,7 +70,7 @@ export function seoHead({
       { property: "og:url", content: url },
       { property: "og:site_name", content: BRAND },
       { property: "og:locale", content: "zh_CN" },
-      { property: "og:image", content: `${SITE}/og-card.jpg?v=hui` },
+      { property: "og:image", content: og },
       { property: "og:image:width", content: "800" },
       { property: "og:image:height", content: "800" },
       { property: "og:image:alt", content: named },

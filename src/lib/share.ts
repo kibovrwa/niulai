@@ -43,7 +43,7 @@ export function nbtiShare(input: {
 }): SharePayload {
   return {
     title: `我是「${input.name}」`,
-    lines: [`我是【${input.name}】`, input.punch, "你也测"],
+    lines: [`我是【${input.name}】`, input.punch, "信牛来，牛市一定来", "顺手测测你的"],
     url: publicUrl(`/ce?from=${input.code}`),
   };
 }
@@ -51,7 +51,7 @@ export function nbtiShare(input: {
 export function wishShare(input: { serial: number; label: string; id: string }): SharePayload {
   return {
     title: `第${input.serial}号「${input.label}」`,
-    lines: [`许了「${input.label}」`, `第 ${input.serial} 号`, "你也来"],
+    lines: [`许了「${input.label}」`, `第 ${input.serial} 号`, "信牛来，牛市一定来", "你也来许一个"],
     url: publicUrl(`/w/${input.id}`),
   };
 }

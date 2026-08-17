@@ -1,11 +1,16 @@
+import { BlessRain } from "@/components/bless-rain";
+import { CreedMark } from "@/components/creed-mark";
+
 export function Hall({
   children,
   totem = true,
   wide = false,
+  rain = false,
 }: {
   children: React.ReactNode;
   totem?: boolean;
   wide?: boolean;
+  rain?: boolean;
 }) {
   return (
     <main className="relative isolate min-h-dvh overflow-hidden pb-16 pt-20 text-paper">
@@ -15,6 +20,8 @@ export function Hall({
         aria-hidden
       />
       <div className="absolute inset-0 bg-linear-to-b from-ink/50 via-ink/28 to-ink/92" />
+      <CreedMark tone="dark" />
+      {rain ? <BlessRain /> : null}
       <div className={`relative z-10 mx-auto px-4 ${wide ? "max-w-3xl" : "max-w-md"}`}>
         {totem ? (
           <div className="relative mx-auto mb-5 w-fit">

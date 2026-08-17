@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { Hall } from "@/components/hall";
 import { QrMark } from "@/components/qr-mark";
 import { SiteChrome } from "@/components/site-chrome";
 import { useLocale } from "@/lib/i18n";
@@ -24,11 +25,12 @@ export const Route = createFileRoute("/nbti/$code")({
     const answers = decodeAnswers(params.code);
     const r = answers ? scoreNbti(answers) : null;
     return seoHead({
-      title: r ? `我是「${r.type.name.zh}」` : "NBTI · 牛来许愿池",
+      title: r ? `有人是「${r.type.name.zh}」` : "NBTI · 牛来许愿池",
       desc: r
-        ? `我是${r.type.name.zh}。${r.type.punch.zh} 你也测一个。`
-        : "测你的 NBTI 和牛来指数。",
+        ? `${r.type.name.zh}。${PLAIN[r.code]?.zh ?? r.type.punch.zh} 信牛来，牛市一定来。`
+        : "信牛来，牛市一定来。顺手测测你的 NBTI。",
       path: `/nbti/${params.code}`,
+      image: r ? `/art/types/${r.code}.jpg` : undefined,
     });
   },
   component: NbtiPage,
@@ -104,9 +106,12 @@ function NbtiPage() {
 
   return (
     <SiteChrome>
-      <main className="min-h-dvh bg-[#e8eee4] px-4 pb-16 pt-16">
-        <div className="mx-auto max-w-md space-y-3">
-          <div className="overflow-hidden rounded-2xl bg-white" style={{ background: "#ffffff" }}>
+      <Hall totem={false} rain>
+        <p className="text-center font-brush text-gold-soft">此页已开光</p>
+        <p className="mt-1 text-center font-brush text-xl text-gold-soft">信牛来，牛市一定来</p>
+
+        <div className="mx-auto mt-4 max-w-md space-y-3">
+          <div className="overflow-hidden rounded-sm bg-paper shadow-plaque">
             <img
               src={typeArt(r.code, locale)}
               alt={`${r.type.name[locale]} ${r.type.punch[locale]}`}
@@ -115,15 +120,15 @@ function NbtiPage() {
             />
           </div>
 
-          <div className="rounded-2xl bg-white px-5 py-5 text-ink">
-            <p className="text-xs text-muted">{r.code === "NLBN" ? "隐藏款" : "你的主类型"}</p>
+          <div className="rounded-sm bg-paper px-5 py-5 text-ink shadow-plaque">
+            <p className="text-xs tracking-widest text-muted">{r.code === "NLBN" ? "隐藏款" : "庙里的一张脸"}</p>
             <p className="mt-1 font-display text-3xl">
               {r.code}（{r.type.name[locale]}）
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               {PLAIN[r.code]?.[locale] ?? r.type.line[locale]}
             </p>
-            <p className="mt-3 inline-block rounded-full bg-[#dce8d6] px-3 py-1 text-sm text-[#2f5a32]">
+            <p className="mt-3 inline-block rounded-sm bg-cinnabar/10 px-3 py-1 text-sm text-cinnabar">
               {r.code === "NLBN"
                 ? "隐藏款 · 本尊 · 约 1/888"
                 : `匹配度 ${r.beat}% · 指数 ${formatIndex(r.index, r.dec)}`}
@@ -142,16 +147,16 @@ function NbtiPage() {
               {cult
                 ? ` · 第 ${(cult.types[r.code] ?? 1).toLocaleString("zh-CN")} 个${r.type.name.zh}`
                 : ""}
-              。测完换 {XIANG.nbti} 炷香。转发再换 {XIANG.share} 炷。
+              。测完换 {XIANG.nbti} 炷香。
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white px-5 py-5 text-left text-ink">
-            <p className="font-display text-lg">该牛相的简单解读</p>
+          <div className="rounded-sm bg-paper px-5 py-5 text-left text-ink shadow-plaque">
+            <p className="font-display text-lg">神批</p>
             <p className="mt-3 text-sm leading-relaxed">{r.type.verdict[locale]}</p>
             <div className="mt-4 grid grid-cols-4 gap-2 text-center">
               {bars.map((b) => (
-                <div key={b.k} className="rounded-sm bg-[#eef3ea] py-2">
+                <div key={b.k} className="rounded-sm bg-paper-deep py-2">
                   <p className="font-display text-lg tabular-nums">{b.v}</p>
                   <p className="text-[11px] text-muted">{b.k}</p>
                 </div>
@@ -197,8 +202,23 @@ function NbtiPage() {
             </dl>
           </div>
 
-          <div className="rounded-2xl bg-white px-4 py-4">
-            <QrMark url={playUrl} label="扫码测你的" size={128} />
+          <div className="rounded-sm bg-paper px-4 py-4 shadow-plaque">
+            <Link
+              to="/"
+              search={{ g: rec.id }}
+              className="flex min-h-12 items-center justify-center rounded-sm bg-cinnabar font-display text-lg tracking-widest text-paper no-underline"
+            >
+              向神登记「{rec.label}」
+            </Link>
+            <Link
+              to="/qian"
+              className="mt-2 flex min-h-11 items-center justify-center rounded-sm bg-wood font-display text-paper no-underline"
+            >
+              今日签还没抽
+            </Link>
+            <div className="mt-4">
+              <QrMark url={playUrl} label="扫码也来许一个" size={128} />
+            </div>
             <div className="mt-3">
               <ShareBar
                 compact
@@ -221,25 +241,15 @@ function NbtiPage() {
                 }}
               />
             </div>
-            <Link to="/qian" className="mt-2 flex min-h-11 items-center justify-center rounded-sm bg-wood font-display text-paper no-underline">
-              今日签还没抽
-            </Link>
-            <Link
-              to="/"
-              search={{ g: rec.id }}
-              className="mt-2 flex min-h-11 items-center justify-center rounded-sm bg-paper-deep font-display no-underline"
-            >
-              向神登记「{rec.label}」
-            </Link>
             <p className="mt-2 text-center text-xs text-muted">
               {r.code === "NLBN" ? "隐藏款已出。明日来续香。" : "本牛约 1/888。香火明日再来，别灭。"}
             </p>
-            <Link to="/ce" className="mt-1 block min-h-11 text-center text-sm text-muted">
-              再测一次
+            <Link to="/ce" className="mt-1 block min-h-11 text-center text-sm tracking-widest text-muted">
+              顺手测测你的 NBTI
             </Link>
           </div>
         </div>
-      </main>
+      </Hall>
       {shot ? <ShareShot src={shot} onClose={() => setShot(null)} /> : null}
     </SiteChrome>
   );

@@ -141,8 +141,11 @@ function Intro({
   return (
     <div className="pt-2 text-center">
       <GodFace large />
-      <p className="mt-5 font-brush text-gold-soft">{locale === "en" ? "The god's paper" : "神出的卷"}</p>
-      <h1 className="mt-1 font-display text-5xl tracking-widest">{locale === "en" ? "Which cow are you?" : "测你是哪种牛"}</h1>
+      <p className="mt-5 font-brush text-gold-soft">此页已开光</p>
+      <h1 className="mt-1 font-display text-4xl tracking-widest">{locale === "en" ? "Which cow are you?" : "测你是哪种牛"}</h1>
+      <p className="mt-2 font-brush text-xl text-gold-soft">
+        {locale === "en" ? "Believe in niulai. The bull will come." : "信牛来，牛市一定来"}
+      </p>
       <p className="mt-3 text-sm text-paper/75">
         {locale === "en"
           ? "Eight questions about greed. Not a trading exam."
@@ -165,10 +168,10 @@ function Intro({
         onClick={() => onStart()}
         className="relative z-20 mt-8 flex min-h-12 w-full items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper"
       >
-        {locale === "en" ? "I'll take it" : "我来比"}
+        {locale === "en" ? "I'll take it" : rival ? "我来比" : "顺手测测"}
       </button>
       <Link to="/" className="mt-4 inline-block min-h-11 text-sm text-gold-soft">
-        {locale === "en" ? "Back to the god" : "回去看神"}
+        {locale === "en" ? "Wish first" : "先去许一个"}
       </Link>
     </div>
   );

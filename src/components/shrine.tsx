@@ -4,6 +4,7 @@ import { TotemStage } from "@/components/totem-dress";
 import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
+import { TYPES } from "@/lib/nbti";
 import { incenseLine, touchIncense, type Incense } from "@/lib/incense";
 import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
@@ -36,7 +37,10 @@ export function Shrine({
 
   useEffect(() => {
     const b = loadBooklet();
-    if (b.nbti) setMine(`${b.nbti.name} · ${b.nbti.letters}`);
+    if (b.nbti) {
+      const live = TYPES[b.nbti.letters]?.name.zh;
+      setMine(`${live ?? b.nbti.name} · ${b.nbti.letters}`);
+    }
     setSeals(markReturn());
     setIncense(touchIncense());
     setGongde(loadGongde());
@@ -85,7 +89,7 @@ export function Shrine({
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
-        <h1 className="font-display text-4xl tracking-[0.4em] text-paper">牛来</h1>
+        <h1 className="font-display text-3xl tracking-widest text-paper">测你是哪种牛</h1>
 
         <button
           type="button"
@@ -111,7 +115,7 @@ export function Shrine({
         </p>
 
         <div className="mt-3 flex flex-wrap justify-center gap-2">
-          {["核动力", "美股大海", "套死"].map((n) => (
+          {["核动力", "美牛牛", "牛跃亭"].map((n) => (
             <span
               key={n}
               className="rounded-sm border border-cow/70 px-2.5 py-1 font-display text-sm tracking-widest text-cow"
@@ -126,7 +130,7 @@ export function Shrine({
           to="/ce"
           className="mt-4 flex min-h-12 w-full max-w-xs items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper no-underline"
         >
-          测你是哪种牛
+          开测
         </Link>
         <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
           <button

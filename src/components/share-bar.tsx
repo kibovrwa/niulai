@@ -24,15 +24,22 @@ export function ShareBar({
 
   const label =
     state === "copied"
-      ? "文案已复制 · 去朋友圈贴"
+      ? "已复制 · 打开微信贴上"
       : state === "shared"
         ? "已唤起分享"
         : state === "failed"
-          ? "再点一次分享"
-          : "发朋友圈";
+          ? "没复制上，再点一次"
+          : "复制这段去发";
 
   return (
     <div className="space-y-2">
+      <div className="rounded-sm bg-paper-deep px-4 py-3 text-left text-ink">
+        <p className="text-[11px] tracking-widest text-cinnabar">发出去的就是这几句</p>
+        <p className="mt-2 whitespace-pre-wrap font-display text-base leading-relaxed">
+          {payload.lines.join("\n")}
+        </p>
+        <p className="mt-2 break-all text-xs text-muted">{payload.url}</p>
+      </div>
       <button
         type="button"
         onClick={() => void go()}
@@ -50,7 +57,7 @@ export function ShareBar({
         </button>
       ) : null}
       <p className="text-center text-[11px] leading-relaxed text-muted">
-        先出图，再发一句「我测出来是这个」。链接会带着你的牛相。
+        链接只是尾巴。朋友先读上面那几句。
       </p>
     </div>
   );

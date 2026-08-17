@@ -13,6 +13,7 @@ export const SEALS = [
   { id: "lot", mark: "签", name: "抽签", how: "抽一签狗血" },
   { id: "gossip", mark: "闻", name: "听闻", how: "跟证人说上话" },
   { id: "offer", mark: "供", name: "上供", how: "给神一件衣或道具" },
+  { id: "repay", mark: "还", name: "还愿", how: "灵了，回来还一炷" },
 ] as const;
 
 export type SealId = (typeof SEALS)[number]["id"];

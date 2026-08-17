@@ -312,7 +312,7 @@ export const TYPES: Record<string, TypeCard> = {
     line: { zh: "开拖拉机。顶胯。仓也跟着晃。", en: "Drive the tractor. The book sways." },
     punch: { zh: "我在跳拖拉机。盘也是。", en: "Tractor dance. Tractor tape." },
     verdict: { zh: "神批：衣服是CORTIS的。腿还在犁地。", en: "CORTIS kit. Tractor legs." },
-    rec: "reply",
+    rec: "marry",
     read: {
       face: { zh: "衣服是练舞的。腿是犁地的。", en: "Dance kit. Plough legs." },
       die: { zh: "死在「我这身能跑」。跑的是田埂。", en: "Die of I can run. You ran a field." },

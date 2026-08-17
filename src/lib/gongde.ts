@@ -28,6 +28,37 @@ export function addGongde(n: number) {
   return next;
 }
 
+export const XIANG = {
+  nbti: 3,
+  share: 8,
+  bless: 1,
+} as const;
+
+const BLESS = "niulai.bless.v1";
+
+export function alreadyBlessed(id: string) {
+  if (typeof window === "undefined") return true;
+  try {
+    const had = JSON.parse(window.localStorage.getItem(BLESS) ?? "[]") as string[];
+    return Array.isArray(had) && had.includes(id);
+  } catch {
+    return false;
+  }
+}
+
+export function markBlessed(id: string) {
+  if (typeof window === "undefined") return;
+  const had = (() => {
+    try {
+      const raw = JSON.parse(window.localStorage.getItem(BLESS) ?? "[]") as string[];
+      return Array.isArray(raw) ? raw : [];
+    } catch {
+      return [] as string[];
+    }
+  })();
+  window.localStorage.setItem(BLESS, JSON.stringify([...new Set([id, ...had])].slice(0, 120)));
+}
+
 export function spendGongde(n: number) {
   const now = loadGongde();
   if (now < n) return { ok: false as const, left: now };

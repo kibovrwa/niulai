@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addGongde, alreadyBlessed, markBlessed, XIANG } from "@/lib/gongde";
 import { fireShare, type SharePayload } from "@/lib/share";
 
 export function ShareBar({
@@ -23,7 +24,14 @@ export function ShareBar({
   async function go() {
     const next = await fireShare(payload);
     setState(next);
-    if (next === "shared" || next === "copied") onShared?.();
+    if (next === "shared" || next === "copied") {
+      const key = `share:${payload.url}`;
+      if (!alreadyBlessed(key)) {
+        markBlessed(key);
+        addGongde(XIANG.share);
+      }
+      onShared?.();
+    }
   }
 
   const label =

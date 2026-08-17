@@ -161,9 +161,12 @@ export function Shrine({
           </button>
         ) : null}
         <p className="mt-3 text-center text-xs text-gold-soft/80">
-          今日 · {todayLabel} · 已叩 {seals.bows}
+          香 {gongde} 炷 · 今日 · {todayLabel} · 已叩 {seals.bows}
         </p>
         <p className="mt-1 text-center text-xs text-gold-soft">{incenseLine(incense)}</p>
+        <p className="mt-1 text-center text-xs text-gold-soft">
+          测完换香 · 转发换香 · 积福换香
+        </p>
       </div>
     </section>
   );

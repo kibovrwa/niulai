@@ -38,7 +38,7 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
     markRepaid(wish.id);
     setDone(true);
     awardSeal("repay");
-    addGongde(18);
+    addGongde(3);
     void repayWish({ data: { id: wish.id, serial: wish.serial } });
   }
 

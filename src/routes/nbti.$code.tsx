@@ -6,7 +6,7 @@ import { useLocale } from "@/lib/i18n";
 import { saveNbti } from "@/lib/booklet";
 import { getCult, passFire, recordCast, type CultStats } from "@/lib/cult-fns";
 import { awardSeal } from "@/lib/seals";
-import { addGongde } from "@/lib/gongde";
+import { addGongde, XIANG } from "@/lib/gongde";
 import { decodeAnswers, formatIndex, scoreNbti, typeArt } from "@/lib/nbti";
 import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
@@ -61,7 +61,7 @@ function NbtiPage() {
       return;
     }
     sessionStorage.setItem(key, "1");
-    addGongde(6);
+    addGongde(XIANG.nbti);
     void recordCast({ data: result.code }).then(setCult);
   }, [result?.code, code]);
 
@@ -139,7 +139,7 @@ function NbtiPage() {
               {cult
                 ? ` · 第 ${(cult.types[r.code] ?? 1).toLocaleString("zh-CN")} 个${r.type.name.zh}`
                 : ""}
-              。这张脸，就是你现在的盘。
+              。测完换 {XIANG.nbti} 炷香。转发再换 {XIANG.share} 炷。
             </p>
           </div>
 
@@ -213,7 +213,6 @@ function NbtiPage() {
                   if (!fired) {
                     setFired(true);
                     awardSeal("fire");
-                    addGongde(18);
                     void passFire().then(setCult);
                   }
                 }}

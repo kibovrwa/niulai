@@ -5,6 +5,7 @@ import { Hall } from "@/components/hall";
 import { useLocale } from "@/lib/i18n";
 import { QUESTIONS, decodeAnswers, encodeAnswers, scoreNbti, formatIndex, type AnswerMap } from "@/lib/nbti";
 import { passFire } from "@/lib/cult-fns";
+import { addGongde, alreadyBlessed, markBlessed, XIANG } from "@/lib/gongde";
 import { seoHead } from "@/lib/seo";
 
 type CeSearch = { from?: string; go?: string };
@@ -45,6 +46,10 @@ function CePage() {
     const key = `niulai.fire.${from}`;
     if (sessionStorage.getItem(key)) return;
     sessionStorage.setItem(key, "1");
+    if (!alreadyBlessed(`from:${from}`)) {
+      markBlessed(`from:${from}`);
+      addGongde(XIANG.bless);
+    }
     void passFire();
   }, [from]);
 

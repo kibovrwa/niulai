@@ -26,7 +26,7 @@ SEALS = {
     "SMXL": "核",
     "SMXD": "犟",
     "SKCL": "绊倒",
-    "SKCD": "盖章",
+    "SKCD": "跃亭",
     "SKXL": "搭子",
     "SKXD": "看戏",
     "NLBN": "本尊",

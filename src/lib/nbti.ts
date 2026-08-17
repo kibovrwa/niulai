@@ -293,9 +293,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKCD: {
-    name: { zh: "盖章牛", en: "Stamp Bull" },
-    line: { zh: "号先领了，灵不灵以后说。", en: "Take the number. Faith later." },
-    punch: { zh: "我不是来灵的。我是来盖章的。", en: "Not here for magic. Here for the stamp." },
+    name: { zh: "牛跃亭", en: "Yueting Bull" },
+    line: { zh: "下周回国。仓先走。", en: "Back next week. The book left first." },
+    punch: { zh: "我先走。你们先拿着。", en: "I leave first. You hold." },
     verdict: { zh: "神批：号是唯一诚实的东西。", en: "The number is the only honest thing." },
     rec: "yingyuan",
     read: {
@@ -409,7 +409,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKCD: {
     past: { zh: "衙门盖章的。章比话真。", en: "A clerk of stamps." },
-    now: { zh: "盖章牛。号比灵真。", en: "The number is truer than faith." },
+    now: { zh: "牛跃亭。下周还没到。", en: "Next week hasn't come." },
   },
   SKXL: {
     past: { zh: "结拜。酒比血浓。", en: "Sworn brothers. Wine thicker than blood." },

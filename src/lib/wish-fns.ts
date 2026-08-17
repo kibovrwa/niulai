@@ -143,7 +143,7 @@ export const listWishes = createServerFn({ method: "GET" })
     limit: Math.min(Math.max(input.limit ?? 36, 1), 80),
     wishId: input.wishId && isWishId(input.wishId) ? input.wishId : null,
   }))
-  .handler(async ({ data }) => readWishes(data));
+  .handler(async ({ data }) => readWishes({ limit: data.limit, wishId: data.wishId ?? undefined }));
 
 export const getWish = createServerFn({ method: "GET" })
   .validator((id: string) => id.trim())

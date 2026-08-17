@@ -13,7 +13,7 @@ import { addGongde } from "@/lib/gongde";
 import { awardSeal } from "@/lib/seals";
 import { seoHead } from "@/lib/seo";
 import { isWishId, luckyMark, todayWishId, wishById, type WishId } from "@/lib/wish-data";
-import { createWish, emptyStats, readStats, readWishes, type WishRow } from "@/lib/wish-fns";
+import { createWish, emptyStats, getStats, readStats, readWishes, type WishRow } from "@/lib/wish-fns";
 
 type HomeSearch = { g?: string };
 

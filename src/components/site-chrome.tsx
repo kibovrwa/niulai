@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { CreedMark } from "@/components/creed-mark";
+import { KaiGuang } from "@/components/kai-guang";
 import { t, useLocale } from "@/lib/i18n";
 import { fireShare, homeShare } from "@/lib/share";
 
@@ -13,6 +14,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-dvh bg-ink text-paper">
       {quizzing ? null : <CreedMark tone="dark" />}
+      {quizzing ? null : <KaiGuang />}
       <header className="pointer-events-none absolute inset-x-0 top-0 z-30 flex h-14 items-center justify-between px-3 sm:px-6">
         <Link
           to="/"
@@ -77,7 +79,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           <p className="font-brush text-lg text-gold/85">{t(locale, "tagline")}</p>
           <p className="mt-2">{t(locale, "footerLine")}</p>
           <p className="mt-1">
-            {locale === "zh" ? "自立像第八千八百八十八号起 · 号不回零" : "From No. 8888. The number only goes up."}
+            {locale === "zh" ? "此页已开光 · 自立像第八千八百八十八号起 · 号不回零" : "Consecrated. From No. 8888. The number only goes up."}
           </p>
           <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-gold-soft">
             <Link to="/xiang" className="inline-flex min-h-10 items-center no-underline">

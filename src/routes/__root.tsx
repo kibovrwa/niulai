@@ -8,7 +8,7 @@ export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
       title: "牛来许愿池",
-      desc: "路边许愿池。选一句贪，领一个号。也可以测你是哪种牛。",
+      desc: "此页已开光。信牛来，牛市一定来。路边许愿池。",
       path: "/",
     });
     return {

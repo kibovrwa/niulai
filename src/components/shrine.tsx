@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { BlessRain } from "@/components/bless-rain";
 import { CreedMark } from "@/components/creed-mark";
+import { KaiSeal } from "@/components/kai-guang";
 import { TotemStage } from "@/components/totem-dress";
 import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
@@ -123,6 +124,7 @@ export function Shrine({
           <TotemStage src={src} on={fits} className="relative z-10 mx-auto w-[min(52vw,240px)]">
             <Incense />
           </TotemStage>
+          <KaiSeal />
         </button>
         <p className="mt-1 font-brush text-gold-soft">{said}</p>
 

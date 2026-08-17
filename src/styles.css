@@ -260,6 +260,75 @@
   background: rgb(26 22 16 / 0.28);
 }
 
+@keyframes kai-lift {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes kai-stamp {
+  0% {
+    transform: scale(1.6) rotate(-22deg);
+    opacity: 0;
+  }
+  28% {
+    transform: scale(0.96) rotate(-12deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+    opacity: 1;
+  }
+}
+
+.kai-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  background: rgb(26 22 16 / 0.88);
+  animation: kai-lift 2.2s ease forwards;
+  pointer-events: none;
+}
+
+.kai-chop,
+.kai-seal {
+  display: grid;
+  place-items: center;
+  border: 3px solid #c43a22;
+  color: #c43a22;
+  font-family: var(--font-brush);
+  letter-spacing: 0.2em;
+}
+
+.kai-chop {
+  width: 7.2rem;
+  height: 7.2rem;
+  font-size: 2.4rem;
+  animation: kai-stamp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  box-shadow: inset 0 0 0 2px rgb(196 58 34 / 0.35);
+}
+
+.kai-seal {
+  position: absolute;
+  right: 8%;
+  top: 34%;
+  width: 3.1rem;
+  height: 3.1rem;
+  font-size: 1rem;
+  transform: rotate(-14deg);
+  background: rgb(26 22 16 / 0.2);
+  z-index: 12;
+}
+
 .seal-chop {
   display: grid;
   place-items: center;
@@ -282,5 +351,10 @@
 
   .bless-rain {
     display: none;
+  }
+
+  .kai-veil,
+  .kai-chop {
+    animation: none;
   }
 }

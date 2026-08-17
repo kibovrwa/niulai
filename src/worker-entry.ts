@@ -56,10 +56,13 @@ export default {
       if (assetRes.ok) return assetRes;
     }
     if (url.pathname === "/api/ping") {
+      const fromEnv = typeof env?.DATABASE_URL === "string" ? env.DATABASE_URL.trim() : "";
+      const fromProcess = process.env.DATABASE_URL?.trim() ?? "";
       return Response.json({
         ok: true,
-        hasDb: Boolean(process.env.DATABASE_URL?.trim()),
+        hasDb: Boolean(fromEnv || fromProcess),
         via: "worker-entry",
+        keys: env ? Object.keys(env).sort() : [],
       });
     }
     try {

@@ -1,47 +1,48 @@
 #!/usr/bin/env python3
-"""拖拉机牛 result: same cow head on the CORTIS tractor-dance body."""
+"""拖拉机牛: the 牛来 cow only, CORTIS jacket + striped polo, dance lean."""
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter
+from PIL import Image, ImageDraw, ImageEnhance
 
-POSE = Path("/workspace/attachments/IMG_8081.jpg")
-COW = Path("/workspace/public/art/totem-god.jpg")
+SRC = Path("/workspace/public/art/totem-god.jpg")
 OUT = Path("/workspace/public/art/cow-tractor.png")
 
 
 def main():
-    pose = Image.open(POSE).convert("RGBA")
-    # tighten on the dancer
-    pw, ph = pose.size
-    pose = pose.crop((int(pw * 0.02), int(ph * 0.02), int(pw * 0.78), int(ph * 0.98)))
-    pose = ImageEnhance.Color(pose).enhance(0.92)
-    pose = ImageEnhance.Contrast(pose).enhance(1.08)
-
-    cow = Image.open(COW).convert("RGBA")
+    raw = Image.open(SRC).convert("RGBA")
+    w, h = raw.size
+    cow = raw.crop((10, 120, w - 10, h - 20))
+    cow = ImageEnhance.Contrast(cow).enhance(1.08)
+    # dance lean
+    cow = cow.rotate(-18, resample=Image.Resampling.BICUBIC, expand=True)
     cw, ch = cow.size
-    head = cow.crop((90, 40, cw - 90, int(ch * 0.48)))
-    # scale head to cover the human face
-    target_w = int(pose.width * 0.44)
-    ratio = target_w / head.width
-    head = head.resize((target_w, int(head.height * ratio)), Image.Resampling.LANCZOS)
-
-    # soft edge
-    mask = Image.new("L", head.size, 0)
-    md = ImageDraw.Draw(mask)
-    md.ellipse((4, 4, head.width - 4, int(head.height * 0.92)), fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(8))
-    head.putalpha(ImageChops.multiply(head.split()[-1], mask))
-
-    canvas = pose.copy()
-    hx = int(pose.width * 0.18)
-    hy = int(pose.height * -0.01)
-    canvas.alpha_composite(head, (hx, hy))
-
-    # cream wash so it sits on the paper card
-    wash = Image.new("RGBA", canvas.size, (255, 244, 214, 40))
-    canvas = Image.alpha_composite(canvas, wash)
-    canvas.save(OUT)
-    print(OUT, canvas.size)
+    layer = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    # striped polo
+    x0, y0, x1, y1 = int(cw * 0.34), int(ch * 0.38), int(cw * 0.66), int(ch * 0.58)
+    d.rounded_rectangle((x0, y0, x1, y1), 22, fill=(48, 52, 58, 235))
+    for i, col in enumerate(((190, 40, 40, 230), (210, 210, 214, 230), (190, 40, 40, 230), (80, 84, 90, 230))):
+        yy = y0 + 18 + i * 16
+        d.rectangle((x0 + 18, yy, x1 - 18, yy + 10), fill=col)
+    # dark jacket over shoulders
+    d.polygon(
+        [
+            (cw * 0.30, ch * 0.36),
+            (cw * 0.70, ch * 0.36),
+            (cw * 0.78, ch * 0.58),
+            (cw * 0.68, ch * 0.60),
+            (cw * 0.66, ch * 0.44),
+            (cw * 0.34, ch * 0.44),
+            (cw * 0.32, ch * 0.60),
+            (cw * 0.22, ch * 0.58),
+        ],
+        fill=(18, 18, 20, 230),
+    )
+    # zipper
+    d.line((cw * 0.50, ch * 0.38, cw * 0.50, ch * 0.56), fill=(200, 200, 204, 230), width=4)
+    out = Image.alpha_composite(cow, layer)
+    out.save(OUT)
+    print(OUT, out.size)
 
 
 if __name__ == "__main__":

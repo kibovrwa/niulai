@@ -23,8 +23,8 @@ export const Route = createFileRoute("/")({
   }),
   head: () =>
     seoHead({
-      title: "牛来图腾 · 测 NBTI 向概念神挂号",
-      desc: "民间造神。测 NBTI 看牛来指数。核动力牛、美股大海牛、套死牛。号从 8888 起，只增不减。",
+      title: "我刚给牛来磕了一个",
+      desc: "测你是核动力牛还是套死牛。八题出 NBTI。号只增不减。",
       path: "/",
     }),
   loader: async () => {

@@ -6,6 +6,8 @@ import { loadBooklet } from "@/lib/booklet";
 import { loadSeals, type SealState } from "@/lib/seals";
 import { loadGongde, rankOf } from "@/lib/gongde";
 import { seoHead } from "@/lib/seo";
+import { paiShare } from "@/lib/share";
+import { ShareBar } from "@/components/share-bar";
 
 export const Route = createFileRoute("/pai")({
   head: () =>
@@ -20,7 +22,6 @@ export const Route = createFileRoute("/pai")({
 function PaiPage() {
   const [seals, setSeals] = useState<SealState>({ bows: 0, earned: {} });
   const [name, setName] = useState("");
-  const [copied, setCopied] = useState(false);
   const [gongde, setGongde] = useState(0);
 
   useEffect(() => {
@@ -29,21 +30,6 @@ function PaiPage() {
     const b = loadBooklet();
     if (b.nbti) setName(`${b.nbti.name} ${b.nbti.letters}`);
   }, []);
-
-  async function nominate() {
-    const text = [
-      name ? `我是${name}。` : "我在牛来图腾磕过了。",
-      `已叩 ${seals.bows} 次。`,
-      "点三个还没测的。你们也来磕一个，领一张香牌。",
-      "https://niulai.org/ce",
-    ].join("");
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  }
 
   return (
     <SiteChrome>
@@ -61,13 +47,9 @@ function PaiPage() {
           <div className="mt-8">
             <SealAltar state={seals} />
           </div>
-          <button
-            type="button"
-            onClick={() => void nominate()}
-            className="mt-8 min-h-12 w-full rounded-sm bg-cinnabar font-display tracking-widest text-paper"
-          >
-            {copied ? "已复制，去点三个人" : "点三个还没测的"}
-          </button>
+          <div className="mt-8">
+            <ShareBar payload={paiShare({ name: name || undefined, bows: seals.bows })} />
+          </div>
           <Link to="/" className="mt-4 block text-center text-sm text-muted">
             回去叩
           </Link>

@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type Ref } from "react";
 import { QrMark } from "@/components/qr-mark";
+import { ShareBar } from "@/components/share-bar";
+import { publicUrl, wishShare } from "@/lib/share";
 import { saveNodePng } from "@/lib/share-image";
 import { cowTypeById, luckyMark, wishById } from "@/lib/wish-data";
 import type { WishRow } from "@/lib/wish-fns";
@@ -15,25 +17,13 @@ type CertificateProps = {
 export function Certificate({ wish, sameCount, onClose, onAgain }: CertificateProps) {
   const spec = wishById(wish.wishId);
   const cow = cowTypeById(wish.cowType);
-  const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [url, setUrl] = useState("");
   const poster = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setUrl(`${window.location.origin}/w/${wish.id}`);
+    setUrl(publicUrl(`/w/${wish.id}`));
   }, [wish.id]);
-
-  async function copyLink() {
-    try {
-      await navigator.clipboard.writeText(
-        `我向牛来登记了「${wish.label}」，第 ${wish.serial} 号。扫码也来贪。\n${url}`,
-      );
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  }
 
   async function save() {
     if (!poster.current) return;
@@ -52,20 +42,12 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
         <div className="flex flex-col gap-2 rounded-b-sm bg-paper px-4 py-4 text-ink">
           <p className="text-center font-brush text-lg text-cinnabar">{cow.name}</p>
           <p className="text-center text-sm text-muted">{spec.roast}</p>
-          <button
-            type="button"
-            onClick={() => void save()}
-            className="min-h-12 touch-manipulation rounded-sm bg-cinnabar font-display tracking-widest text-paper"
-          >
-            {saving ? "在出图…" : "保存晒图"}
-          </button>
-          <button
-            type="button"
-            onClick={() => void copyLink()}
-            className="min-h-11 touch-manipulation rounded-sm bg-paper-deep font-display"
-          >
-            {copied ? "链接已复制" : "复制链接"}
-          </button>
+          <ShareBar
+            payload={wishShare({ serial: wish.serial, label: wish.label, id: wish.id })}
+            saveLabel="保存这张单"
+            saving={saving}
+            onSave={() => void save()}
+          />
           <div className="grid grid-cols-2 gap-2">
             <Link
               to="/w/$code"
@@ -107,7 +89,7 @@ export function ShareSlip({
       setUrl(playUrl);
       return;
     }
-    setUrl(`${window.location.origin}/w/${wish.id}`);
+    setUrl(publicUrl(`/w/${wish.id}`));
   }, [playUrl, wish.id]);
 
   return (

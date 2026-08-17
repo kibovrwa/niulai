@@ -8,6 +8,8 @@ import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
 import { addGongde, loadGongde, rankOf } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
+import { homeShare } from "@/lib/share";
+import { ShareBar } from "@/components/share-bar";
 
 type ShrineProps = {
   serial: number;
@@ -150,6 +152,9 @@ export function Shrine({
           >
             抽签
           </Link>
+        </div>
+        <div className="mt-5 w-full max-w-xs">
+          <ShareBar payload={homeShare()} />
         </div>
         <p className="mt-2 flex gap-4 text-xs text-gold-soft">
           <Link to="/yi">给神上供</Link>

@@ -8,7 +8,9 @@ import { getCult, passFire, recordCast, type CultStats } from "@/lib/cult-fns";
 import { awardSeal } from "@/lib/seals";
 import { addGongde } from "@/lib/gongde";
 import { decodeAnswers, formatIndex, scoreNbti } from "@/lib/nbti";
+import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
+import { nbtiShare, publicUrl } from "@/lib/share";
 import { saveNodePng } from "@/lib/share-image";
 import { wishById } from "@/lib/wish-data";
 
@@ -22,9 +24,9 @@ export const Route = createFileRoute("/nbti/$code")({
     const answers = decodeAnswers(params.code);
     const r = answers ? scoreNbti(answers) : null;
     return seoHead({
-      title: r ? `NBTI ${r.code} ${r.type.name.zh} · 牛来指数` : "NBTI · 牛来图腾",
+      title: r ? `我是「${r.type.name.zh}」` : "NBTI · 牛来图腾",
       desc: r
-        ? `${r.type.punch.zh} 前生${r.fate.past.zh} 今世${r.fate.now.zh}`
+        ? `${r.type.punch.zh} 牛来指数 ${formatIndex(r.index, r.dec)}。你是哪种牛？来对线。`
         : "测你的 NBTI 和牛来指数。",
       path: `/nbti/${params.code}`,
     });
@@ -39,17 +41,11 @@ function NbtiPage() {
   const answers = decodeAnswers(code);
   const result = answers ? scoreNbti(answers) : null;
   const rival = from && decodeAnswers(from) ? scoreNbti(decodeAnswers(from)!) : null;
-  const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [shown, setShown] = useState(2800);
-  const [origin, setOrigin] = useState("");
   const [cult, setCult] = useState<CultStats | null>(null);
   const [fired, setFired] = useState(false);
   const poster = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
 
   useEffect(() => {
     if (!result) return;
@@ -85,10 +81,7 @@ function NbtiPage() {
     return () => cancelAnimationFrame(raf);
   }, [result?.index]);
 
-  const playUrl = useMemo(() => {
-    const host = origin || "https://niulai.org";
-    return `${host}/ce?from=${code}`;
-  }, [origin, code]);
+  const playUrl = useMemo(() => publicUrl(`/ce?from=${code}`), [code]);
 
   if (!result) {
     return (
@@ -108,32 +101,6 @@ function NbtiPage() {
   const r = result;
   const rec = wishById(r.type.rec);
   const delta = rival ? r.index - rival.index : null;
-
-  async function copyLink() {
-    const text = [
-      `NBTI ${r.code}「${r.type.name.zh}」`,
-      `牛来指数 ${formatIndex(r.index, r.dec)}`,
-      r.type.punch.zh,
-      "",
-      `前生：${r.fate.past.zh}`,
-      `今世：${r.fate.now.zh}`,
-      `面相：${r.type.read.face.zh}`,
-      `死法：${r.type.read.die.zh}`,
-      `活法：${r.type.read.live.zh}`,
-      `宜：${r.type.read.yes.zh}`,
-      `忌：${r.type.read.no.zh}`,
-      `神多嘴：${r.type.read.mouth.zh}`,
-      "",
-      "点三个还没测的，来比指数。",
-      `扫码测你的 ${playUrl}`,
-    ].join("\n");
-    try {
-      await navigator.clipboard.writeText(`${text}\n${playUrl}`);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  }
 
   async function save() {
     if (!poster.current) return;
@@ -244,28 +211,26 @@ function NbtiPage() {
               </dl>
             </section>
 
-            <button
-              type="button"
-              onClick={() => void save()}
-              className="min-h-12 w-full rounded-sm bg-cinnabar font-display tracking-widest text-paper"
-            >
-              {saving ? "在出图…" : "保存晒图"}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
+            <ShareBar
+              payload={nbtiShare({
+                code: r.code,
+                name: r.type.name.zh,
+                index: formatIndex(r.index, r.dec),
+                punch: r.type.punch.zh,
+                beat: r.beat,
+              })}
+              saveLabel="保存这张牛相"
+              saving={saving}
+              onSave={() => void save()}
+              onShared={() => {
                 if (!fired) {
                   setFired(true);
                   awardSeal("fire");
                   addGongde(18);
                   void passFire().then(setCult);
                 }
-                void copyLink();
               }}
-              className="min-h-12 w-full rounded-sm bg-cinnabar font-display tracking-widest text-paper"
-            >
-              {copied ? "火已传出 · 去贴" : "传火 · 复制解读"}
-            </button>
+            />
             <Link
               to="/"
               search={{ g: rec.id }}

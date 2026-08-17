@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { t, useLocale } from "@/lib/i18n";
+import { fireShare, homeShare } from "@/lib/share";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const locale = useLocale((s) => s.locale) === "en" ? "en" : "zh";
@@ -22,12 +23,21 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             {locale === "zh" ? "牛来" : "NIULAI"}
           </span>
         </Link>
-        <Link
-          to="/ce"
-          className="pointer-events-auto min-h-11 px-3 py-2 font-display tracking-widest text-cow no-underline"
-        >
-          NBTI
-        </Link>
+        <div className="pointer-events-auto flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => void fireShare(homeShare())}
+            className="min-h-11 px-3 py-2 font-display tracking-widest text-gold-soft"
+          >
+            分享
+          </button>
+          <Link
+            to="/ce"
+            className="min-h-11 px-3 py-2 font-display tracking-widest text-cow no-underline"
+          >
+            NBTI
+          </Link>
+        </div>
       </header>
       {children}
       <footer className="bg-ink px-4 py-10 text-center text-xs leading-relaxed text-muted">

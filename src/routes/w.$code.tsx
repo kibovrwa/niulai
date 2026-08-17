@@ -1,16 +1,18 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ShareSlip } from "@/components/certificate";
+import { ShareBar } from "@/components/share-bar";
 import { SiteChrome } from "@/components/site-chrome";
 import { cowTypeById, greedierThan, wishById } from "@/lib/wish-data";
 import { seoHead } from "@/lib/seo";
+import { wishShare } from "@/lib/share";
 import { getStats, getWish } from "@/lib/wish-fns";
 
 export const Route = createFileRoute("/w/$code")({
   head: () =>
     seoHead({
-      title: "晒单 · 牛来图腾",
-      desc: "向概念神登记过的一张单。扫码也能贪一个。",
-      path: "/wall",
+      title: "有人向牛来登记了一贪",
+      desc: "神已收下。点开看他贪的是什么，你也来登记一个。",
+      path: "/w",
     }),
   loader: async ({ params }) => {
     const [wish, stats] = await Promise.all([getWish({ data: params.code }), getStats()]);
@@ -54,6 +56,7 @@ function SlipPage() {
             <p className="font-brush text-2xl text-cinnabar">{cow.name}</p>
             <p className="text-sm text-muted">{spec.roast}</p>
             <p className="text-sm">{cow.line}</p>
+            <ShareBar payload={wishShare({ serial: wish.serial, label: wish.label, id: wish.id })} />
             <Link
               to="/"
               search={{ g: wish.wishId }}

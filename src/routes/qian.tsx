@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { QrMark } from "@/components/qr-mark";
+import { ShareBar } from "@/components/share-bar";
 import { SiteChrome } from "@/components/site-chrome";
 import { addGongde, loadGongde, rankOf } from "@/lib/gongde";
 import { drawLot, todayLot, type Lot } from "@/lib/lots";
 import { awardSeal } from "@/lib/seals";
 import { seoHead } from "@/lib/seo";
+import { lotShare, publicUrl } from "@/lib/share";
 import { saveNodePng } from "@/lib/share-image";
 
 export const Route = createFileRoute("/qian")({
@@ -21,14 +23,11 @@ export const Route = createFileRoute("/qian")({
 function QianPage() {
   const [lot, setLot] = useState<Lot | null>(null);
   const [gongde, setGongde] = useState(0);
-  const [origin, setOrigin] = useState("");
   const [saving, setSaving] = useState(false);
-  const [copied, setCopied] = useState(false);
   const card = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setGongde(loadGongde());
-    setOrigin(window.location.origin);
   }, []);
 
   function draw(today?: boolean) {
@@ -38,19 +37,7 @@ function QianPage() {
     setGongde(addGongde(3));
   }
 
-  const url = useMemo(() => `${origin || "https://niulai.org"}/qian`, [origin]);
   const rank = rankOf(gongde);
-
-  async function share() {
-    if (!lot) return;
-    const text = `【${lot.rank}】${lot.line}\n我在牛来图腾抽的。功德 ${gongde} · ${rank.name}\n你也来一签 ${url}`;
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-    } catch {
-      /* ignore */
-    }
-  }
 
   return (
     <SiteChrome>
@@ -72,7 +59,7 @@ function QianPage() {
               <p className="mt-4 text-lg leading-relaxed">{lot.line}</p>
               <p className="mt-4 text-xs text-muted">牛来图腾 · 灵不灵以后说</p>
               <div className="mt-4">
-                <QrMark url={url} label="扫码抽你的" size={140} />
+                <QrMark url={publicUrl("/qian")} label="扫码抽你的" size={140} />
               </div>
             </div>
           ) : (
@@ -99,25 +86,17 @@ function QianPage() {
             </button>
           </div>
           {lot ? (
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => void share()}
-                className="min-h-11 rounded-sm bg-wood font-display"
-              >
-                {copied ? "已复制" : "传这签"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
+            <div className="mt-4">
+              <ShareBar
+                payload={lotShare({ rank: lot.rank, line: lot.line })}
+                saveLabel="保存这签"
+                saving={saving}
+                onSave={() => {
                   if (!card.current) return;
                   setSaving(true);
                   void saveNodePng(card.current, "niulai-qian.png").finally(() => setSaving(false));
                 }}
-                className="min-h-11 rounded-sm bg-wood font-display"
-              >
-                {saving ? "出图…" : "保存签"}
-              </button>
+              />
             </div>
           ) : null}
           <Link to="/" className="mt-6 block text-center text-sm text-gold-soft">

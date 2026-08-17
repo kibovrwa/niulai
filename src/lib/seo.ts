@@ -1,4 +1,4 @@
-const SITE = "https://niulai.org";
+import { SITE } from "@/lib/share";
 
 export function seoHead({
   title,
@@ -9,7 +9,7 @@ export function seoHead({
   desc: string;
   path?: string;
 }) {
-  const url = `${SITE}${path}`;
+  const url = path.startsWith("http") ? path : `${SITE}${path}`;
   return {
     meta: [
       { title },
@@ -22,6 +22,7 @@ export function seoHead({
       { property: "og:site_name", content: "牛来图腾" },
       { property: "og:locale", content: "zh_CN" },
       { property: "og:image", content: `${SITE}/og.jpg` },
+      { property: "og:image:alt", content: title },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: desc },

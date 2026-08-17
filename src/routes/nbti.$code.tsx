@@ -26,7 +26,7 @@ export const Route = createFileRoute("/nbti/$code")({
     return seoHead({
       title: r ? `我是「${r.type.name.zh}」` : "NBTI · 牛来图腾",
       desc: r
-        ? `${r.type.punch.zh} 牛来指数 ${formatIndex(r.index, r.dec)}。你是哪种牛？来对线。`
+        ? `我是${r.type.name.zh}。${r.type.punch.zh} 你也测一个。`
         : "测你的 NBTI 和牛来指数。",
       path: `/nbti/${params.code}`,
     });

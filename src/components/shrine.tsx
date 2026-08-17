@@ -87,7 +87,7 @@ export function Shrine({
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-8 pt-20 sm:pt-24">
-        <p className="font-brush text-lg text-gold-soft">概念神 · 民间造神</p>
+        <p className="font-brush text-lg text-gold-soft">磕一个</p>
         <h1 className="mt-1 font-display text-5xl tracking-[0.35em] text-paper sm:text-6xl">
           牛来
         </h1>

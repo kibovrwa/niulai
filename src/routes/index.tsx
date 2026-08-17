@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     seoHead({
       title: "测你是哪种牛",
-      desc: "八题马上出结果。核动力、美股大海、套死。你是哪种？",
+      desc: "核动力、美股大海、套死。八题。",
       path: "/",
     }),
   loader: async () => {

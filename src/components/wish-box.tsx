@@ -63,11 +63,9 @@ export function WishBox({
             }}
           >
             <header>
-              <p className="font-brush text-cinnabar">向概念神挂号</p>
-              <h2 className="font-display text-2xl tracking-widest">选你的贪</h2>
-              <p className="mt-1 text-sm text-muted">
-                不拜动物。把一句能转发的贪，登记到「来」上面。
-              </p>
+              <p className="font-brush text-cinnabar">许一个</p>
+              <h2 className="font-display text-2xl tracking-widest">选一句带走</h2>
+              <p className="mt-1 text-sm text-muted">涨停、回本、翻倍，就这些。</p>
             </header>
 
             <div className="grid grid-cols-3 gap-2">

@@ -19,7 +19,7 @@ export function packShare(payload: SharePayload) {
 export function homeShare(): SharePayload {
   return {
     title: "测你是哪种牛",
-    lines: ["测你是哪种牛", "核动力、美股大海、套死", "八题，马上出结果"],
+    lines: ["测你是哪种牛", "核动力、大海、套死，八题"],
     url: publicUrl("/ce"),
   };
 }
@@ -28,8 +28,8 @@ export function ceShare(from?: string): SharePayload {
   return {
     title: "测你是哪种牛",
     lines: from
-      ? ["有人测完把结果甩过来了", "八题，看你是哪种牛"]
-      : ["测你是哪种牛", "核动力、美股大海、套死", "八题，马上出结果"],
+      ? ["有人把结果甩过来了", "你也测一个"]
+      : ["测你是哪种牛", "核动力、大海、套死，八题"],
     url: publicUrl(from ? `/ce?from=${from}` : "/ce"),
   };
 }
@@ -44,9 +44,9 @@ export function nbtiShare(input: {
   return {
     title: `我是「${input.name}」`,
     lines: [
-      `测出来了，我是【${input.name}】`,
-      `指数 ${input.index}，超过 ${input.beat}% 的人`,
-      "你是哪种？点开就测",
+      `我是【${input.name}】`,
+      `${input.index}，超过 ${input.beat}% 的人`,
+      "你也测一个",
     ],
     url: publicUrl(`/ce?from=${input.code}`),
   };
@@ -55,11 +55,7 @@ export function nbtiShare(input: {
 export function wishShare(input: { serial: number; label: string; id: string }): SharePayload {
   return {
     title: `第${input.serial}号「${input.label}」`,
-    lines: [
-      `我刚许了「${input.label}」`,
-      `已经排到第 ${input.serial} 号`,
-      "你也来许一个",
-    ],
+    lines: [`许了「${input.label}」`, `第 ${input.serial} 号`, "你也来"],
     url: publicUrl(`/w/${input.id}`),
   };
 }
@@ -67,18 +63,15 @@ export function wishShare(input: { serial: number; label: string; id: string }):
 export function lotShare(input: { rank: string; line: string }): SharePayload {
   return {
     title: `抽到【${input.rank}】`,
-    lines: [`我抽到【${input.rank}】`, input.line, "你也来抽一签"],
+    lines: [`抽到【${input.rank}】`, input.line, "你也抽一签"],
     url: publicUrl("/qian"),
   };
 }
 
 export function paiShare(input: { name?: string; bows: number }): SharePayload {
   return {
-    title: "来测你是哪种牛",
-    lines: [
-      input.name ? `我是${input.name}` : "我测过了",
-      "点三个还没测的，你们也来",
-    ],
+    title: "测你是哪种牛",
+    lines: [input.name ? `我是${input.name}` : "我测过了", "你们也来"],
     url: publicUrl("/ce"),
   };
 }

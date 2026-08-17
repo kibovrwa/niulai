@@ -25,7 +25,7 @@ CARDS = {
     "SMCL": ("牛蛛侠", "我先吐丝。再接盘。", "Web first. Then catch."),
     "SMCD": ("牛魔王", "我不是散户。我是王。", "Not retail. The king."),
     "SMXL": ("核动力牛", "神不用赐。我会加班。", "No blessing. I'll overtime."),
-    "SMXD": ("犟牛", "不卖是品德。账单更硬。", "Holding is virtue. The bill is harder."),
+    "SMXD": ("吸牛", "我不是拿着。我是吸着。", "Not holding. Sucking."),
     "SKCL": ("绊倒牛", "倒了。还是牛。", "Fell. Still a bull."),
     "SKCD": ("牛跃亭", "我先走。你们在粪里拿着。", "I leave. You hold the dung."),
     "SKXL": ("牛大腿", "我不是仓。我是腿。", "Not a book. A thigh."),

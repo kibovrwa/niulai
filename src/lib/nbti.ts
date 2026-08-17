@@ -263,10 +263,10 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMXD: {
-    name: { zh: "犟牛", en: "Stubborn Bull" },
-    line: { zh: "回撤来了也不让。", en: "Drawdown came. You didn't." },
-    punch: { zh: "不卖是品德。账单更硬。", en: "Holding is virtue. The bill is harder." },
-    verdict: { zh: "神批：回撤不收道德。", en: "Drawdown doesn't take virtue." },
+    name: { zh: "吸牛", en: "Suck Cow" },
+    line: { zh: "仓在漏。我在吸。", en: "The book leaks. I drink." },
+    punch: { zh: "我不是拿着。我是吸着。", en: "Not holding. Sucking." },
+    verdict: { zh: "神批：回撤不收道德。吸也不收。", en: "Drawdown doesn't take virtue. Neither does sucking." },
     rec: "hongpan",
     read: {
       face: { zh: "牙关是紧的。账户是红的。", en: "Jaw tight. Account red." },
@@ -401,7 +401,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SMXD: {
     past: { zh: "守城不肯开闸的。城在，人空。", en: "Wouldn't open the gate." },
-    now: { zh: "犟牛。闸还是关着。", en: "The gate is still shut." },
+    now: { zh: "吸牛。还在吸。", en: "Still sucking." },
   },
   SKCL: {
     past: { zh: "摔跤的角斗士。倒了观众更爱。", en: "A wrestler. The fall was the show." },

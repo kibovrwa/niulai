@@ -40,10 +40,16 @@ export function nbtiShare(input: {
   index: string;
   punch: string;
   beat: number;
+  praise?: string;
 }): SharePayload {
   return {
     title: `我是「${input.name}」`,
-    lines: [`我是【${input.name}】`, input.punch, "信牛来，牛市一定来", "顺手测测你的"],
+    lines: [
+      `我是【${input.name}】`,
+      input.praise || input.punch,
+      "信牛来，牛市一定来",
+      "顺手测测你的",
+    ],
     url: publicUrl(`/ce?from=${input.code}`),
   };
 }

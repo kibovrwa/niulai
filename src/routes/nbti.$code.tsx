@@ -8,7 +8,7 @@ import { saveNbti } from "@/lib/booklet";
 import { getCult, passFire, recordCast, type CultStats } from "@/lib/cult-fns";
 import { awardSeal } from "@/lib/seals";
 import { addGongde, XIANG } from "@/lib/gongde";
-import { decodeAnswers, formatIndex, PLAIN, scoreNbti, typeArt } from "@/lib/nbti";
+import { decodeAnswers, formatIndex, PLAIN, PRAISE, scoreNbti, typeArt } from "@/lib/nbti";
 import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
 import { nbtiShare, publicUrl } from "@/lib/share";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/nbti/$code")({
     return seoHead({
       title: r ? `有人是「${r.type.name.zh}」` : "NBTI · 牛来许愿池",
       desc: r
-        ? `${r.type.name.zh}。${PLAIN[r.code]?.zh ?? r.type.punch.zh} 信牛来，牛市一定来。`
+        ? `${r.type.name.zh}。${PRAISE[r.code]?.zh ?? r.type.punch.zh} 信牛来，牛市一定来。`
         : "信牛来，牛市一定来。顺手测测你的 NBTI。",
       path: `/nbti/${params.code}`,
       image: r ? `/art/types/${r.code}.jpg` : undefined,
@@ -127,6 +127,12 @@ function NbtiPage() {
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               {PLAIN[r.code]?.[locale] ?? r.type.line[locale]}
+            </p>
+            <p className="mt-4 rounded-sm bg-ink px-3 py-3 text-paper">
+              <span className="block text-[11px] tracking-widest text-gold-soft">神夸你</span>
+              <span className="mt-1 block font-display text-lg leading-snug text-gold-soft">
+                {PRAISE[r.code]?.[locale] ?? r.type.punch[locale]}
+              </span>
             </p>
             <p className="mt-3 inline-block rounded-sm bg-cinnabar/10 px-3 py-1 text-sm text-cinnabar">
               {r.code === "NLBN"
@@ -228,6 +234,7 @@ function NbtiPage() {
                   index: formatIndex(r.index, r.dec),
                   punch: r.type.punch.zh,
                   beat: r.beat,
+                  praise: PRAISE[r.code]?.zh,
                 })}
                 saveLabel="做出图去发"
                 saving={saving}

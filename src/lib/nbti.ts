@@ -117,6 +117,27 @@ export const PLAIN: Record<string, Line> = {
   NLBN: { zh: "隐藏款。就是它本人。", en: "Hidden. The original." },
 };
 
+/** One line the god says out loud so they want to post it. */
+export const PRAISE: Record<string, Line> = {
+  GMCL: { zh: "敢把一个数许成信仰。庙里缺这种人。", en: "You made a number into faith. The shrine needs that." },
+  GMCD: { zh: "满仓还能坐住。这叫定力，不叫呆。", en: "Full and still sitting. That's nerve." },
+  GMXL: { zh: "别人收盘，你才开灯。海是你的白班。", en: "They close. You clock in. The ocean is your shift." },
+  GMXD: { zh: "把亏讲成美学的人，才配进这庙。", en: "You made the loss look like art. That's a devotee." },
+  GKCL: { zh: "没上车还盯着。眼红的人，下一班会来。", en: "You missed it and still watch. Next one sees you." },
+  GKCD: { zh: "先冲的人，理由是后来者编的。", en: "You launch. The reasons get written later." },
+  GKXL: { zh: "先问为什么。这庙认清醒的。", en: "You ask why first. The shrine likes the awake." },
+  GKXD: { zh: "能空仓的人，才有下次。", en: "You can sit in cash. That is a next time." },
+  SMCL: { zh: "先织网的人，不靠运气吃饭。", en: "You spin the web first. Luck is a side dish." },
+  SMCD: { zh: "不当散户。这口气，神爱听。", en: "You refuse to be retail. The god likes the tone." },
+  SMXL: { zh: "没人赐，你加班。核是你自己点的。", en: "No blessing. You overtime. You lit the core." },
+  SMXD: { zh: "放不下的人，才把香续到明天。", en: "You can't let go. That's how incense lasts." },
+  SKCL: { zh: "倒了还是牛。这尊神就是这么站起来的。", en: "Fell. Still a bull. That's how this god stands." },
+  SKCD: { zh: "你先走。后来的人，走的是你踩过的路。", en: "You left first. They walk your track." },
+  SKXL: { zh: "慢，但还在跳。拖拉机也能耕到头。", en: "Slow. Still dancing. The tractor finishes the field." },
+  SKXD: { zh: "开一天也算开过。短而亮，庙也收。", en: "One day of bloom still counts. Short and bright." },
+  NLBN: { zh: "隐藏款。不是像它，是它本人来了。", en: "Hidden edition. Not a likeness. It showed up." },
+};
+
 export const TYPES: Record<string, TypeCard> = {
   GMCL: {
     name: { zh: "六千牛", en: "Six-Thousand" },

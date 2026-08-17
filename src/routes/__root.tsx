@@ -8,7 +8,7 @@ export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
       title: "测你是哪种牛",
-      desc: "八题。核动力牛、美股大海牛、套死牛。测完来对线。",
+      desc: "八题马上出结果。核动力、美股大海、套死。你是哪种？",
       path: "/",
     });
     return {

@@ -28,7 +28,7 @@ CARDS = {
     "SMXD": ("吸牛", "我不是拿着。我是吸着。", "Not holding. Sucking."),
     "SKCL": ("绊倒牛", "倒了。还是牛。", "Fell. Still a bull."),
     "SKCD": ("牛跃亭", "我先走。你们在粪里拿着。", "I leave. You hold the dung."),
-    "SKXL": ("拖拉机牛", "我穿得能跑。盘是拖拉机。", "Dressed to run. The tape is a tractor."),
+    "SKXL": ("拖拉机牛", "我在跳拖拉机。盘也是。", "Tractor dance. Tractor tape."),
     "SKXD": ("牵牛花", "我开花。你来牵。", "I bloom. You pull."),
     "NLBN": ("牛来本牛", "我就是它。", "I am it."),
 }
@@ -46,15 +46,21 @@ def font(n):
     return ImageFont.load_default()
 
 
-def cow(src=SRC):
+def cow(src=SRC, crop=True):
     im = Image.open(src).convert("RGBA")
-    w, h = im.size
-    im = im.crop((20, 160, w - 20, h - 40))
+    if crop:
+        w, h = im.size
+        im = im.crop((20, 160, w - 20, h - 40))
     im.thumbnail((560, 620), Image.Resampling.LANCZOS)
     return im
 
 
 COW = cow()
+TRACTOR = (
+    cow(Path("/workspace/public/art/cow-tractor.png"), crop=False)
+    if Path("/workspace/public/art/cow-tractor.png").exists()
+    else COW
+)
 
 
 def make(code: str, name: str, head: str, punch: str, tag: str, foot: str) -> Image.Image:
@@ -64,7 +70,8 @@ def make(code: str, name: str, head: str, punch: str, tag: str, foot: str) -> Im
     name_size = 64 if len(name) <= 4 else 52 if len(name) <= 6 else 42
     d.text((W / 2, 130), name, font=font(name_size), fill=INK, anchor="mm")
     d.text((W / 2, 188), tag, font=font(36), fill=CINN, anchor="mm")
-    im.alpha_composite(COW, ((W - COW.width) // 2, 230))
+    body = TRACTOR if code == "SKXL" else COW
+    im.alpha_composite(body, ((W - body.width) // 2, 230))
     punch_size = 30 if len(punch) < 22 else 24
     d.text((W / 2, 930), punch, font=font(punch_size), fill=MUTED, anchor="mm")
     d.text((W / 2, 972), foot, font=font(18), fill=CINN, anchor="mm")

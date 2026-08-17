@@ -1,65 +1,33 @@
 #!/usr/bin/env python3
+"""Same cow, CORTIS 拖拉机舞 lean + steering wheel. Result card only."""
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 SRC = Path("/workspace/public/art/totem-god.jpg")
 OUT = Path("/workspace/public/art/cow-tractor.png")
 
 
 def main():
-    im = Image.open(SRC).convert("RGBA")
-    w, h = im.size
-    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(layer)
-    ink = (16, 16, 18, 235)
-    stripe = (240, 240, 242, 230)
-    # hoodie body
-    d.rounded_rectangle((int(w * 0.34), int(h * 0.36), int(w * 0.66), int(h * 0.60)), 28, fill=ink)
-    # zipper
-    d.line((w * 0.50, h * 0.38, w * 0.50, h * 0.58), fill=stripe, width=max(3, w // 220))
-    # sleeves
-    d.polygon(
-        [
-            (w * 0.34, h * 0.40),
-            (w * 0.22, h * 0.52),
-            (w * 0.18, h * 0.60),
-            (w * 0.26, h * 0.62),
-            (w * 0.36, h * 0.50),
-        ],
-        fill=ink,
-    )
-    d.polygon(
-        [
-            (w * 0.66, h * 0.40),
-            (w * 0.78, h * 0.52),
-            (w * 0.82, h * 0.60),
-            (w * 0.74, h * 0.62),
-            (w * 0.64, h * 0.50),
-        ],
-        fill=ink,
-    )
-    # pants
-    d.polygon(
-        [
-            (w * 0.36, h * 0.58),
-            (w * 0.64, h * 0.58),
-            (w * 0.62, h * 0.86),
-            (w * 0.54, h * 0.86),
-            (w * 0.50, h * 0.64),
-            (w * 0.46, h * 0.86),
-            (w * 0.38, h * 0.86),
-        ],
-        fill=ink,
-    )
-    # side stripes
-    d.line((w * 0.40, h * 0.60, w * 0.41, h * 0.84), fill=stripe, width=max(4, w // 180))
-    d.line((w * 0.60, h * 0.60, w * 0.59, h * 0.84), fill=stripe, width=max(4, w // 180))
-    # hood shadow under chin
-    d.ellipse((w * 0.40, h * 0.33, w * 0.60, h * 0.40), outline=ink, width=max(8, w // 90))
-    out = Image.alpha_composite(im, layer)
-    out.save(OUT)
-    print(OUT)
+    raw = Image.open(SRC).convert("RGBA")
+    w, h = raw.size
+    cow = raw.crop((20, 140, w - 20, h - 30))
+    cow = cow.rotate(-16, resample=Image.Resampling.BICUBIC, expand=True)
+    # hip pop: slight extra rotate of lower half is too messy; lean is enough
+    canvas = Image.new("RGBA", (cow.width + 80, cow.height + 40), (0, 0, 0, 0))
+    canvas.alpha_composite(cow, (40, 10))
+    d = ImageDraw.Draw(canvas)
+    cw, ch = canvas.size
+    # invisible tractor wheel in front of chest
+    cx, cy = int(cw * 0.50), int(ch * 0.62)
+    r = int(min(cw, ch) * 0.09)
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(28, 24, 20, 230), width=10)
+    d.ellipse((cx - r + 16, cy - r + 16, cx + r - 16, cy + r - 16), outline=(28, 24, 20, 180), width=4)
+    d.line((cx - r + 8, cy, cx + r - 8, cy), fill=(28, 24, 20, 200), width=5)
+    d.line((cx, cy - r + 8, cx, cy + r - 8), fill=(28, 24, 20, 200), width=5)
+    canvas.filter(ImageFilter.SMOOTH)
+    canvas.save(OUT)
+    print(OUT, canvas.size)
 
 
 if __name__ == "__main__":

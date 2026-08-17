@@ -309,8 +309,8 @@ export const TYPES: Record<string, TypeCard> = {
   },
   SKXL: {
     name: { zh: "拖拉机牛", en: "Tractor Cow" },
-    line: { zh: "运动服能跑。仓在耕地。", en: "The kit can run. The book ploughs." },
-    punch: { zh: "我穿得能跑。盘是拖拉机。", en: "Dressed to run. The tape is a tractor." },
+    line: { zh: "开拖拉机。顶胯。仓也跟着晃。", en: "Drive the tractor. The book sways." },
+    punch: { zh: "我在跳拖拉机。盘也是。", en: "Tractor dance. Tractor tape." },
     verdict: { zh: "神批：衣服是CORTIS的。腿还在犁地。", en: "CORTIS kit. Tractor legs." },
     rec: "reply",
     read: {

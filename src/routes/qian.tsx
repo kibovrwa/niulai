@@ -13,8 +13,8 @@ import { saveNodePng } from "@/lib/share-image";
 export const Route = createFileRoute("/qian")({
   head: () =>
     seoHead({
-      title: "抽签 · 牛来图腾",
-      desc: "狗血、怪梗、上上与大凶。抽一签，功德涨一点。灵不灵以后说。",
+      title: "神前抽一支",
+      desc: "上上、大凶、饿。抽完自己看。",
       path: "/qian",
     }),
   component: QianPage,
@@ -24,6 +24,7 @@ function QianPage() {
   const [lot, setLot] = useState<Lot | null>(null);
   const [gongde, setGongde] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [shaking, setShaking] = useState(false);
   const card = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,78 +32,103 @@ function QianPage() {
   }, []);
 
   function draw(today?: boolean) {
-    const next = today ? todayLot() : drawLot(Date.now() + loadGongde() * 13);
-    setLot(next);
-    awardSeal("lot");
-    setGongde(addGongde(3));
+    setShaking(true);
+    window.setTimeout(() => {
+      const next = today ? todayLot() : drawLot(Date.now() + loadGongde() * 13);
+      setLot(next);
+      awardSeal("lot");
+      setGongde(addGongde(3));
+      setShaking(false);
+    }, 420);
   }
 
   const rank = rankOf(gongde);
 
   return (
     <SiteChrome>
-      <main className="bg-ink px-4 pb-16 pt-24 text-paper">
-        <div className="mx-auto max-w-md">
-          <p className="font-brush text-gold-soft">狗血签</p>
-          <h1 className="mt-1 font-display text-4xl tracking-widest">抽一签</h1>
+      <main className="relative isolate min-h-dvh overflow-hidden pb-16 pt-20 text-paper">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/art/grass.jpg)" }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-linear-to-b from-ink/50 via-ink/25 to-ink/90" />
+
+        <div className="relative z-10 mx-auto flex max-w-md flex-col items-center px-4">
+          <p className="font-brush text-lg text-gold-soft">神前</p>
+          <h1 className="font-display text-5xl tracking-[0.35em]">抽一支</h1>
           <p className="mt-2 text-sm text-paper/70">
-            豹装饿、云雀进梦、牛趴着起不来。签是戏。功德是真的涨。
-          </p>
-          <p className="mt-3 text-sm">
             功德 {gongde} · {rank.name}
           </p>
+
+          <div className={`relative mt-4 ${shaking ? "totem-bow" : ""}`}>
+            <span
+              className="halo-ring pointer-events-none absolute left-1/2 top-[40%] h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-halo/45 blur-2xl"
+              aria-hidden
+            />
+            <img
+              src="/art/totem-god.jpg"
+              alt=""
+              className="relative z-10 mx-auto w-[min(42vw,180px)]"
+              crossOrigin="anonymous"
+            />
+            <Incense />
+          </div>
 
           {lot ? (
             <div
               ref={card}
-              className="relative mt-6 overflow-hidden rounded-sm text-center"
+              className="relative mt-5 w-full overflow-hidden rounded-sm"
               style={{ background: "#1c4324", color: "#f3e6c8" }}
             >
               <img
                 src="/art/totem-god.jpg"
                 alt=""
-                className="mx-auto mt-5 h-28 w-28 rounded-full object-cover"
+                className="mx-auto mt-5 h-20 w-20 rounded-full object-cover"
                 crossOrigin="anonymous"
               />
-              <p className="mt-3 font-brush text-lg" style={{ color: "#e8c36a" }}>
+              <p className="mt-2 font-brush text-xl" style={{ color: "#e8c36a" }}>
                 {lot.rank}
               </p>
-              <p className="font-display text-6xl leading-none" style={{ color: "#c23b2e" }}>
+              <p
+                className="font-display text-7xl leading-none tracking-[0.2em]"
+                style={{ color: "#c43a22" }}
+              >
                 {lot.mark}
               </p>
-              <p className="mx-auto mt-3 max-w-xs px-5 text-base leading-relaxed">{lot.line}</p>
-              <p className="mt-3 text-xs tracking-widest" style={{ color: "#c49a4a" }}>
+              <p className="mx-auto mt-3 max-w-xs px-5 pb-1 text-center text-base leading-relaxed">
+                {lot.line}
+              </p>
+              <p className="text-center text-[11px] tracking-[0.35em]" style={{ color: "#c49a4a" }}>
                 牛来 · 灵不灵以后说
               </p>
               <div className="p-4">
-                <QrMark url={publicUrl("/qian")} label="扫码抽一签" size={128} />
+                <QrMark url={publicUrl("/qian")} label="扫码抽一支" size={128} />
               </div>
             </div>
           ) : (
-            <div className="mt-8 rounded-sm border border-gold/30 px-5 py-10 text-center">
-              <p className="font-brush text-gold-soft">签筒在神旁边</p>
-              <p className="mt-2 text-sm text-paper/70">今日一签，人人同一句。再抽，是你自己的狗血。</p>
-            </div>
+            <p className="mt-8 font-brush text-xl text-gold-soft">签在神脚边。抽一支。</p>
           )}
 
-          <div className="mt-5 grid grid-cols-2 gap-2">
+          <div className="mt-5 grid w-full grid-cols-2 gap-2">
             <button
               type="button"
               onClick={() => draw(true)}
-              className="min-h-12 rounded-sm bg-paper font-display text-ink"
+              className="min-h-12 rounded-sm bg-paper font-display tracking-widest text-ink"
             >
               今日签
             </button>
             <button
               type="button"
               onClick={() => draw(false)}
-              className="min-h-12 rounded-sm bg-cinnabar font-display text-paper"
+              className="min-h-12 rounded-sm bg-cinnabar font-display tracking-widest text-paper"
             >
-              再狗血一点
+              再抽一支
             </button>
           </div>
+
           {lot ? (
-            <div className="mt-4">
+            <div className="mt-4 w-full">
               <ShareBar
                 compact
                 payload={lotShare({ rank: lot.rank, line: lot.line })}
@@ -116,11 +142,22 @@ function QianPage() {
               />
             </div>
           ) : null}
-          <Link to="/" className="mt-6 block text-center text-sm text-gold-soft">
+
+          <Link to="/" className="mt-6 text-sm text-gold-soft">
             回去叩
           </Link>
         </div>
       </main>
     </SiteChrome>
+  );
+}
+
+function Incense() {
+  return (
+    <div className="pointer-events-none absolute bottom-[6%] left-1/2 flex -translate-x-1/2 gap-5" aria-hidden>
+      <span className="smoke-wisp h-12 w-1 rounded-full bg-paper/30" />
+      <span className="smoke-wisp h-16 w-1 rounded-full bg-paper/25 [animation-delay:0.6s]" />
+      <span className="smoke-wisp h-11 w-1 rounded-full bg-paper/20 [animation-delay:1.1s]" />
+    </div>
   );
 }

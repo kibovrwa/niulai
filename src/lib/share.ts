@@ -63,7 +63,7 @@ export function wishShare(input: { serial: number; label: string; id: string }):
 export function lotShare(input: { rank: string; line: string }): SharePayload {
   return {
     title: `抽到【${input.rank}】`,
-    lines: [`抽到【${input.rank}】`, input.line, "你也抽一签"],
+    lines: [`抽到【${input.rank}】`, input.line, "你也抽一支"],
     url: publicUrl("/qian"),
   };
 }

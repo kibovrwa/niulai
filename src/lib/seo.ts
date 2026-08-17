@@ -1,19 +1,16 @@
 import { SITE } from "@/lib/share";
 
-export const BRAND = "牛来庙";
+export const BRAND = "牛来许愿池";
+export const BRAND_EN = "niulai";
 export const KEYWORDS = [
-  "niulai",
-  "niulai.org",
-  "NIULAI",
+  "牛来许愿池",
   "牛来",
   "牛来庙",
-  "牛来许愿池",
   "牛来图腾",
   "牛来电影",
-  "NBTI",
-  "niulai NBTI",
-  "牛来指数",
   "测你是哪种牛",
+  "NBTI",
+  "牛来指数",
   "核动力牛",
   "美牛牛",
   "套死牛",
@@ -26,12 +23,18 @@ export const KEYWORDS = [
   "牛来本牛",
   "许愿",
   "抽签",
+  "niulai",
+  "niulai.org",
 ].join(",");
 
 function withBrand(title: string) {
-  const cleaned = title.replaceAll("牛来图腾", BRAND);
-  if (/niulai/i.test(cleaned)) return cleaned;
-  return `${cleaned} · niulai`;
+  const cleaned = title
+    .replaceAll("牛来图腾", BRAND)
+    .replaceAll("牛来庙", BRAND)
+    .replaceAll(" · niulai", "")
+    .replaceAll("niulai", BRAND);
+  if (cleaned.includes(BRAND)) return cleaned;
+  return `${cleaned} · ${BRAND}`;
 }
 
 export function seoHead({
@@ -52,13 +55,13 @@ export function seoHead({
       { name: "description", content: namedDesc },
       { name: "keywords", content: KEYWORDS },
       { name: "author", content: BRAND },
-      { name: "application-name", content: "niulai" },
+      { name: "application-name", content: BRAND },
       { name: "robots", content: "index,follow" },
       { property: "og:title", content: named },
       { property: "og:description", content: namedDesc },
       { property: "og:type", content: "website" },
       { property: "og:url", content: url },
-      { property: "og:site_name", content: "niulai" },
+      { property: "og:site_name", content: BRAND },
       { property: "og:locale", content: "zh_CN" },
       { property: "og:image", content: `${SITE}/og-card.jpg` },
       { property: "og:image:width", content: "800" },

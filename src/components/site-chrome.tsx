@@ -23,8 +23,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             crossOrigin="anonymous"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg tracking-widest text-cow">牛来</span>
-            <span className="mt-0.5 text-[9px] tracking-[0.28em] text-gold-soft">niulai</span>
+            <span className="font-display text-lg tracking-widest text-cow">
+              {locale === "en" ? "niulai" : "牛来"}
+            </span>
+            {locale === "en" ? null : (
+              <span className="mt-0.5 text-[9px] tracking-[0.2em] text-gold-soft">许愿池</span>
+            )}
           </span>
         </Link>
         <div className="pointer-events-auto flex h-9 items-center">

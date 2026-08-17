@@ -1,3 +1,4 @@
+import { useLocale } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 
 export function QrMark({
@@ -9,6 +10,7 @@ export function QrMark({
   label: string;
   size?: number;
 }) {
+  const locale = useLocale((s) => s.locale);
   const [src, setSrc] = useState("");
   const shown = Math.min(size, 160);
 
@@ -38,7 +40,9 @@ export function QrMark({
       )}
       <div className="min-w-0 text-left">
         <p className="font-display text-base leading-snug">{label}</p>
-        <p className="mt-1 text-xs tracking-widest text-muted">NIULAI.ORG</p>
+        <p className="mt-1 text-xs tracking-widest text-muted">
+          {locale === "en" ? "niulai.org" : "牛来许愿池"}
+        </p>
       </div>
     </div>
   );

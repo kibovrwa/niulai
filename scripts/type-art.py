@@ -57,7 +57,7 @@ def cow():
 COW = cow()
 
 
-def make(name: str, head: str, punch: str, tag: str) -> Image.Image:
+def make(name: str, head: str, punch: str, tag: str, foot: str) -> Image.Image:
     im = Image.new("RGBA", (W, H), PAPER)
     d = ImageDraw.Draw(im)
     d.text((W / 2, 56), head, font=font(28), fill=MUTED, anchor="mm")
@@ -67,15 +67,15 @@ def make(name: str, head: str, punch: str, tag: str) -> Image.Image:
     im.alpha_composite(COW, ((W - COW.width) // 2, 230))
     punch_size = 30 if len(punch) < 22 else 24
     d.text((W / 2, 930), punch, font=font(punch_size), fill=MUTED, anchor="mm")
-    d.text((W / 2, 972), "niulai.org", font=font(18), fill=CINN, anchor="mm")
+    d.text((W / 2, 972), foot, font=font(18), fill=CINN, anchor="mm")
     return im.convert("RGB")
 
 
 def main():
     for code, (name, zh, en) in CARDS.items():
         tag = "本尊" if code == "NLBN" else code
-        make(name, "你的牛相是：", zh, tag).save(OUT / f"{code}.jpg", "JPEG", quality=88)
-        make(name, "You are:", en, "THE ORIGINAL" if code == "NLBN" else code).save(
+        make(name, "你的牛相是：", zh, tag, "牛来许愿池").save(OUT / f"{code}.jpg", "JPEG", quality=88)
+        make(name, "You are:", en, "niulai" if code == "NLBN" else code, "niulai.org").save(
             OUT / f"{code}.en.jpg", "JPEG", quality=88
         )
         print(code)

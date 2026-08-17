@@ -16,7 +16,7 @@ function shrinePage(detail: string) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>牛来庙</title>
+  <title>牛来许愿池</title>
   <link rel="icon" href="/favicon-32.png" />
   <style>
     :root { color-scheme: dark; }

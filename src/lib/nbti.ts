@@ -308,18 +308,18 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXL: {
-    name: { zh: "牛大腿", en: "Cow Thigh" },
-    line: { zh: "腿比脑子先到。", en: "The leg arrives first." },
-    punch: { zh: "我不是仓。我是腿。", en: "Not a book. A thigh." },
-    verdict: { zh: "神批：先到的不是手，是腿。", en: "The thigh beats the hand." },
+    name: { zh: "拖拉机牛", en: "Tractor Cow" },
+    line: { zh: "运动服能跑。仓在耕地。", en: "The kit can run. The book ploughs." },
+    punch: { zh: "我穿得能跑。盘是拖拉机。", en: "Dressed to run. The tape is a tractor." },
+    verdict: { zh: "神批：衣服是CORTIS的。腿还在犁地。", en: "CORTIS kit. Tractor legs." },
     rec: "reply",
     read: {
-      face: { zh: "一个人看盘会心虚。两个人看盘叫研究。", en: "Alone it's anxiety. Together it's research." },
-      die: { zh: "死在「他都买了」。", en: "Die of he bought too." },
-      live: { zh: "要一个能一起截图的人。截图比收益重要。", en: "A screenshot buddy beats a return." },
-      yes: { zh: "许暗恋回消息。回了，你们可以一起亏。", en: "File: may they text back." },
-      no: { zh: "别拉人上车只为了自己不孤单。", en: "Don't board others just to not be alone." },
-      mouth: { zh: "你不是重感情。你是怕一个人看红。", en: "Not sentimental. You hate watching red alone." },
+      face: { zh: "衣服是练舞的。腿是犁地的。", en: "Dance kit. Plough legs." },
+      die: { zh: "死在「我这身能跑」。跑的是田埂。", en: "Die of I can run. You ran a field." },
+      live: { zh: "慢，但是能耕。耕完还在。", en: "Slow. It ploughs. It stays." },
+      yes: { zh: "许股票翻倍。许完还是一档一档往前。", en: "File a double. Then crawl a gear at a time." },
+      no: { zh: "别穿着运动服骂盘慢。你也慢。", en: "Don't curse the tape in a tracksuit. You're slow too." },
+      mouth: { zh: "金主训那身是真的。拖拉机也是真的。", en: "The kit is real. So is the tractor." },
     },
   },
   SKXD: {
@@ -413,7 +413,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKXL: {
     past: { zh: "结拜。酒比血浓。", en: "Sworn brothers. Wine thicker than blood." },
-    now: { zh: "牛大腿。腿比仓先到。", en: "The thigh beats the book." },
+    now: { zh: "拖拉机牛。衣服能跑，仓在耕。", en: "Kit can run. Book ploughs." },
   },
   SKXD: {
     past: { zh: "戏园子看客。看到一半上台。", en: "An audience member who climbed onstage." },

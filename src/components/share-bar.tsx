@@ -8,6 +8,7 @@ export function ShareBar({
   onSave,
   saving,
   compact,
+  hideSlip,
 }: {
   payload: SharePayload;
   onShared?: () => void;
@@ -15,6 +16,7 @@ export function ShareBar({
   onSave?: () => void;
   saving?: boolean;
   compact?: boolean;
+  hideSlip?: boolean;
 }) {
   const [state, setState] = useState<"idle" | "shared" | "copied" | "failed">("idle");
 
@@ -35,11 +37,13 @@ export function ShareBar({
 
   return (
     <div className="space-y-2">
-      <div className="rounded-sm bg-paper-deep px-3 py-2.5 text-left text-ink">
-        <p className={`whitespace-pre-wrap font-display leading-relaxed ${compact ? "text-sm" : "text-base"}`}>
-          {payload.lines.join("\n")}
-        </p>
-      </div>
+      {hideSlip ? null : (
+        <div className="rounded-sm bg-paper-deep px-3 py-2.5 text-left text-ink">
+          <p className={`whitespace-pre-wrap font-display leading-relaxed ${compact ? "text-sm" : "text-base"}`}>
+            {payload.lines.join("\n")}
+          </p>
+        </div>
+      )}
       <button
         type="button"
         onClick={() => void go()}

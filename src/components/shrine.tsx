@@ -154,7 +154,7 @@ export function Shrine({
           </Link>
         </div>
         <div className="mt-5 w-full max-w-xs">
-          <ShareBar payload={homeShare()} />
+          <ShareBar payload={homeShare()} hideSlip />
         </div>
         <p className="mt-2 flex gap-4 text-xs text-gold-soft">
           <Link to="/yi">给神上供</Link>

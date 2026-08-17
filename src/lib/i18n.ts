@@ -8,7 +8,10 @@ export const copy = {
   zh: {
     brand: "牛来许愿池",
     mark: "概念神",
-    tagline: "不是官方。是路边那座许愿池。",
+    tagline: "信牛来，牛市一定来。",
+    shrineTitle: "牛来许愿池",
+    shrineLead: "加薪、回消息也能登。信了，牛市才来。",
+    creed: "信牛来，牛市一定来",
     register: "登记一贪",
     registeredTo: "已登记到",
     numberUnit: "号",
@@ -55,13 +58,14 @@ export const copy = {
     freeStick: "免费领香",
     repayNow: "灵了，还愿",
     quizTitle: "测你是哪种牛",
-    shrineTitle: "牛来许愿池",
-    shrineLead: "点神像磕一个。加薪、回消息、涨停，都能登。",
   },
   en: {
     brand: "niulai",
     mark: "the totem",
-    tagline: "Not official. A roadside wishing pool.",
+    tagline: "Believe in niulai. The bull will come.",
+    shrineTitle: "niulai wishing pool",
+    shrineLead: "File a raise or a text. Faith is what brings the bull.",
+    creed: "Believe in niulai. The bull will come.",
     register: "Make a wish",
     registeredTo: "No.",
     numberUnit: "",
@@ -108,8 +112,6 @@ export const copy = {
     freeStick: "Free incense",
     repayNow: "It landed. Repay",
     quizTitle: "Which cow are you?",
-    shrineTitle: "niulai wishing pool",
-    shrineLead: "Bow. Raise, texts, limit-ups — file any of them.",
   },
 } as const;
 

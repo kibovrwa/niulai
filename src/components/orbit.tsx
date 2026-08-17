@@ -37,7 +37,9 @@ export function TotemOrbits({
       <div className="mx-auto max-w-3xl space-y-10">
         <div>
           <p className="font-brush text-gold-soft">造神模型</p>
-          <h2 className="mt-1 font-display text-3xl tracking-widest">许愿 · 挂号 · 传火</h2>
+          <h2 className="mt-1 font-display text-3xl tracking-widest">信牛来，牛市一定来</h2>
+          <p className="mt-2 text-sm text-paper/70">别的庙许平安。这里许「来」。人间的贪也能登，但门口这句是这尊神和别的图腾的差别。</p>
+          <p className="mt-6 font-display text-xl tracking-widest text-cow">许愿 · 挂号 · 传火</p>
           <ol className="mt-5 grid gap-3 sm:grid-cols-3">
             <li className="rounded-sm bg-wood/40 px-4 py-4">
               <p className="font-display text-lg">1 许愿</p>

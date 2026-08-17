@@ -19,7 +19,7 @@ export function packShare(payload: SharePayload) {
 export function homeShare(): SharePayload {
   return {
     title: "牛来许愿池",
-    lines: ["来许一个", "号只增不减"],
+    lines: ["信牛来，牛市一定来", "来许一个"],
     url: publicUrl("/ce"),
   };
 }

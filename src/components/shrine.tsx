@@ -39,7 +39,7 @@ export function Shrine({
   const [mine, setMine] = useState<string | null>(null);
   const [seals, setSeals] = useState<SealState>({ bows: 0, earned: {} });
   const [bowing, setBowing] = useState(false);
-  const [said, setSaid] = useState("点神像，磕一个");
+  const [said, setSaid] = useState("信牛来，牛市一定来");
   const [gongde, setGongde] = useState(0);
   const [incense, setIncense] = useState<Incense>({ last: "", streak: 0, best: 0, owned: [], on: "cao" });
   const [fits, setFits] = useState<FitId[]>([]);
@@ -103,7 +103,8 @@ export function Shrine({
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
         <h1 className="font-display text-3xl tracking-widest text-paper">{t(locale, "shrineTitle")}</h1>
-        <p className="mt-1 text-sm text-gold-soft/90">{t(locale, "shrineLead")}</p>
+        <p className="mt-1 font-brush text-xl text-gold-soft">{t(locale, "creed")}</p>
+        <p className="mt-1 text-sm text-gold-soft/80">{t(locale, "shrineLead")}</p>
 
         <button
           type="button"

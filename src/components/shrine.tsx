@@ -158,20 +158,18 @@ export function Shrine({
         >
           {incense.owned.length ? t(locale, "wishOne") : t(locale, "claimStick")}
         </button>
-        <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
-          <Link
-            to="/ce"
-            className="flex min-h-11 items-center justify-center rounded-sm bg-paper font-display tracking-widest text-ink no-underline"
-          >
-            {t(locale, "startQuiz")}
-          </Link>
-          <Link
-            to="/qian"
-            className="flex min-h-11 items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
-          >
-            {t(locale, "drawOne")}
-          </Link>
-        </div>
+        <Link
+          to="/qian"
+          className="mt-2 flex min-h-11 w-full max-w-xs items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
+        >
+          {t(locale, "drawOne")}
+        </Link>
+        <Link
+          to="/ce"
+          className="mt-3 text-center text-sm tracking-widest text-gold-soft/80 no-underline"
+        >
+          {t(locale, "startQuiz")}
+        </Link>
         {incense.owned.includes("cao") ? (
           <Link
             to="/xiang"

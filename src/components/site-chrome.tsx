@@ -64,7 +64,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           {quizzing ? null : (
             <Link
               to="/ce"
-              className="flex h-9 items-center px-2.5 font-display text-sm tracking-widest text-cow no-underline"
+              className="flex h-9 items-center px-2.5 text-xs tracking-widest text-gold-soft/80 no-underline"
             >
               {t(locale, "navNbti")}
             </Link>

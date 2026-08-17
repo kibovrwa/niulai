@@ -5,7 +5,7 @@ import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
 import { TYPES } from "@/lib/nbti";
-import { incenseLine, touchIncense, type Incense } from "@/lib/incense";
+import { claimFreeStick, incenseLine, playMama, touchIncense, type Incense } from "@/lib/incense";
 import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
 
@@ -36,7 +36,7 @@ export function Shrine({
   const [bowing, setBowing] = useState(false);
   const [said, setSaid] = useState("点神像，磕一个");
   const [gongde, setGongde] = useState(0);
-  const [incense, setIncense] = useState<Incense>({ last: "", streak: 0, best: 0 });
+  const [incense, setIncense] = useState<Incense>({ last: "", streak: 0, best: 0, owned: [], on: "cao" });
   const [fits, setFits] = useState<FitId[]>([]);
 
   useEffect(() => {
@@ -46,7 +46,8 @@ export function Shrine({
       setMine(`${live ?? b.nbti.name} · ${b.nbti.letters}`);
     }
     setSeals(markReturn());
-    setIncense(touchIncense());
+    const next = touchIncense();
+    setIncense(next);
     setGongde(loadGongde());
     setFits(equippedList(loadFits()).map((f) => f.id));
   }, []);
@@ -65,6 +66,7 @@ export function Shrine({
     if (bowing) return;
     setBowing(true);
     setSrc("/art/totem-bow.jpg");
+    playMama();
     const next = addBow();
     setSeals(next);
     const gd = addGongde(1);
@@ -75,7 +77,9 @@ export function Shrine({
         ? "八叩。章来了。"
         : next.bows === 88
           ? "门徒。这尊神认你。"
-          : `【${dream.rank}】${dream.line}`;
+          : incense.on === "mama"
+            ? "麻麻。"
+            : `【${dream.rank}】${dream.line}`;
     setSaid(line);
     window.setTimeout(() => {
       setSrc("/art/totem-god.jpg");
@@ -151,6 +155,25 @@ export function Shrine({
             抽一支
           </Link>
         </div>
+        {incense.owned.includes("cao") ? (
+          <Link
+            to="/xiang"
+            className="mt-2 flex min-h-11 w-full max-w-xs items-center justify-center rounded-sm border border-cow/70 font-display tracking-widest text-cow no-underline"
+          >
+            换香
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              setIncense(claimFreeStick());
+              setSaid("香领了。点神像，听它叫麻麻。");
+            }}
+            className="mt-2 min-h-11 w-full max-w-xs rounded-sm bg-cow font-display tracking-widest text-ink"
+          >
+            免费领香
+          </button>
+        )}
         {canRepay && onRepay ? (
           <button
             type="button"

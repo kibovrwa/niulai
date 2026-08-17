@@ -78,6 +78,9 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             {locale === "zh" ? "自立像第八千八百八十八号起 · 号不回零" : "From No. 8888. The number only goes up."}
           </p>
           <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-gold-soft">
+            <Link to="/xiang" className="inline-flex min-h-10 items-center no-underline">
+              换香
+            </Link>
             <Link to="/yi" className="inline-flex min-h-10 items-center no-underline">
               {t(locale, "navOffer")}
             </Link>

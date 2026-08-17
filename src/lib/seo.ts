@@ -43,6 +43,9 @@ export function seoHead({
       { name: "twitter:title", content: named },
       { name: "twitter:description", content: namedDesc },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      { rel: "sitemap", type: "application/xml", href: `${SITE}/sitemap.xml` },
+    ],
   };
 }

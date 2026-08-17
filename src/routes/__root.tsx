@@ -49,9 +49,16 @@ export const Route = createRootRoute({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "牛来图腾",
+              alternateName: ["牛来", "NIULAI", "niulai.org"],
               url: "https://niulai.org",
               inLanguage: "zh-CN",
-              description: "牛来图腾。测 NBTI，许愿抽签。号只增不减。",
+              description: "牛来图腾。测你是哪种牛。许愿、抽签。号只增不减。",
+              publisher: {
+                "@type": "Organization",
+                name: "牛来图腾",
+                url: "https://niulai.org",
+                logo: "https://niulai.org/logo.png",
+              },
             }),
           }}
         />

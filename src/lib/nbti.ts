@@ -233,9 +233,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMCD: {
-    name: { zh: "讨债牛", en: "Owed Bull" },
-    line: { zh: "被砸过，还在盘里。", en: "Got smashed. Still in." },
-    punch: { zh: "这盘欠我的。", en: "The tape owes me." },
+    name: { zh: "牛魔王", en: "Demon King" },
+    line: { zh: "这盘得给我跪下。", en: "The tape should kneel." },
+    punch: { zh: "我不是散户。我是王。", en: "Not a retail. The king." },
     verdict: { zh: "神批：亏过的人最难走，也最像信徒。", en: "The hurt make the best believers." },
     rec: "huiben",
     read: {
@@ -378,7 +378,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SMCD: {
     past: { zh: "讨债的。债主比债还硬。", en: "A collector. The debtor was harder." },
-    now: { zh: "讨债牛。盘是你的债主。", en: "The tape is the debtor. It won't pay." },
+    now: { zh: "牛魔王。盘不认这个王。", en: "The tape doesn't bow." },
   },
   SMXL: {
     past: { zh: "驿站跑腿。腿比马快。", en: "A post-station runner." },

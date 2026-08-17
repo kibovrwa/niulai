@@ -25,7 +25,7 @@ export const Route = createFileRoute("/nbti/$code")({
     const answers = decodeAnswers(params.code);
     const r = answers ? scoreNbti(answers) : null;
     return seoHead({
-      title: r ? `我是「${r.type.name.zh}」` : "NBTI · 牛来图腾",
+      title: r ? `我是「${r.type.name.zh}」` : "NBTI · 牛来庙",
       desc: r
         ? `我是${r.type.name.zh}。${r.type.punch.zh} 你也测一个。`
         : "测你的 NBTI 和牛来指数。",

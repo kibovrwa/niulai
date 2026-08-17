@@ -9,7 +9,7 @@ import { getStats, listWishes } from "@/lib/wish-fns";
 export const Route = createFileRoute("/wall")({
   head: () =>
     seoHead({
-      title: "号簿 · 牛来图腾",
+      title: "号簿 · 牛来庙",
       desc: "别人向概念神贪过的。号不回零。若干年后还来翻。",
       path: "/wall",
     }),

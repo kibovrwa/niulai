@@ -8,7 +8,7 @@ export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
       title: "测你是哪种牛",
-      desc: "八题测出核动力牛、美股大海牛、套死牛。许愿、抽签，号只增不减。",
+      desc: "牛来庙。八题测出核动力牛、美股大海牛、套死牛。许愿、抽签。",
       path: "/",
     });
     return {
@@ -16,7 +16,7 @@ export const Route = createRootRoute({
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "theme-color", content: "#1a1610" },
-        { name: "apple-mobile-web-app-title", content: "牛来图腾" },
+        { name: "apple-mobile-web-app-title", content: "牛来庙" },
         ...seo.meta,
       ],
       links: [
@@ -48,14 +48,14 @@ export const Route = createRootRoute({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "牛来图腾",
-              alternateName: ["牛来", "NIULAI", "niulai.org"],
+              name: "牛来庙",
+              alternateName: ["牛来", "牛来图腾", "NIULAI", "niulai.org"],
               url: "https://niulai.org",
               inLanguage: "zh-CN",
-              description: "牛来图腾。测你是哪种牛。许愿、抽签。号只增不减。",
+              description: "牛来庙。测你是哪种牛。许愿、抽签。不是电影官方。",
               publisher: {
                 "@type": "Organization",
-                name: "牛来图腾",
+                name: "牛来庙",
                 url: "https://niulai.org",
                 logo: "https://niulai.org/logo.png",
               },

@@ -120,7 +120,7 @@ export function TotemStage({
     <div className={`relative ${className ?? ""}`}>
       <img
         src={src}
-        alt="牛来图腾"
+        alt="牛来"
         className="relative z-0 mx-auto h-auto w-full select-none object-contain drop-shadow-2xl"
         draggable={false}
         crossOrigin="anonymous"

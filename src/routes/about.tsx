@@ -7,7 +7,7 @@ export const Route = createFileRoute("/about")({
   head: () =>
     seoHead({
       title: "关于牛来",
-      desc: "民间图腾站。测相、挂号、抽签。非电影官方。",
+      desc: "路边一座庙。测相、许愿、抽签。不是电影官方。",
       path: "/about",
     }),
   component: AboutPage,
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   const en = useLocale((s) => s.locale) === "en";
   return (
-    <PaperPage eyebrow={en ? "About" : "关于"} title={en ? "NIULAI" : "牛来图腾"}>
+    <PaperPage eyebrow={en ? "About" : "关于"} title={en ? "NIULAI" : "牛来庙"}>
       {en ? (
         <>
           <p>This is a folk shrine. The god is that janky movie cow. Also the word Come.</p>
@@ -42,7 +42,7 @@ function AboutPage() {
         </>
       ) : (
         <>
-          <p>这是一座民间庙。神是电影里那头糙牛，也是「来」这个字。</p>
+          <p>这是路边一座庙。神是电影里那头糙牛，也是「来」这个字。</p>
           <p>在这里可以测你是哪种牛、许一句贪、抽一支签、给神披红。号从 8888 起，只加不减。</p>
           <p>不是《牛来》电影官方。不收钱。不荐股。不代客理财。</p>
           <p>

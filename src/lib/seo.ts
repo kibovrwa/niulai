@@ -1,12 +1,13 @@
 import { SITE } from "@/lib/share";
 
-export const BRAND = "牛来图腾";
+export const BRAND = "牛来庙";
 export const KEYWORDS =
-  "牛来,牛来图腾,niulai,NBTI,牛来指数,核动力牛,美股大海牛,套死牛,许愿,抽签,民间图腾";
+  "牛来,牛来庙,牛来图腾,niulai,NBTI,牛来指数,核动力牛,美股大海牛,套死牛,许愿,抽签";
 
 function withBrand(title: string) {
-  if (title.includes("牛来")) return title;
-  return `${title} · ${BRAND}`;
+  const cleaned = title.replaceAll("牛来图腾", BRAND);
+  if (cleaned.includes(BRAND) || cleaned.includes("牛来庙")) return cleaned;
+  return `${cleaned} · ${BRAND}`;
 }
 
 export function seoHead({
@@ -19,7 +20,7 @@ export function seoHead({
   path?: string;
 }) {
   const named = withBrand(title);
-  const namedDesc = desc.includes("牛来") ? desc : `${BRAND}。${desc}`;
+  const namedDesc = /牛来/.test(desc) ? desc.replaceAll("牛来图腾", BRAND) : `${BRAND}。${desc}`;
   const url = path.startsWith("http") ? path : `${SITE}${path}`;
   return {
     meta: [

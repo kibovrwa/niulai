@@ -13,7 +13,7 @@ import { ShareBar } from "@/components/share-bar";
 export const Route = createFileRoute("/pai")({
   head: () =>
     seoHead({
-      title: "香牌 · 牛来图腾",
+      title: "香牌 · 牛来庙",
       desc: "叩首、挂号、测相、传火，领朱红印章。这是你在庙里的牌位。",
       path: "/pai",
     }),

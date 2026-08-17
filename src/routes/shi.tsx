@@ -6,7 +6,7 @@ import { seoHead } from "@/lib/seo";
 export const Route = createFileRoute("/shi")({
   head: () =>
     seoHead({
-      title: "前生今世 · 牛来图腾",
+      title: "前生今世 · 牛来庙",
       desc: "牛来不是一只牛。是「来」成了神。从前生的路边塑像，到今世的民间挂号。",
       path: "/shi",
     }),

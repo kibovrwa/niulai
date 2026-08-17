@@ -6,9 +6,9 @@ export type Locale = (typeof LOCALES)[number];
 
 export const copy = {
   zh: {
-    brand: "牛来图腾",
+    brand: "牛来庙",
     mark: "概念神",
-    tagline: "不是牛。是「来」成了神。",
+    tagline: "不是官方。是路边那座庙。",
     register: "登记一贪",
     registeredTo: "已登记到",
     numberUnit: "号",
@@ -16,7 +16,7 @@ export const copy = {
     navNbti: "NBTI",
     navBook: "号簿",
     navLogin: "落款",
-    footerLine: "民间造神运动 · 牛市精神图腾",
+    footerLine: "一座民间小庙 · 号只增不减",
     footerSub: "若干年后，还来这里挂号。非电影官方 · 不代客理财。",
     todayTitle: "概念神今日收这个",
     bangTitle: "神收下的贪",
@@ -50,7 +50,7 @@ export const copy = {
   en: {
     brand: "NIULAI",
     mark: "the totem",
-    tagline: "Not a cow. Come became a god.",
+    tagline: "Not official. A roadside shrine.",
     register: "Make a wish",
     registeredTo: "No.",
     numberUnit: "",
@@ -58,7 +58,7 @@ export const copy = {
     navNbti: "NBTI",
     navBook: "Book",
     navLogin: "Sign",
-    footerLine: "A folk shrine for the bull market",
+    footerLine: "A folk shrine. The number only goes up.",
     footerSub: "People leave. The number stays. Not official. Not advice.",
     todayTitle: "Today the god takes this",
     bangTitle: "What people wished",

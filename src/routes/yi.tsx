@@ -12,7 +12,7 @@ import { saveNodePng } from "@/lib/share-image";
 export const Route = createFileRoute("/yi")({
   head: () =>
     seoHead({
-      title: "上供更衣 · 牛来图腾",
+      title: "上供更衣 · 牛来庙",
       desc: "用功德给概念神披红、戴草环、挂云雀。不是买衣服，是上供。",
       path: "/yi",
     }),

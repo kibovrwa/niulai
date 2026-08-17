@@ -7,8 +7,8 @@ import appCss from "../styles.css?url";
 export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
-      title: "牛来图腾 · 测 NBTI 向概念神挂号",
-      desc: "民间造神。测 NBTI 看牛来指数，查出你是核动力牛还是美股大海牛。向概念神登记一贪，号只增不减。",
+      title: "测你是哪种牛",
+      desc: "八题。核动力牛、美股大海牛、套死牛。测完来对线。",
       path: "/",
     });
     return {

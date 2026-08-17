@@ -18,9 +18,9 @@ export function packShare(payload: SharePayload) {
 
 export function homeShare(): SharePayload {
   return {
-    title: "牛来图腾",
-    text: "我刚给概念神磕了一个。测你是核动力牛还是套死牛。号只增不减。",
-    url: publicUrl("/"),
+    title: "测你是哪种牛",
+    text: "我刚给牛来磕了一个。测你是核动力牛还是套死牛。八题，来对线。",
+    url: publicUrl("/ce"),
   };
 }
 

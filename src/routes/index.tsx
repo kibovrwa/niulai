@@ -23,8 +23,8 @@ export const Route = createFileRoute("/")({
   }),
   head: () =>
     seoHead({
-      title: "我刚给牛来磕了一个",
-      desc: "测你是核动力牛还是套死牛。八题出 NBTI。号只增不减。",
+      title: "测你是哪种牛",
+      desc: "八题。核动力牛、美股大海牛、套死牛。测完来对线。",
       path: "/",
     }),
   loader: async () => {

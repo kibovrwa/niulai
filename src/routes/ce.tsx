@@ -15,8 +15,8 @@ export const Route = createFileRoute("/ce")({
   }),
   head: () =>
     seoHead({
-      title: "测你的 NBTI · 你是哪种牛",
-      desc: "八题。测完是核动力、美股大海还是套死。截图发朋友圈，来对线。",
+      title: "测你是哪种牛",
+      desc: "八题。核动力牛、美股大海牛、套死牛。测完来对线。",
       path: "/ce",
     }),
   component: CePage,

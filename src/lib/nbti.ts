@@ -354,7 +354,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GMXD: {
     past: { zh: "写经写歪的和尚。歪了反而成派。", en: "A monk who wrote the sutra crooked." },
-    now: { zh: "抽象牛。把亏讲成美学。", en: "You aestheticize the loss." },
+    now: { zh: "gay里gay牛。把亏讲成美学。", en: "You aestheticize the loss." },
   },
   GKCL: {
     past: { zh: "没挤上船的人。岸上目送。", en: "Missed the boat." },

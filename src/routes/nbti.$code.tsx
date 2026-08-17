@@ -129,7 +129,7 @@ function NbtiPage() {
               src="/art/totem-god.jpg"
               alt=""
               className="mx-auto h-20 w-20 rounded-full object-cover"
-              crossOrigin="anonymous"
+              style={{ outline: "none" }}
             />
             <p className="mt-3 font-display text-5xl tracking-[0.16em]">{r.code}</p>
             <h1 className="mt-1 font-display text-3xl leading-tight">{r.type.name[locale]}</h1>

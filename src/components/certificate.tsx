@@ -92,7 +92,7 @@ export function ShareSlip({
         src="/art/totem-god.jpg"
         alt=""
         className="mx-auto mt-2 h-14 w-14 rounded-full object-cover"
-        crossOrigin="anonymous"
+        style={{ outline: "none" }}
       />
       <p className="mt-2 font-display text-2xl leading-tight">{wish.label}</p>
       <p className="mt-1 text-xs text-gold-soft/90">

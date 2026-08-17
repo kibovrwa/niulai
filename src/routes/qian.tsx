@@ -70,7 +70,6 @@ function QianPage() {
               src="/art/totem-god.jpg"
               alt=""
               className="relative z-10 mx-auto w-[min(42vw,180px)]"
-              crossOrigin="anonymous"
             />
             <Incense />
           </div>
@@ -85,7 +84,7 @@ function QianPage() {
                 src="/art/totem-god.jpg"
                 alt=""
                 className="mx-auto mt-5 h-20 w-20 rounded-full object-cover"
-                crossOrigin="anonymous"
+                style={{ outline: "none" }}
               />
               <p className="mt-2 font-brush text-xl" style={{ color: "#e8c36a" }}>
                 {lot.rank}

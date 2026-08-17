@@ -43,11 +43,7 @@ export function nbtiShare(input: {
 }): SharePayload {
   return {
     title: `我是「${input.name}」`,
-    lines: [
-      `我是【${input.name}】`,
-      `${input.index}，超过 ${input.beat}% 的人`,
-      "你也测一个",
-    ],
+    lines: [`我是【${input.name}】`, input.punch, "你也测"],
     url: publicUrl(`/ce?from=${input.code}`),
   };
 }

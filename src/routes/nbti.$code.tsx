@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { QrMark } from "@/components/qr-mark";
 import { SiteChrome } from "@/components/site-chrome";
@@ -12,7 +12,6 @@ import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
 import { nbtiShare, publicUrl } from "@/lib/share";
 import { ShareShot } from "@/components/share-shot";
-import { saveNodePng } from "@/lib/share-image";
 import { wishById } from "@/lib/wish-data";
 
 type NbtiSearch = { from?: string };
@@ -46,7 +45,6 @@ function NbtiPage() {
   const [shot, setShot] = useState<string | null>(null);
   const [cult, setCult] = useState<CultStats | null>(null);
   const [fired, setFired] = useState(false);
-  const poster = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!result) return;
@@ -89,11 +87,9 @@ function NbtiPage() {
   const delta = rival ? r.index - rival.index : null;
 
   async function save() {
-    if (!poster.current) return;
     setSaving(true);
     try {
-      const url = await saveNodePng(poster.current, `nbti-${r.code}.png`);
-      setShot(url);
+      setShot(typeArt(r.code));
     } finally {
       setSaving(false);
     }
@@ -110,21 +106,13 @@ function NbtiPage() {
     <SiteChrome>
       <main className="min-h-dvh bg-[#e8eee4] px-4 pb-16 pt-16">
         <div className="mx-auto max-w-md space-y-3">
-          <div
-            ref={poster}
-            className="rounded-2xl bg-white px-5 pb-5 pt-6 text-center text-ink"
-            style={{ background: "#ffffff" }}
-          >
-            <p className="text-sm text-muted">你的牛相是：</p>
-            <h1 className="mt-2 font-display text-5xl leading-none">{r.type.name[locale]}</h1>
-            <p className="mt-2 font-display text-3xl tracking-[0.18em] text-cinnabar">{r.code}</p>
+          <div className="overflow-hidden rounded-2xl bg-white" style={{ background: "#ffffff" }}>
             <img
               src={typeArt(r.code)}
-              alt=""
-              className="mx-auto mt-4 w-full max-w-[280px]"
+              alt={`${r.type.name[locale]} ${r.type.punch[locale]}`}
+              className="mx-auto w-full"
               style={{ outline: "none" }}
             />
-            <p className="mt-4 text-left text-sm text-muted">{r.type.punch[locale]}</p>
           </div>
 
           <div className="rounded-2xl bg-white px-5 py-5 text-ink">

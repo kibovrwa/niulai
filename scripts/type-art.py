@@ -6,30 +6,30 @@ from PIL import Image, ImageDraw, ImageFont
 SRC = Path("/workspace/public/art/totem-god.jpg")
 OUT = Path("/workspace/public/art/types")
 OUT.mkdir(parents=True, exist_ok=True)
-SIZE = 800
-PAPER = (243, 230, 200, 255)
+W, H = 800, 1000
+PAPER = (255, 255, 255, 255)
 INK = (26, 22, 16, 255)
+MUTED = (107, 90, 66, 255)
 CINN = (155, 43, 26, 255)
-GOLD = (196, 140, 30, 255)
 
-SEALS = {
-    "GMCL": "六千",
-    "GMCD": "套死",
-    "GMXL": "大海",
-    "GMXD": "抽象",
-    "GKCL": "踏空",
-    "GKCD": "斯克",
-    "GKXL": "老道",
-    "GKXD": "阉",
-    "SMCL": "接刀",
-    "SMCD": "魔王",
-    "SMXL": "核",
-    "SMXD": "犟",
-    "SKCL": "绊倒",
-    "SKCD": "跃亭",
-    "SKXL": "搭子",
-    "SKXD": "牛粪",
-    "NLBN": "本尊",
+CARDS = {
+    "GMCL": ("六千牛", "六千不到，我不睡。"),
+    "GMCD": ("套死牛", "满了。当它没开盘。"),
+    "GMXL": ("美股大海牛", "我的白天，是别人的收盘。"),
+    "GMXD": ("gay里gay牛", "我不是弯。我是抽象。"),
+    "GKCL": ("踏空牛", "我不是怕亏。我是眼红。"),
+    "GKCD": ("牛斯克", "我先发射。仓自己会来。"),
+    "GKXL": ("牛鼻子老道", "我先问道。再开盘。"),
+    "GKXD": ("大阉牛", "该顶的没顶。"),
+    "SMCL": ("接刀牛", "我来托。托的是自己。"),
+    "SMCD": ("牛魔王", "我不是散户。我是王。"),
+    "SMXL": ("核动力牛", "神不用赐。我会加班。"),
+    "SMXD": ("犟牛", "不卖是品德。账单更硬。"),
+    "SKCL": ("绊倒牛", "倒了。还是牛。"),
+    "SKCD": ("牛跃亭", "我先走。你们先拿着。"),
+    "SKXL": ("搭子牛", "发这张，就是在招人。"),
+    "SKXD": ("为牛粪窒息", "我不是看戏。我是埋进去了。"),
+    "NLBN": ("牛来本牛", "我就是它。"),
 }
 
 
@@ -37,7 +37,7 @@ def font(n):
     for p in (
         "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSerifCJK-Bold.ttc",
     ):
         try:
             return ImageFont.truetype(p, n)
@@ -50,7 +50,7 @@ def cow():
     im = Image.open(SRC).convert("RGBA")
     w, h = im.size
     im = im.crop((20, 160, w - 20, h - 40))
-    im.thumbnail((620, 720), Image.Resampling.LANCZOS)
+    im.thumbnail((560, 620), Image.Resampling.LANCZOS)
     return im
 
 
@@ -58,24 +58,20 @@ COW = cow()
 
 
 def make(code: str) -> Image.Image:
-    im = Image.new("RGBA", (SIZE, SIZE), PAPER)
+    name, punch = CARDS[code]
+    im = Image.new("RGBA", (W, H), PAPER)
     d = ImageDraw.Draw(im)
-    d.rectangle((18, 18, SIZE - 19, SIZE - 19), outline=INK, width=3)
-    d.rectangle((28, 28, SIZE - 29, SIZE - 29), outline=GOLD, width=1)
-    x = (SIZE - COW.width) // 2
-    y = 70
-    im.alpha_composite(COW, (x, y))
-    seal = SEALS[code]
-    box_w = 128 if len(seal) >= 2 else 96
-    sx, sy = SIZE - 36 - box_w, SIZE - 36 - 96
-    color = GOLD if code == "NLBN" else CINN
-    d.rounded_rectangle((sx, sy, sx + box_w, sy + 88), 4, outline=color, width=5)
-    d.text((sx + box_w / 2, sy + 44), seal, font=font(36), fill=color, anchor="mm")
+    d.text((W / 2, 56), "你的牛相是：", font=font(28), fill=MUTED, anchor="mm")
+    name_size = 64 if len(name) <= 4 else 52 if len(name) <= 6 else 42
+    d.text((W / 2, 130), name, font=font(name_size), fill=INK, anchor="mm")
+    d.text((W / 2, 188), code if code != "NLBN" else "本尊", font=font(36), fill=CINN, anchor="mm")
+    im.alpha_composite(COW, ((W - COW.width) // 2, 230))
+    d.text((W / 2, 930), punch, font=font(30), fill=MUTED, anchor="mm")
     return im.convert("RGB")
 
 
 def main():
-    for code in SEALS:
+    for code in CARDS:
         path = OUT / f"{code}.jpg"
         make(code).save(path, "JPEG", quality=88)
         print(path)

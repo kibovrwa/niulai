@@ -143,9 +143,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXD: {
-    name: { zh: "抽象牛", en: "Abstract Bull" },
-    line: { zh: "先确认这世界够荒诞，再打开行情。", en: "Confirm the joke. Then open the tape." },
-    punch: { zh: "看懂了。还是想翻倍。", en: "Got the joke. Still want 2x." },
+    name: { zh: "gay里gay牛", en: "Extra Bull" },
+    line: { zh: "盘花。人更花。", en: "The tape is extra. So are you." },
+    punch: { zh: "我不是弯。我是抽象。", en: "Not bent. Abstract." },
     verdict: { zh: "神批：你来证明世界配得上这么糙的神。证明完，手还是伸向涨跌。", en: "You came for the joke. Stayed for the tape." },
     rec: "cuzao",
     read: {

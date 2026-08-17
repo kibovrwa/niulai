@@ -97,7 +97,7 @@ function CePage() {
                 />
               </div>
               <GodFace />
-              <h1 className="mt-5 text-center font-display text-2xl leading-snug">{q.q[locale]}</h1>
+              <h1 className="mt-4 text-center font-display text-2xl leading-snug">{q.q[locale]}</h1>
               <div className="relative z-20 mt-4 grid gap-2">
                 {q.opts.map((o) => {
                   const on = pressed === o.id;
@@ -106,10 +106,7 @@ function CePage() {
                       key={`${step}-${o.id}`}
                       type="button"
                       disabled={Boolean(pressed)}
-                      onPointerUp={(e) => {
-                        e.preventDefault();
-                        pick(o.id);
-                      }}
+                      onClick={() => pick(o.id)}
                       className={`min-h-12 touch-manipulation rounded-sm px-4 py-3 text-left font-display text-lg ${
                         on ? "bg-cinnabar text-paper" : "bg-paper text-ink"
                       }`}
@@ -155,7 +152,6 @@ function Intro({
       ) : null}
       <button
         type="button"
-        onPointerUp={() => onStart()}
         onClick={() => onStart()}
         className="relative z-20 mt-8 flex min-h-12 w-full items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper"
       >
@@ -178,7 +174,7 @@ function GodFace({ large }: { large?: boolean }) {
       <img
         src="/art/totem-god.jpg"
         alt=""
-        className={`relative z-10 object-contain ${large ? "w-32" : "w-24"}`}
+        className={`relative z-10 object-contain ${large ? "w-28" : "w-16"}`}
         crossOrigin="anonymous"
       />
     </div>

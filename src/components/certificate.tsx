@@ -131,28 +131,40 @@ export function ShareSlip({
   }, [playUrl, wish.id]);
 
   return (
-    <div ref={posterRef} className="relative bg-paper px-5 pb-5 pt-5 text-center text-ink">
-      <p className="font-brush text-cinnabar">第 {wish.serial} 号</p>
-      <img
-        src="/art/totem-god.jpg"
-        alt=""
-        className="mx-auto mt-3 h-20 w-20 rounded-full object-cover ring-2 ring-cinnabar"
-        style={{ outline: "none" }}
-        crossOrigin="anonymous"
+    <div ref={posterRef} className="relative overflow-hidden bg-ink text-center text-paper">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url(/art/grass.jpg)" }}
+        aria-hidden
       />
-      <p className="mt-3 font-display text-3xl leading-tight text-ink">{wish.label}</p>
-      <p className="mt-2 text-sm text-muted">
-        {sameCount} 人同一贪 · {wish.nickname}
-      </p>
-      <p className="mt-1 text-sm text-cinnabar">{spec.roast}</p>
-      <span className="absolute right-3 top-4 rotate-12 border-2 border-cinnabar px-2 py-0.5 font-brush text-cinnabar">
+      <div className="absolute inset-0 bg-linear-to-b from-ink/40 via-ink/15 to-ink/90" />
+      <span className="absolute right-3 top-10 z-10 rotate-12 border-2 border-cinnabar-bright px-2.5 py-1 font-brush text-lg text-cinnabar-bright">
         {lucky ?? spec.stamp}
       </span>
-      {url ? (
-        <div className="mt-4">
-          <QrMark url={url} label="扫码也来许一个" size={128} />
+      <div className="relative z-10 px-4 pb-4 pt-5">
+        <p className="font-brush text-sm tracking-widest text-gold-soft">此页已开光</p>
+        <p className="mt-1 font-brush text-2xl text-gold-soft">第 {wish.serial} 号</p>
+        <img
+          src="/art/totem-god.jpg"
+          alt=""
+          className="mx-auto mt-2 w-[58%] object-contain"
+          style={{ outline: "none" }}
+          crossOrigin="anonymous"
+        />
+        <p className="mt-1 font-display text-lg tracking-widest text-gold-soft">信牛来，牛市一定来</p>
+        <div className="mt-3 rounded-sm bg-paper px-3 py-3 text-ink">
+          <p className="font-display text-2xl leading-snug">{wish.label}</p>
+          <p className="mt-2 text-xs text-muted">
+            {sameCount} 人同一贪 · {wish.nickname}
+          </p>
+          <p className="mt-1 text-sm text-cinnabar">{spec.roast}</p>
         </div>
-      ) : null}
+        {url ? (
+          <div className="mt-2 rounded-sm bg-paper px-2 py-2">
+            <QrMark url={url} label="扫码也来许一个" size={128} />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

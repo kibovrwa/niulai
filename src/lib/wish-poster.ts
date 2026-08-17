@@ -5,7 +5,8 @@ import type { WishRow } from "@/lib/wish-fns";
 
 const INK = "#1a1610";
 const PAPER = "#f3e6c8";
-const CINN = "#9b2b1a";
+const CINN = "#c43a22";
+const GOLD = "#f0d78a";
 const MUTED = "#6b5a42";
 
 function loadImage(src: string) {
@@ -22,8 +23,8 @@ async function waitFonts() {
   if (typeof document === "undefined" || !document.fonts) return;
   try {
     await Promise.all([
-      document.fonts.load('72px "Noto Serif SC"'),
-      document.fonts.load('40px "Ma Shan Zheng"'),
+      document.fonts.load('88px "Noto Serif SC"'),
+      document.fonts.load('48px "Ma Shan Zheng"'),
       document.fonts.load('28px "Noto Sans SC"'),
     ]);
   } catch {
@@ -31,75 +32,112 @@ async function waitFonts() {
   }
 }
 
+function coverDraw(
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+) {
+  const s = Math.max(w / img.width, h / img.height);
+  const dw = img.width * s;
+  const dh = img.height * s;
+  ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+
 export async function renderWishPoster(wish: WishRow, sameCount: number): Promise<Blob> {
   await waitFonts();
   const width = 1080;
-  const height = 1440;
+  const height = 1920;
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("canvas");
 
-  ctx.fillStyle = PAPER;
+  ctx.fillStyle = INK;
   ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = CINN;
-  ctx.lineWidth = 16;
-  ctx.strokeRect(28, 28, width - 56, height - 56);
-  ctx.strokeStyle = INK;
-  ctx.lineWidth = 2;
-  ctx.strokeRect(48, 48, width - 96, height - 96);
 
-  ctx.fillStyle = MUTED;
-  ctx.font = '500 36px "Ma Shan Zheng", "Noto Serif SC", serif';
-  ctx.textAlign = "center";
-  ctx.fillText(`第 ${wish.serial} 号`, width / 2, 140);
+  try {
+    const grass = await loadImage("/art/grass.jpg");
+    coverDraw(ctx, grass, 0, 0, width, height);
+  } catch {
+    ctx.fillStyle = "#1c4324";
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  const night = ctx.createLinearGradient(0, 0, 0, height);
+  night.addColorStop(0, "rgba(26,22,16,0.35)");
+  night.addColorStop(0.45, "rgba(26,22,16,0.15)");
+  night.addColorStop(1, "rgba(26,22,16,0.88)");
+  ctx.fillStyle = night;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.save();
+  const halo = ctx.createRadialGradient(width / 2, 620, 40, width / 2, 620, 420);
+  halo.addColorStop(0, "rgba(255,211,106,0.55)");
+  halo.addColorStop(1, "rgba(255,211,106,0)");
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 180, width, 900);
+  ctx.restore();
 
   try {
     const totem = await loadImage("/art/totem-god.jpg");
-    const size = 280;
-    const x = (width - size) / 2;
-    const y = 180;
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(width / 2, y + size / 2, size / 2, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.drawImage(totem, x, y, size, size);
-    ctx.restore();
-    ctx.strokeStyle = CINN;
-    ctx.lineWidth = 8;
-    ctx.beginPath();
-    ctx.arc(width / 2, y + size / 2, size / 2 + 4, 0, Math.PI * 2);
-    ctx.stroke();
+    const size = 620;
+    coverDraw(ctx, totem, (width - size) / 2, 220, size, size);
   } catch {
     /* still print the wish */
   }
 
-  ctx.fillStyle = INK;
-  const labelSize = wish.label.length <= 6 ? 88 : wish.label.length <= 10 ? 68 : 52;
-  ctx.font = `700 ${labelSize}px "Noto Serif SC", serif`;
-  wrapCentered(ctx, wish.label, width / 2, 560, width - 160, labelSize + 16);
+  ctx.textAlign = "center";
+  ctx.fillStyle = GOLD;
+  ctx.font = '500 36px "Ma Shan Zheng", "Noto Serif SC", serif';
+  ctx.fillText("此页已开光", width / 2, 96);
+  ctx.font = '700 44px "Ma Shan Zheng", "Noto Serif SC", serif';
+  ctx.fillText(`第 ${wish.serial} 号`, width / 2, 160);
 
-  ctx.fillStyle = MUTED;
-  ctx.font = '500 30px "Noto Serif SC", serif';
-  ctx.fillText(`${sameCount} 人同一贪 · ${wish.nickname || "无名氏"}`, width / 2, 720);
+  ctx.save();
+  ctx.translate(900, 250);
+  ctx.rotate((-16 * Math.PI) / 180);
+  ctx.strokeStyle = CINN;
+  ctx.lineWidth = 8;
+  ctx.strokeRect(-110, -48, 220, 96);
+  ctx.fillStyle = CINN;
+  ctx.font = '700 44px "Noto Serif SC", serif';
+  const stamp = luckyMark(wish.serial) ?? wishById(wish.wishId).stamp;
+  ctx.fillText(stamp, 0, 16);
+  ctx.restore();
+
+  ctx.fillStyle = GOLD;
+  ctx.font = '700 40px "Noto Serif SC", serif';
+  ctx.fillText("信牛来，牛市一定来", width / 2, 880);
 
   const spec = wishById(wish.wishId);
-  ctx.fillStyle = CINN;
-  ctx.font = '500 28px "Noto Serif SC", serif';
-  ctx.fillText(spec.roast, width / 2, 780);
+  ctx.fillStyle = PAPER;
+  ctx.beginPath();
+  ctx.roundRect(70, 930, width - 140, 280, 8);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(26,22,16,0.25)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
 
-  const stamp = luckyMark(wish.serial) ?? spec.stamp;
-  ctx.save();
-  ctx.translate(860, 200);
-  ctx.rotate((-14 * Math.PI) / 180);
-  ctx.strokeStyle = CINN;
-  ctx.lineWidth = 6;
-  ctx.strokeRect(-90, -40, 180, 80);
+  ctx.fillStyle = INK;
+  const labelSize = wish.label.length <= 6 ? 72 : wish.label.length <= 10 ? 56 : 44;
+  ctx.font = `700 ${labelSize}px "Noto Serif SC", serif';
+  wrapCentered(ctx, wish.label, width / 2, 1020, width - 220, labelSize + 12);
+
+  ctx.fillStyle = MUTED;
+  ctx.font = '500 28px "Noto Serif SC", serif';
+  ctx.fillText(`${sameCount} 人同一贪 · ${wish.nickname || "无名氏"}`, width / 2, 1148);
   ctx.fillStyle = CINN;
-  ctx.font = '700 36px "Noto Serif SC", serif';
-  ctx.fillText(stamp, 0, 14);
-  ctx.restore();
+  ctx.font = '500 26px "Noto Serif SC", serif';
+  ctx.fillText(spec.roast, width / 2, 1190);
+
+  ctx.fillStyle = PAPER;
+  ctx.beginPath();
+  ctx.roundRect(70, 1260, width - 140, 560, 8);
+  ctx.fill();
 
   const url = publicUrl(`/w/${wish.id}`);
   const qr = await loadImage(
@@ -110,18 +148,28 @@ export async function renderWishPoster(wish: WishRow, sameCount: number): Promis
       errorCorrectionLevel: "H",
     }),
   );
-  const qrSize = 220;
-  ctx.drawImage(qr, (width - qrSize) / 2, 880, qrSize, qrSize);
+  const qrSize = 240;
+  ctx.drawImage(qr, 130, 1340, qrSize, qrSize);
 
+  ctx.textAlign = "left";
   ctx.fillStyle = INK;
-  ctx.font = '600 34px "Noto Serif SC", serif';
-  ctx.fillText("扫码也来许一个", width / 2, 1160);
+  ctx.font = '700 36px "Noto Serif SC", serif';
+  ctx.fillText("扫码也来许一个", 410, 1420);
   ctx.fillStyle = CINN;
-  ctx.font = '500 30px "Noto Serif SC", serif';
-  ctx.fillText("牛来许愿池 · niulai.org", width / 2, 1210);
+  ctx.font = '700 40px "Noto Serif SC", serif';
+  ctx.fillText("niulai.org", 410, 1480);
   ctx.fillStyle = MUTED;
-  ctx.font = '400 24px "Noto Sans SC", sans-serif';
-  wrapCentered(ctx, url, width / 2, 1260, width - 140, 32);
+  ctx.font = '500 26px "Noto Serif SC", serif';
+  ctx.fillText("钱 · 爱情 · 事业", 410, 1540);
+  ctx.fillText("号只增不减", 410, 1584);
+
+  ctx.textAlign = "center";
+  ctx.fillStyle = CINN;
+  ctx.font = '500 28px "Noto Serif SC", serif';
+  ctx.fillText("信牛来，牛市一定来", width / 2, 1740);
+  ctx.fillStyle = MUTED;
+  ctx.font = '400 22px "Noto Sans SC", sans-serif';
+  wrapCentered(ctx, url, width / 2, 1784, width - 180, 28);
 
   return new Promise((resolve, reject) => {
     canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("blob"))), "image/jpeg", 0.92);

@@ -12,6 +12,7 @@ import { decodeAnswers, formatIndex, scoreNbti } from "@/lib/nbti";
 import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
 import { nbtiShare, publicUrl } from "@/lib/share";
+import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
 import { wishById } from "@/lib/wish-data";
 
@@ -43,6 +44,7 @@ function NbtiPage() {
   const result = answers ? scoreNbti(answers) : null;
   const rival = from && decodeAnswers(from) ? scoreNbti(decodeAnswers(from)!) : null;
   const [saving, setSaving] = useState(false);
+  const [shot, setShot] = useState<string | null>(null);
   const [shown, setShown] = useState(2800);
   const [cult, setCult] = useState<CultStats | null>(null);
   const [fired, setFired] = useState(false);
@@ -107,7 +109,8 @@ function NbtiPage() {
     if (!poster.current) return;
     setSaving(true);
     try {
-      await saveNodePng(poster.current, `nbti-${r.code}.png`);
+      const url = await saveNodePng(poster.current, `nbti-${r.code}.png`);
+      setShot(url);
     } finally {
       setSaving(false);
     }
@@ -220,7 +223,7 @@ function NbtiPage() {
                 punch: r.type.punch.zh,
                 beat: r.beat,
               })}
-              saveLabel="保存这张牛相"
+              saveLabel="做出图去发"
               saving={saving}
               onSave={() => void save()}
               onShared={() => {
@@ -245,6 +248,7 @@ function NbtiPage() {
           </div>
         </div>
       </Hall>
+      {shot ? <ShareShot src={shot} onClose={() => setShot(null)} /> : null}
     </SiteChrome>
   );
 }

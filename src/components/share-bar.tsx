@@ -57,9 +57,12 @@ export function ShareBar({
           onClick={onSave}
           className="min-h-12 w-full touch-manipulation rounded-sm bg-wood font-display tracking-widest text-paper"
         >
-          {saving ? "在出图…" : saveLabel ?? "保存这张图"}
+          {saving ? "在出图…" : saveLabel ?? "做出图去发"}
         </button>
       ) : null}
+      <p className="text-center text-[11px] leading-relaxed text-muted">
+        长按保存 · 转发朋友圈
+      </p>
     </div>
   );
 }

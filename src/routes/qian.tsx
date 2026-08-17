@@ -8,6 +8,7 @@ import { drawLot, todayLot, type Lot } from "@/lib/lots";
 import { awardSeal } from "@/lib/seals";
 import { seoHead } from "@/lib/seo";
 import { lotShare, publicUrl } from "@/lib/share";
+import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
 
 export const Route = createFileRoute("/qian")({
@@ -24,6 +25,7 @@ function QianPage() {
   const [lot, setLot] = useState<Lot | null>(null);
   const [gongde, setGongde] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [shot, setShot] = useState<string | null>(null);
   const [shaking, setShaking] = useState(false);
   const card = useRef<HTMLDivElement>(null);
 
@@ -131,16 +133,19 @@ function QianPage() {
               <ShareBar
                 compact
                 payload={lotShare({ rank: lot.rank, line: lot.line })}
-                saveLabel="保存这签"
+                saveLabel="做出图去发"
                 saving={saving}
                 onSave={() => {
                   if (!card.current) return;
                   setSaving(true);
-                  void saveNodePng(card.current, "niulai-qian.png").finally(() => setSaving(false));
+                  void saveNodePng(card.current, "niulai-qian.png")
+                    .then(setShot)
+                    .finally(() => setSaving(false));
                 }}
               />
             </div>
           ) : null}
+          {shot ? <ShareShot src={shot} onClose={() => setShot(null)} /> : null}
 
           <Link to="/" className="mt-6 text-sm text-gold-soft">
             回去叩

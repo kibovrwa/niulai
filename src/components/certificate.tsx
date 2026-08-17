@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type Ref } from "react";
 import { QrMark } from "@/components/qr-mark";
 import { ShareBar } from "@/components/share-bar";
 import { publicUrl, wishShare } from "@/lib/share";
+import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
 import { cowTypeById, luckyMark, wishById } from "@/lib/wish-data";
 import type { WishRow } from "@/lib/wish-fns";
@@ -17,6 +18,7 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
   const spec = wishById(wish.wishId);
   const cow = cowTypeById(wish.cowType);
   const [saving, setSaving] = useState(false);
+  const [shot, setShot] = useState<string | null>(null);
   const [url, setUrl] = useState("");
   const poster = useRef<HTMLDivElement>(null);
 
@@ -28,7 +30,8 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
     if (!poster.current) return;
     setSaving(true);
     try {
-      await saveNodePng(poster.current, `niulai-${wish.serial}.png`);
+      const pic = await saveNodePng(poster.current, `niulai-${wish.serial}.png`);
+      setShot(pic);
     } finally {
       setSaving(false);
     }
@@ -44,10 +47,11 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
           <ShareBar
             compact
             payload={wishShare({ serial: wish.serial, label: wish.label, id: wish.id })}
-            saveLabel="保存这张单"
+            saveLabel="做出图去发"
             saving={saving}
             onSave={() => void save()}
           />
+          {shot ? <ShareShot src={shot} onClose={() => setShot(null)} /> : null}
           <div className="grid grid-cols-2 gap-2">
             <button type="button" onClick={onAgain} className="min-h-11 rounded-sm bg-paper-deep font-display">
               再许一个

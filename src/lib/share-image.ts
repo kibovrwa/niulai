@@ -1,17 +1,22 @@
-export async function saveNodePng(node: HTMLElement, name: string) {
+export async function nodeToPng(node: HTMLElement) {
   await inlineImages(node);
   const { toPng } = await import("html-to-image");
-  const dataUrl = await toPng(node, {
+  return toPng(node, {
     pixelRatio: 2,
     cacheBust: false,
     backgroundColor: "#1c4324",
     skipFonts: true,
     style: { outline: "none" },
   });
+}
+
+export async function saveNodePng(node: HTMLElement, name: string) {
+  const dataUrl = await nodeToPng(node);
   const a = document.createElement("a");
   a.href = dataUrl;
   a.download = name;
   a.click();
+  return dataUrl;
 }
 
 async function inlineImages(root: HTMLElement) {

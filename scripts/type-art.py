@@ -100,14 +100,20 @@ def make(code: str, name: str, head: str, punch: str, tag: str, foot: str, url: 
 
 def main() -> None:
     for code, (name, zh, en) in CARDS.items():
-        tag = "本尊" if code == "NLBN" else code
+        tag = "隐藏款" if code == "NLBN" else code
         url = f"https://niulai.org/ce?from={code}"
         make(code, name, "你的牛相是：", zh, tag, "牛来许愿池", url).save(
             OUT / f"{code}.jpg", "JPEG", quality=90
         )
-        make(code, name, "You are:", en, "niulai" if code == "NLBN" else code, "niulai.org", url).save(
-            OUT / f"{code}.en.jpg", "JPEG", quality=90
-        )
+        make(
+            code,
+            name,
+            "You are:",
+            en,
+            "Hidden" if code == "NLBN" else code,
+            "niulai.org",
+            url,
+        ).save(OUT / f"{code}.en.jpg", "JPEG", quality=90)
         print(code)
 
 

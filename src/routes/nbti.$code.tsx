@@ -116,13 +116,13 @@ function NbtiPage() {
           </div>
 
           <div className="rounded-2xl bg-white px-5 py-5 text-ink">
-            <p className="text-xs text-muted">你的主类型</p>
+            <p className="text-xs text-muted">{r.code === "NLBN" ? "隐藏款" : "你的主类型"}</p>
             <p className="mt-1 font-display text-3xl">
               {r.code}（{r.type.name[locale]}）
             </p>
             <p className="mt-3 inline-block rounded-full bg-[#dce8d6] px-3 py-1 text-sm text-[#2f5a32]">
               {r.code === "NLBN"
-                ? "万中无一 · 本尊 · 约 1/888"
+                ? "隐藏款 · 本尊 · 约 1/888"
                 : `匹配度 ${r.beat}% · 指数 ${formatIndex(r.index, r.dec)}`}
             </p>
             {delta !== null && rival ? (
@@ -229,7 +229,7 @@ function NbtiPage() {
               向神登记「{rec.label}」
             </Link>
             <p className="mt-2 text-center text-xs text-muted">
-              {r.code === "NLBN" ? "本尊在了。明日来续香。" : "本牛约 1/888。香火明日再来，别灭。"}
+              {r.code === "NLBN" ? "隐藏款已出。明日来续香。" : "本牛约 1/888。香火明日再来，别灭。"}
             </p>
             <Link to="/ce" className="mt-1 block min-h-11 text-center text-sm text-muted">
               再测一次

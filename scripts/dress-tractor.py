@@ -1,31 +1,45 @@
 #!/usr/bin/env python3
-"""Same cow, CORTIS 拖拉机舞 lean + steering wheel. Result card only."""
+"""拖拉机牛 result: same cow head on the CORTIS tractor-dance body."""
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter
 
-SRC = Path("/workspace/public/art/totem-god.jpg")
+POSE = Path("/workspace/attachments/IMG_8081.jpg")
+COW = Path("/workspace/public/art/totem-god.jpg")
 OUT = Path("/workspace/public/art/cow-tractor.png")
 
 
 def main():
-    raw = Image.open(SRC).convert("RGBA")
-    w, h = raw.size
-    cow = raw.crop((20, 140, w - 20, h - 30))
-    cow = cow.rotate(-16, resample=Image.Resampling.BICUBIC, expand=True)
-    # hip pop: slight extra rotate of lower half is too messy; lean is enough
-    canvas = Image.new("RGBA", (cow.width + 80, cow.height + 40), (0, 0, 0, 0))
-    canvas.alpha_composite(cow, (40, 10))
-    d = ImageDraw.Draw(canvas)
-    cw, ch = canvas.size
-    # invisible tractor wheel in front of chest
-    cx, cy = int(cw * 0.50), int(ch * 0.62)
-    r = int(min(cw, ch) * 0.09)
-    d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(28, 24, 20, 230), width=10)
-    d.ellipse((cx - r + 16, cy - r + 16, cx + r - 16, cy + r - 16), outline=(28, 24, 20, 180), width=4)
-    d.line((cx - r + 8, cy, cx + r - 8, cy), fill=(28, 24, 20, 200), width=5)
-    d.line((cx, cy - r + 8, cx, cy + r - 8), fill=(28, 24, 20, 200), width=5)
-    canvas.filter(ImageFilter.SMOOTH)
+    pose = Image.open(POSE).convert("RGBA")
+    # tighten on the dancer
+    pw, ph = pose.size
+    pose = pose.crop((int(pw * 0.02), int(ph * 0.02), int(pw * 0.78), int(ph * 0.98)))
+    pose = ImageEnhance.Color(pose).enhance(0.92)
+    pose = ImageEnhance.Contrast(pose).enhance(1.08)
+
+    cow = Image.open(COW).convert("RGBA")
+    cw, ch = cow.size
+    head = cow.crop((90, 40, cw - 90, int(ch * 0.48)))
+    # scale head to cover the human face
+    target_w = int(pose.width * 0.44)
+    ratio = target_w / head.width
+    head = head.resize((target_w, int(head.height * ratio)), Image.Resampling.LANCZOS)
+
+    # soft edge
+    mask = Image.new("L", head.size, 0)
+    md = ImageDraw.Draw(mask)
+    md.ellipse((4, 4, head.width - 4, int(head.height * 0.92)), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(8))
+    head.putalpha(ImageChops.multiply(head.split()[-1], mask))
+
+    canvas = pose.copy()
+    hx = int(pose.width * 0.18)
+    hy = int(pose.height * -0.01)
+    canvas.alpha_composite(head, (hx, hy))
+
+    # cream wash so it sits on the paper card
+    wash = Image.new("RGBA", canvas.size, (255, 244, 214, 40))
+    canvas = Image.alpha_composite(canvas, wash)
     canvas.save(OUT)
     print(OUT, canvas.size)
 

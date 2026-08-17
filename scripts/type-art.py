@@ -56,11 +56,10 @@ def cow(src=SRC, crop=True):
 
 
 COW = cow()
-TRACTOR = (
-    cow(Path("/workspace/public/art/cow-tractor.png"), crop=False)
-    if Path("/workspace/public/art/cow-tractor.png").exists()
-    else COW
-)
+TRACTOR = None
+if Path("/workspace/public/art/cow-tractor.png").exists():
+    TRACTOR = Image.open("/workspace/public/art/cow-tractor.png").convert("RGBA")
+    TRACTOR.thumbnail((520, 720), Image.Resampling.LANCZOS)
 
 
 def make(code: str, name: str, head: str, punch: str, tag: str, foot: str) -> Image.Image:
@@ -70,8 +69,9 @@ def make(code: str, name: str, head: str, punch: str, tag: str, foot: str) -> Im
     name_size = 64 if len(name) <= 4 else 52 if len(name) <= 6 else 42
     d.text((W / 2, 130), name, font=font(name_size), fill=INK, anchor="mm")
     d.text((W / 2, 188), tag, font=font(36), fill=CINN, anchor="mm")
-    body = TRACTOR if code == "SKXL" else COW
-    im.alpha_composite(body, ((W - body.width) // 2, 230))
+    body = TRACTOR if code == "SKXL" and TRACTOR is not None else COW
+    top = 200 if code == "SKXL" else 230
+    im.alpha_composite(body, ((W - body.width) // 2, top))
     punch_size = 30 if len(punch) < 22 else 24
     d.text((W / 2, 930), punch, font=font(punch_size), fill=MUTED, anchor="mm")
     d.text((W / 2, 972), foot, font=font(18), fill=CINN, anchor="mm")

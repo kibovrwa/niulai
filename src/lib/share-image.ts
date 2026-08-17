@@ -5,7 +5,7 @@ export async function nodeToPng(node: HTMLElement, bg = "#f3e6c8") {
     pixelRatio: 2,
     cacheBust: false,
     backgroundColor: bg,
-    skipFonts: true,
+    skipFonts: false,
     style: { outline: "none" },
   });
 }

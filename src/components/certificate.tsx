@@ -8,6 +8,7 @@ import { repayShare, publicUrl, wishShare } from "@/lib/share";
 import { repayWish } from "@/lib/wish-fns";
 import { ShareShot } from "@/components/share-shot";
 import { saveNodePng } from "@/lib/share-image";
+import { renderWishPoster } from "@/lib/wish-poster";
 import { cowTypeById, luckyMark, wishById } from "@/lib/wish-data";
 import type { WishRow } from "@/lib/wish-fns";
 
@@ -43,11 +44,20 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
   }
 
   async function save() {
-    if (!poster.current) return;
     setSaving(true);
     try {
-      const pic = await saveNodePng(poster.current, `niulai-${wish.serial}.png`);
-      setShot(pic);
+      const blob = await renderWishPoster(wish, sameCount);
+      const href = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = href;
+      a.download = `niulai-${wish.serial}.jpg`;
+      a.click();
+      setShot(href);
+    } catch {
+      if (poster.current) {
+        const pic = await saveNodePng(poster.current, `niulai-${wish.serial}.png`);
+        setShot(pic);
+      }
     } finally {
       setSaving(false);
     }
@@ -121,23 +131,25 @@ export function ShareSlip({
   }, [playUrl, wish.id]);
 
   return (
-    <div ref={posterRef} className="relative bg-grass px-4 pb-4 pt-4 text-center text-paper">
-      <p className="font-brush text-gold-soft">第 {wish.serial} 号</p>
+    <div ref={posterRef} className="relative bg-paper px-5 pb-5 pt-5 text-center text-ink">
+      <p className="font-brush text-cinnabar">第 {wish.serial} 号</p>
       <img
         src="/art/totem-god.jpg"
         alt=""
-        className="mx-auto mt-2 h-14 w-14 rounded-full object-cover"
+        className="mx-auto mt-3 h-20 w-20 rounded-full object-cover ring-2 ring-cinnabar"
         style={{ outline: "none" }}
+        crossOrigin="anonymous"
       />
-      <p className="mt-2 font-display text-2xl leading-tight">{wish.label}</p>
-      <p className="mt-1 text-xs text-gold-soft/90">
+      <p className="mt-3 font-display text-3xl leading-tight text-ink">{wish.label}</p>
+      <p className="mt-2 text-sm text-muted">
         {sameCount} 人同一贪 · {wish.nickname}
       </p>
-      <span className="absolute right-2 top-3 rotate-12 border-2 border-cinnabar-bright px-2 py-0.5 font-brush text-cinnabar-bright">
+      <p className="mt-1 text-sm text-cinnabar">{spec.roast}</p>
+      <span className="absolute right-3 top-4 rotate-12 border-2 border-cinnabar px-2 py-0.5 font-brush text-cinnabar">
         {lucky ?? spec.stamp}
       </span>
       {url ? (
-        <div className="mt-3">
+        <div className="mt-4">
           <QrMark url={url} label="扫码也来许一个" size={128} />
         </div>
       ) : null}

@@ -2,7 +2,7 @@ import { getSql } from "@/lib/db";
 import { TYPES } from "@/lib/nbti";
 import { WISHES } from "@/lib/wish-data";
 
-const FLAG = "hist.v3";
+const FLAG = "hist.v4";
 
 function floorOf(id: string, min: number, span: number) {
   let h = 2166136261;
@@ -11,12 +11,12 @@ function floorOf(id: string, min: number, span: number) {
 }
 
 export function wishFloor(id: string) {
-  return floorOf(id, 368, 421);
+  return floorOf(id, 18, 37);
 }
 
 export function typeFloor(code: string) {
-  if (code === "NLBN") return 88;
-  return floorOf(code, 288, 401);
+  if (code === "NLBN") return 3;
+  return floorOf(code, 12, 29);
 }
 
 export async function ensureHistory() {
@@ -37,7 +37,7 @@ export async function ensureHistory() {
     const key = `w:${w.id}`;
     await sql`
       insert into cult (k, n) values (${key}, ${n})
-      on conflict (k) do update set n = greatest(cult.n, excluded.n)
+      on conflict (k) do update set n = excluded.n
     `;
   }
 
@@ -48,23 +48,23 @@ export async function ensureHistory() {
     const key = `t:${code}`;
     await sql`
       insert into cult (k, n) values (${key}, ${n})
-      on conflict (k) do update set n = greatest(cult.n, excluded.n)
+      on conflict (k) do update set n = excluded.n
     `;
   }
 
-  const fire = 8888 + typeSum;
+  const fire = 3188 + typeSum;
   await sql`
     insert into cult (k, n) values ('fire', ${fire})
-    on conflict (k) do update set n = greatest(cult.n, excluded.n)
+    on conflict (k) do update set n = excluded.n
   `;
   await sql`
     insert into cult (k, n) values ('casts', ${typeSum})
-    on conflict (k) do update set n = greatest(cult.n, excluded.n)
+    on conflict (k) do update set n = excluded.n
   `;
   const serial = 8887 + wishSum;
   await sql`
     insert into cult (k, n) values ('hist.serial', ${serial})
-    on conflict (k) do update set n = greatest(cult.n, excluded.n)
+    on conflict (k) do update set n = excluded.n
   `;
   try {
     await sql`select setval('wish_serial_seq', greatest((select last_value from wish_serial_seq), ${serial}))`;

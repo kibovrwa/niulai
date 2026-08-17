@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { SealRow } from "@/components/seals";
 import { TotemStage } from "@/components/totem-dress";
-import { t, useLocale } from "@/lib/i18n";
 import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
-import { addGongde, loadGongde, rankOf } from "@/lib/gongde";
+import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
-import { homeShare } from "@/lib/share";
-import { ShareBar } from "@/components/share-bar";
 
 type ShrineProps = {
   serial: number;
@@ -28,7 +24,6 @@ export function Shrine({
   receiving,
   onOffer,
 }: ShrineProps) {
-  const locale = useLocale((s) => s.locale);
   const [src, setSrc] = useState("/art/totem-god.jpg");
   const [mine, setMine] = useState<string | null>(null);
   const [seals, setSeals] = useState<SealState>({ bows: 0, earned: {} });
@@ -86,79 +81,67 @@ export function Shrine({
       />
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
 
-      <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-8 pt-20 sm:pt-24">
-        <p className="font-brush text-lg text-gold-soft">磕一个</p>
-        <h1 className="mt-1 font-display text-5xl tracking-[0.35em] text-paper sm:text-6xl">
-          牛来
-        </h1>
-        <p className="mt-2 text-center text-sm text-paper/80">{t(locale, "tagline")}</p>
+      <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
+        <h1 className="font-display text-4xl tracking-[0.4em] text-paper">牛来</h1>
 
         <button
           type="button"
           onClick={kowtow}
-          className={`relative mt-4 w-full max-w-sm border-0 bg-transparent p-0 ${bowing || receiving ? "totem-bow" : ""}`}
+          className={`relative mt-2 w-full max-w-sm border-0 bg-transparent p-0 ${bowing || receiving ? "totem-bow" : ""}`}
           aria-label="向神叩首"
         >
           <span
-            className="halo-ring pointer-events-none absolute left-1/2 top-[38%] h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-halo/50 blur-2xl sm:h-64 sm:w-64"
+            className="halo-ring pointer-events-none absolute left-1/2 top-[38%] h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-halo/50 blur-2xl sm:h-56 sm:w-56"
             aria-hidden
           />
-          <TotemStage src={src} on={fits} className="relative z-10 mx-auto w-[min(78vw,360px)]">
+          <TotemStage src={src} on={fits} className="relative z-10 mx-auto w-[min(52vw,240px)]">
             <Incense />
           </TotemStage>
         </button>
-        <p className="mt-2 font-brush text-gold-soft">{said}</p>
+        <p className="mt-1 font-brush text-gold-soft">{said}</p>
 
-        <div className="mt-2 text-center">
-          <p className="text-[11px] tracking-[0.35em] text-muted">已登记到</p>
-          <p
-            className={`font-display text-6xl tabular-nums leading-none text-cow sm:text-7xl ${flashing ? "number-flash" : ""}`}
-          >
-            {serial.toLocaleString("zh-CN")}
-          </p>
-          <p className="mt-1 font-brush text-xl text-gold-soft">号</p>
-          <p className="mt-2 text-xs tracking-widest text-gold-soft/80">
-            功德 {gongde} · {rankOf(gongde).name} · 已叩 {seals.bows} · 香火 {fire.toLocaleString("zh-CN")}
-          </p>
+        <p
+          className={`mt-1 font-display text-5xl tabular-nums leading-none text-cow sm:text-6xl ${flashing ? "number-flash" : ""}`}
+        >
+          {serial.toLocaleString("zh-CN")}
+          <span className="ml-1 font-brush text-xl text-gold-soft">号</span>
+        </p>
+
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
+          {["核动力", "美股大海", "套死"].map((n) => (
+            <span
+              key={n}
+              className="rounded-sm border border-cow/70 px-2.5 py-1 font-display text-sm tracking-widest text-cow"
+            >
+              {n}
+            </span>
+          ))}
         </div>
+        {mine ? <p className="mt-2 font-display text-sm text-cow">{mine}</p> : null}
 
-        {mine ? (
-          <p className="mt-3 text-center font-display text-sm text-cow">{mine} · 还在</p>
-        ) : null}
-
-        <div className="mt-4 w-full max-w-sm">
-          <SealRow state={seals} compact />
-        </div>
-
-        <p className="mt-4 text-center text-sm text-paper/80">今日神谕 · {todayLabel}</p>
-
-        <div className="mt-5 grid w-full max-w-xs grid-cols-3 gap-2">
+        <Link
+          to="/ce"
+          className="mt-4 flex min-h-12 w-full max-w-xs items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper no-underline"
+        >
+          测你是哪种牛
+        </Link>
+        <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
           <button
             type="button"
             onClick={onOffer}
-            className="min-h-12 rounded-sm bg-cinnabar font-display tracking-widest text-paper"
+            className="min-h-11 rounded-sm bg-paper font-display tracking-widest text-ink"
           >
-            挂号
+            许一个
           </button>
           <Link
-            to="/ce"
-            className="flex min-h-12 items-center justify-center rounded-sm bg-paper font-display tracking-widest text-ink no-underline"
-          >
-            测相
-          </Link>
-          <Link
             to="/qian"
-            className="flex min-h-12 items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
+            className="flex min-h-11 items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
           >
-            抽签
+            抽一支
           </Link>
         </div>
-        <div className="mt-5 w-full max-w-xs">
-          <ShareBar payload={homeShare()} hideSlip />
-        </div>
-        <p className="mt-2 flex gap-4 text-xs text-gold-soft">
-          <Link to="/yi">给神上供</Link>
-          <Link to="/pai">香牌 · {rankOf(gongde).name}</Link>
+        <p className="mt-3 text-center text-xs text-gold-soft/80">
+          今日 · {todayLabel} · 已叩 {seals.bows}
         </p>
       </div>
     </section>

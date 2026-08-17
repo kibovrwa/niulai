@@ -90,6 +90,9 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             <Link to="/pai" className="inline-flex min-h-10 items-center no-underline">
               {t(locale, "navSeal")}
             </Link>
+            <a href="/poster.jpg" download="niulai-poster.jpg" className="inline-flex min-h-10 items-center no-underline">
+              {locale === "en" ? "Poster" : "海报"}
+            </a>
             <Link to="/shi" className="inline-flex min-h-10 items-center no-underline">
               {t(locale, "navStory")}
             </Link>

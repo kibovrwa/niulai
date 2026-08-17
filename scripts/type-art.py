@@ -12,24 +12,25 @@ INK = (26, 22, 16, 255)
 MUTED = (107, 90, 66, 255)
 CINN = (155, 43, 26, 255)
 
+# name stays Chinese on both cards. Punch follows locale.
 CARDS = {
-    "GMCL": ("六千牛", "六千不到，我不睡。"),
-    "GMCD": ("套死牛", "满了。当它没开盘。"),
-    "GMXL": ("美牛牛", "我的白天，是别人的收盘。"),
-    "GMXD": ("gay里gay牛", "我不是弯。我是抽象。"),
-    "GKCL": ("踏空牛", "我不是怕亏。我是眼红。"),
-    "GKCD": ("牛斯克", "我先发射。仓自己会来。"),
-    "GKXL": ("牛鼻子老道", "我先问道。再开盘。"),
-    "GKXD": ("大阉牛", "该顶的没顶。"),
-    "SMCL": ("牛蛛侠", "我先吐丝。再接盘。"),
-    "SMCD": ("牛魔王", "我不是散户。我是王。"),
-    "SMXL": ("核动力牛", "神不用赐。我会加班。"),
-    "SMXD": ("犟牛", "不卖是品德。账单更硬。"),
-    "SKCL": ("绊倒牛", "倒了。还是牛。"),
-    "SKCD": ("牛跃亭", "我先走。你们在粪里拿着。"),
-    "SKXL": ("搭子牛", "发这张，就是在招人。"),
-    "SKXD": ("牵牛花", "我开花。你来牵。"),
-    "NLBN": ("牛来本牛", "我就是它。"),
+    "GMCL": ("六千牛", "六千不到，我不睡。", "No 6000, no sleep."),
+    "GMCD": ("套死牛", "满了。当它没开盘。", "Full. Closed. For me."),
+    "GMXL": ("美牛牛", "我的白天，是别人的收盘。", "My morning is their close."),
+    "GMXD": ("gay里gay牛", "我不是弯。我是抽象。", "Not bent. Abstract."),
+    "GKCL": ("踏空牛", "我不是怕亏。我是眼红。", "Not fear. Envy."),
+    "GKCD": ("牛斯克", "我先发射。仓自己会来。", "Launch first. The book follows."),
+    "GKXL": ("牛鼻子老道", "我先问道。再开盘。", "Ask the dao. Then the tape."),
+    "GKXD": ("大阉牛", "该顶的没顶。", "Never charged."),
+    "SMCL": ("牛蛛侠", "我先吐丝。再接盘。", "Web first. Then catch."),
+    "SMCD": ("牛魔王", "我不是散户。我是王。", "Not retail. The king."),
+    "SMXL": ("核动力牛", "神不用赐。我会加班。", "No blessing. I'll overtime."),
+    "SMXD": ("犟牛", "不卖是品德。账单更硬。", "Holding is virtue. The bill is harder."),
+    "SKCL": ("绊倒牛", "倒了。还是牛。", "Fell. Still a bull."),
+    "SKCD": ("牛跃亭", "我先走。你们在粪里拿着。", "I leave. You hold the dung."),
+    "SKXL": ("搭子牛", "发这张，就是在招人。", "I posted this to recruit."),
+    "SKXD": ("牵牛花", "我开花。你来牵。", "I bloom. You pull."),
+    "NLBN": ("牛来本牛", "我就是它。", "I am it."),
 }
 
 
@@ -37,7 +38,6 @@ def font(n):
     for p in (
         "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
-        "/usr/share/fonts/truetype/noto/NotoSerifCJK-Bold.ttc",
     ):
         try:
             return ImageFont.truetype(p, n)
@@ -57,24 +57,27 @@ def cow():
 COW = cow()
 
 
-def make(code: str) -> Image.Image:
-    name, punch = CARDS[code]
+def make(name: str, head: str, punch: str, tag: str) -> Image.Image:
     im = Image.new("RGBA", (W, H), PAPER)
     d = ImageDraw.Draw(im)
-    d.text((W / 2, 56), "你的牛相是：", font=font(28), fill=MUTED, anchor="mm")
+    d.text((W / 2, 56), head, font=font(28), fill=MUTED, anchor="mm")
     name_size = 64 if len(name) <= 4 else 52 if len(name) <= 6 else 42
     d.text((W / 2, 130), name, font=font(name_size), fill=INK, anchor="mm")
-    d.text((W / 2, 188), code if code != "NLBN" else "本尊", font=font(36), fill=CINN, anchor="mm")
+    d.text((W / 2, 188), tag, font=font(36), fill=CINN, anchor="mm")
     im.alpha_composite(COW, ((W - COW.width) // 2, 230))
-    d.text((W / 2, 930), punch, font=font(30), fill=MUTED, anchor="mm")
+    punch_size = 30 if len(punch) < 22 else 24
+    d.text((W / 2, 930), punch, font=font(punch_size), fill=MUTED, anchor="mm")
     return im.convert("RGB")
 
 
 def main():
-    for code in CARDS:
-        path = OUT / f"{code}.jpg"
-        make(code).save(path, "JPEG", quality=88)
-        print(path)
+    for code, (name, zh, en) in CARDS.items():
+        tag = "本尊" if code == "NLBN" else code
+        make(name, "你的牛相是：", zh, tag).save(OUT / f"{code}.jpg", "JPEG", quality=88)
+        make(name, "You are:", en, "THE ORIGINAL" if code == "NLBN" else code).save(
+            OUT / f"{code}.en.jpg", "JPEG", quality=88
+        )
+        print(code)
 
 
 if __name__ == "__main__":

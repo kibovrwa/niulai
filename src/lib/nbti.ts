@@ -128,7 +128,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXL: {
-    name: { zh: "美牛牛", en: "US Cow" },
+    name: { zh: "美牛牛", en: "Mei Niu Niu" },
     line: { zh: "A股是池塘。那边才是海。", en: "A-shares are a pond. That's the ocean." },
     punch: { zh: "我的白天，是别人的收盘。", en: "My morning is their close." },
     verdict: { zh: "神批：海会涨。你会失眠。两件事都真。", en: "The ocean rises. You don't sleep. Both true." },
@@ -143,7 +143,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXD: {
-    name: { zh: "gay里gay牛", en: "Extra Bull" },
+    name: { zh: "gay里gay牛", en: "Gay-Gay Cow" },
     line: { zh: "盘花。人更花。", en: "The tape is extra. So are you." },
     punch: { zh: "我不是弯。我是抽象。", en: "Not bent. Abstract." },
     verdict: { zh: "神批：你来证明世界配得上这么糙的神。证明完，手还是伸向涨跌。", en: "You came for the joke. Stayed for the tape." },
@@ -176,15 +176,15 @@ export const TYPES: Record<string, TypeCard> = {
     name: { zh: "牛斯克", en: "Niusk" },
     line: { zh: "推特先于开盘。", en: "Tweet first. Tape later." },
     punch: { zh: "我先发射。仓自己会来。", en: "Launch first. The book will follow." },
-    verdict: { zh: "神批：证人里，数你看得最勤。", en: "Keenest witness in the yard." },
+    verdict: { zh: "神批：发射完再看仓，仓自己会说话。", en: "Launch first. The book talks later." },
     rec: "caitou",
     read: {
-      face: { zh: "站在神旁边，像路人。路人里你最熟门熟路。", en: "A passerby who knows the place." },
-      die: { zh: "死在「我再观察观察」。观察到散场。", en: "Die of one more look." },
-      live: { zh: "用别人的单给自己壮胆，壮完还是不下手。", en: "Other people's slips are unused courage." },
-      yes: { zh: "许图个彩头。门槛最低，适合你这种。", en: "File a token. Lowest door." },
-      no: { zh: "别再把「围观」说成「独立思考」。", en: "Watching is not thinking." },
-      mouth: { zh: "你不是冷静。你是还没轮到自己丢脸。", en: "Not calm. Just not embarrassed yet." },
+      face: { zh: "嘴里在发射。手里在刷盘。", en: "Mouth launching. Thumb on the tape." },
+      die: { zh: "死在「先发一条」。发完仓没动。", en: "Die of a tweet. No fill." },
+      live: { zh: "把愿景当持仓。愿景比仓大。", en: "The vision is bigger than the book." },
+      yes: { zh: "许股票翻倍。许的是那边那只。", en: "File a double. Their ticker." },
+      no: { zh: "别用发射代替下单。", en: "A launch is not a fill." },
+      mouth: { zh: "推比盘快。亏也比盘快。", en: "Tweets beat the tape. So do losses." },
     },
   },
   GKXL: {
@@ -203,7 +203,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXD: {
-    name: { zh: "大阉牛", en: "Cap Bull" },
+    name: { zh: "大阉牛", en: "Capon Cow" },
     line: { zh: "该顶的没顶。草倒是吃了。", en: "Didn't charge. Ate the grass." },
     punch: { zh: "该顶的没顶。", en: "Never charged." },
     verdict: { zh: "神批：像修行，也像拖。", en: "Looks like zen. Also delay." },
@@ -218,7 +218,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMCL: {
-    name: { zh: "牛蛛侠", en: "Spider Bull" },
+    name: { zh: "牛蛛侠", en: "Cow-Spidey" },
     line: { zh: "吊着就不算跌。", en: "Hanging is not falling." },
     punch: { zh: "我先吐丝。再接盘。", en: "Web first. Then catch." },
     verdict: { zh: "神批：勋章和套牢通知，同一天到。", en: "Medal and bag, same day." },
@@ -293,18 +293,18 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKCD: {
-    name: { zh: "牛跃亭", en: "Yueting Bull" },
+    name: { zh: "牛跃亭", en: "Niu Yueting" },
     line: { zh: "下周回国。仓先走。", en: "Back next week. The book left first." },
     punch: { zh: "我先走。你们在粪里拿着。", en: "I leave. You hold the dung." },
-    verdict: { zh: "神批：号是唯一诚实的东西。", en: "The number is the only honest thing." },
+    verdict: { zh: "神批：先走的人最会许愿。粪留给后来的。", en: "The one who leaves files first. The dung stays." },
     rec: "yingyuan",
     read: {
-      face: { zh: "不辩经。先盖章。", en: "No theology. Stamp first." },
-      die: { zh: "几乎不死。因为你本来就没指望它灵。", en: "Hard to die. You never needed it to work." },
-      live: { zh: "收藏号，像收藏入场券。以后给人看。", en: "You collect numbers like stubs." },
-      yes: { zh: "许先许一个再进影院。流程对了。", en: "File, then go to the cinema." },
-      no: { zh: "别一边说「玩玩」一边刷新灵没灵。", en: "Don't say just for fun and then check." },
-      mouth: { zh: "你是来盖章的。盖完，神也轻松。", en: "You came for a stamp." },
+      face: { zh: "笑着说下周。人已经不在。", en: "Smiles next week. Already gone." },
+      die: { zh: "不死。死的是还在拿着的人。", en: "He doesn't die. The holders do." },
+      live: { zh: "把「回国」当成永久延期。", en: "Coming home is a rolling delay." },
+      yes: { zh: "许下周回国。许完你自己先别走。", en: "File next week. Don't be the one who leaves." },
+      no: { zh: "别替他在粪里加仓。", en: "Don't add in his dung." },
+      mouth: { zh: "他先走。粪是你的。", en: "He left. The dung is yours." },
     },
   },
   SKXL: {
@@ -329,16 +329,16 @@ export const TYPES: Record<string, TypeCard> = {
     verdict: { zh: "神批：开得最快，谢得也最快。", en: "First to bloom. First to fold." },
     rec: "caitou",
     read: {
-      face: { zh: "上半场评论员。下半场进场。", en: "Pundit then player." },
-      die: { zh: "死在「我就看一眼」的那一眼。", en: "Die of one more look that became an order." },
-      live: { zh: "用旁观给自己买保险。保险到期，手比嘴快。", en: "Watching was the policy. Then the hand won." },
-      yes: { zh: "许图个彩头。别装自己没贪。", en: "File a token. Stop pretending." },
-      no: { zh: "别再写「我就是看看」。", en: "Stop saying you're just looking." },
-      mouth: { zh: "看戏的人里，就你买了票还进后台。", en: "You bought a ticket and went backstage." },
+      face: { zh: "开得很快。谢得也快。", en: "Blooms fast. Folds fast." },
+      die: { zh: "死在中午。早上还在开。", en: "Dead by noon. Open at dawn." },
+      live: { zh: "一天一季。明天再开一朵。", en: "One day is a season. Bloom again tomorrow." },
+      yes: { zh: "许开一天也算开过。", en: "File: one day still counts." },
+      no: { zh: "别把藤缠在别人仓上。", en: "Don't vine onto someone else's book." },
+      mouth: { zh: "花谢了。牛还在。", en: "The flower folded. The cow stayed." },
     },
   },
   NLBN: {
-    name: { zh: "牛来本牛", en: "The Cow Itself" },
+    name: { zh: "牛来本牛", en: "The Original" },
     line: { zh: "不是像。是本尊。", en: "Not a likeness. The original." },
     punch: { zh: "我就是它。", en: "I am it." },
     verdict: { zh: "神批：十六型里没有这个。它自己来了。", en: "Not in the sixteen. It arrived." },
@@ -438,8 +438,8 @@ export function decodeAnswers(code: string): AnswerMap | null {
   return out;
 }
 
-export function typeArt(code: string) {
-  return `/art/types/${code}.jpg`;
+export function typeArt(code: string, locale: "zh" | "en" = "zh") {
+  return locale === "en" ? `/art/types/${code}.en.jpg` : `/art/types/${code}.jpg`;
 }
 
 export function scoreNbti(answers: AnswerMap) {

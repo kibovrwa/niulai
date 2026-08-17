@@ -35,7 +35,7 @@ export const COW_TYPES = [
   { id: "hengpan", name: "横盘蓄势牛", nameEn: "Range Bull", line: "不急。草会长。", lineEn: "No rush. Grass grows." },
   { id: "bandao", name: "绊倒再起牛", nameEn: "Trip Bull", line: "倒了就倒了，站起来还是牛。", lineEn: "Fell. Stood. Still a bull." },
   { id: "fanchu", name: "躺平反刍牛", nameEn: "Flat Bull", line: "先吃草。行情自己来。", lineEn: "Eat grass. The tape will come." },
-  { id: "tuomeng", name: "美牛牛", nameEn: "US Cow", line: "A股是池塘。那边才是海。", lineEn: "A-shares are a pond. That's the ocean." },
+  { id: "tuomeng", name: "美牛牛", nameEn: "Mei Niu Niu", line: "A股是池塘。那边才是海。", lineEn: "A-shares are a pond. That's the ocean." },
   { id: "weiguan", name: "路边围观牛", nameEn: "Spectator", line: "先看看别人许的。", lineEn: "Watch the others first." },
   { id: "langqun", name: "硬刚狼群牛", nameEn: "Never-Sell", line: "回撤来了也不让。", lineEn: "The dip came. You didn't leave." },
   { id: "tuodi", name: "托底加仓牛", nameEn: "Knife Catcher", line: "有人在后面托着。", lineEn: "Someone's catching this. Maybe you." },

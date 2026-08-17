@@ -89,7 +89,7 @@ function NbtiPage() {
   async function save() {
     setSaving(true);
     try {
-      setShot(typeArt(r.code));
+      setShot(typeArt(r.code, locale));
     } finally {
       setSaving(false);
     }
@@ -108,7 +108,7 @@ function NbtiPage() {
         <div className="mx-auto max-w-md space-y-3">
           <div className="overflow-hidden rounded-2xl bg-white" style={{ background: "#ffffff" }}>
             <img
-              src={typeArt(r.code)}
+              src={typeArt(r.code, locale)}
               alt={`${r.type.name[locale]} ${r.type.punch[locale]}`}
               className="mx-auto w-full"
               style={{ outline: "none" }}

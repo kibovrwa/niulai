@@ -118,17 +118,23 @@ export function incenseLine(inc: Incense) {
   return `${stick}连着 ${inc.streak} 天。明日换一炷，别灭。`;
 }
 
+let mamaClip: HTMLAudioElement | null = null;
+
 export function playMama() {
   if (typeof window === "undefined") return;
-  const w = window as Window & { speechSynthesis?: SpeechSynthesis };
-  if (w.speechSynthesis) {
+  if (!mamaClip) {
+    mamaClip = new Audio("/art/mama.mp3");
+    mamaClip.preload = "auto";
+  }
+  mamaClip.currentTime = 0;
+  void mamaClip.play().catch(() => {
+    const w = window as Window & { speechSynthesis?: SpeechSynthesis };
+    if (!w.speechSynthesis) return;
     const u = new SpeechSynthesisUtterance("麻麻");
     u.lang = "zh-CN";
     u.rate = 0.7;
     u.pitch = 1.6;
     w.speechSynthesis.cancel();
     w.speechSynthesis.speak(u);
-    return;
-  }
-  void new Audio("/art/mama.mp3").play().catch(() => undefined);
+  });
 }

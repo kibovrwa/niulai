@@ -1,6 +1,6 @@
 export const PACKS = [
-  { id: "pan", label: "盘面", labelEn: "Tape" },
   { id: "ren", label: "人间", labelEn: "Life" },
+  { id: "pan", label: "盘口", labelEn: "Tape" },
   { id: "abs", label: "抽象", labelEn: "Abstract" },
 ] as const;
 
@@ -22,6 +22,8 @@ export const WISHES = [
   { id: "rent", pack: "ren", label: "房租别再涨", labelEn: "Rent stops here", roast: "房东听不见，牛听得见。", roastEn: "The landlord can't hear. The cow can.", stamp: "冻住", stampEn: "Frozen" },
   { id: "tijian", pack: "ren", label: "体检全绿", labelEn: "Clean checkup", roast: "先把单子翻过来。", roastEn: "Turn the report over first.", stamp: "待查", stampEn: "Pending" },
   { id: "client", pack: "ren", label: "甲方不改需求", labelEn: "The client freezes the spec", roast: "此愿难度高于涨停。", roastEn: "Harder than a limit-up.", stamp: "奇迹", stampEn: "Miracle" },
+  { id: "sleep", pack: "ren", label: "今晚能睡着", labelEn: "Sleep tonight", roast: "比涨停难。", roastEn: "Harder than a limit-up.", stamp: "待眠", stampEn: "Pending" },
+  { id: "offwork", pack: "ren", label: "今晚准时下班", labelEn: "Leave on time", roast: "公司许不了，牛许。", roastEn: "Work won't. The cow will.", stamp: "待走", stampEn: "Pending" },
   { id: "marry", pack: "ren", label: "我想和金主训结婚", labelEn: "Marry Juhoon", roast: "神不包办。编号可以。", roastEn: "The god doesn't arrange it. It numbers you.", stamp: "待嫁", stampEn: "Pending" },
   { id: "caitou", pack: "abs", label: "图个彩头", labelEn: "Just for luck", roast: "抽象的愿，抽象地灵。", roastEn: "Weird wish. Weird luck.", stamp: "已登记", stampEn: "In" },
   { id: "cuzao", pack: "abs", label: "建模越糙越灵", labelEn: "The cruder, the holier", roast: "精致的神不接散户。", roastEn: "A polished god doesn't take retail.", stamp: "糙灵", stampEn: "Crude" },
@@ -130,7 +132,9 @@ export const GREEDIER: Record<WishId, WishId> = {
   offer: "bonus",
   rent: "bonus",
   tijian: "exam",
-  client: "double",
+  client: "offwork",
+  sleep: "offwork",
+  offwork: "bonus",
   marry: "reply",
   caitou: "double",
   cuzao: "bandao",
@@ -146,6 +150,9 @@ export function todayWishId(at = new Date()) {
   const key = `${at.getFullYear()}-${at.getMonth() + 1}-${at.getDate()}`;
   let h = 0;
   for (let i = 0; i < key.length; i += 1) h = (h * 33 + key.charCodeAt(i)) >>> 0;
+  const life = WISHES.filter((w) => w.pack === "ren");
+  // Two days of life wishes for each day of tape, so the door isn't all 涨停.
+  if (h % 3 !== 0) return life[h % life.length].id;
   return WISHES[h % WISHES.length].id;
 }
 

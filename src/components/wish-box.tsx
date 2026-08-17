@@ -22,7 +22,7 @@ export function WishBox({
   onClose,
   onSubmit,
 }: WishBoxProps) {
-  const start = preset ?? "double";
+  const start = preset ?? "bonus";
   const [pack, setPack] = useState<PackId>(wishById(start).pack);
   const [wishId, setWishId] = useState<WishId>(start);
   const [nickname, setNickname] = useState("");
@@ -65,7 +65,7 @@ export function WishBox({
             <header>
               <p className="font-brush text-cinnabar">许一个</p>
               <h2 className="font-display text-2xl tracking-widest">选一句带走</h2>
-              <p className="mt-1 text-sm text-muted">涨停、回本、翻倍，就这些。</p>
+              <p className="mt-1 text-sm text-muted">加薪、回消息、考试过了。盘口的也有，不炒股也能许。</p>
             </header>
 
             <div className="grid grid-cols-3 gap-2">

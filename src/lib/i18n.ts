@@ -56,7 +56,7 @@ export const copy = {
     repayNow: "灵了，还愿",
     quizTitle: "测你是哪种牛",
     shrineTitle: "牛来许愿池",
-    shrineLead: "点神像磕一个。有香就能许。",
+    shrineLead: "点神像磕一个。加薪、回消息、涨停，都能登。",
   },
   en: {
     brand: "niulai",
@@ -79,7 +79,7 @@ export const copy = {
     nbtiCta: "Take the test",
     wishHead: "Make a wish",
     wishTitle: "Pick one line",
-    wishHint: "Limit-up, even, double. That's the menu.",
+    wishHint: "A raise, a text, a limit-up. The menu is human first.",
     ledgerHead: "Book",
     ledgerTitle: "What others wished",
     witnessHead: "Witnesses",
@@ -109,7 +109,7 @@ export const copy = {
     repayNow: "It landed. Repay",
     quizTitle: "Which cow are you?",
     shrineTitle: "niulai wishing pool",
-    shrineLead: "Bow. Then file a wish.",
+    shrineLead: "Bow. Raise, texts, limit-ups — file any of them.",
   },
 } as const;
 

@@ -143,6 +143,11 @@ function Intro({
       <GodFace large />
       <p className="mt-5 font-brush text-gold-soft">{locale === "en" ? "The god's paper" : "神出的卷"}</p>
       <h1 className="mt-1 font-display text-5xl tracking-widest">{locale === "en" ? "Which cow are you?" : "测你是哪种牛"}</h1>
+      <p className="mt-3 text-sm text-paper/75">
+        {locale === "en"
+          ? "Eight questions about greed. Not a trading exam."
+          : "八题看你怎么贪。不炒股也能答。"}
+      </p>
       {rival ? (
         <div className="mt-5 rounded-sm bg-ink/35 px-4 py-4 text-left">
           <p className="text-xs tracking-widest text-gold-soft">{locale === "en" ? "Someone tossed you a slip" : "有人甩给你一张单"}</p>

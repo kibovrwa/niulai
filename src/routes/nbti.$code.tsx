@@ -7,7 +7,7 @@ import { saveNbti } from "@/lib/booklet";
 import { getCult, passFire, recordCast, type CultStats } from "@/lib/cult-fns";
 import { awardSeal } from "@/lib/seals";
 import { addGongde, XIANG } from "@/lib/gongde";
-import { decodeAnswers, formatIndex, scoreNbti, typeArt } from "@/lib/nbti";
+import { decodeAnswers, formatIndex, PLAIN, scoreNbti, typeArt } from "@/lib/nbti";
 import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
 import { nbtiShare, publicUrl } from "@/lib/share";
@@ -119,6 +119,9 @@ function NbtiPage() {
             <p className="text-xs text-muted">{r.code === "NLBN" ? "隐藏款" : "你的主类型"}</p>
             <p className="mt-1 font-display text-3xl">
               {r.code}（{r.type.name[locale]}）
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              {PLAIN[r.code]?.[locale] ?? r.type.line[locale]}
             </p>
             <p className="mt-3 inline-block rounded-full bg-[#dce8d6] px-3 py-1 text-sm text-[#2f5a32]">
               {r.code === "NLBN"

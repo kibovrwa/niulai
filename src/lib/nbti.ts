@@ -3,22 +3,22 @@ import type { WishId } from "@/lib/wish-data";
 export const QUESTIONS = [
   {
     id: "loss",
-    q: { zh: "亏了的第一夜，你？", en: "Night you blew up — you?" },
+    q: { zh: "事情砸了的第一夜，你？", en: "The night it went wrong — you?" },
     opts: [
-      { id: "a", t: { zh: "复盘到天亮，找谁害的", en: "Stay up. Blame someone." }, g: 2, m: 2, c: 0, l: 1 },
-      { id: "b", t: { zh: "睡了。反正已经亏了", en: "Sleep. It's already gone." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "加仓。它必须回来", en: "Add more. It has to come back." }, g: 2, m: 2, c: 1, l: 2 },
-      { id: "d", t: { zh: "截图发群，求一句安慰", en: "Send the screenshot. Need a hug." }, g: 1, m: 1, c: 2, l: 1 },
+      { id: "a", t: { zh: "翻来覆去，想是谁害的", en: "Stay up. Blame someone." }, g: 2, m: 2, c: 0, l: 1 },
+      { id: "b", t: { zh: "睡了。反正已经这样了", en: "Sleep. It's already gone." }, g: 0, m: 0, c: 1, l: 0 },
+      { id: "c", t: { zh: "再压一把。它必须回来", en: "Double down. It has to come back." }, g: 2, m: 2, c: 1, l: 2 },
+      { id: "d", t: { zh: "发条消息，求一句安慰", en: "Send a text. Need a hug." }, g: 1, m: 1, c: 2, l: 1 },
     ],
   },
   {
     id: "pos",
-    q: { zh: "现在的仓位，更像？", en: "Your book looks like?" },
+    q: { zh: "你现在的日子，更像？", en: "Your days look like?" },
     opts: [
       { id: "a", t: { zh: "满得睡不着", en: "Maxed. Can't sleep." }, g: 2, m: 2, c: 1, l: 1 },
-      { id: "b", t: { zh: "空得心慌", en: "Cash. Heart racing." }, g: 1, m: 0, c: 0, l: 1 },
-      { id: "c", t: { zh: "半仓，装镇定", en: "Half. Faking calm." }, g: 1, m: 1, c: 0, l: 0 },
-      { id: "d", t: { zh: "仓位是草，草是仓位", en: "The grass is the position." }, g: 0, m: 0, c: 2, l: 1 },
+      { id: "b", t: { zh: "空得心慌", en: "Empty. Heart racing." }, g: 1, m: 0, c: 0, l: 1 },
+      { id: "c", t: { zh: "撑着，装镇定", en: "Holding. Faking calm." }, g: 1, m: 1, c: 0, l: 0 },
+      { id: "d", t: { zh: "躺平。草比人旺", en: "Lie flat. The grass is winning." }, g: 0, m: 0, c: 2, l: 1 },
     ],
   },
   {
@@ -27,18 +27,18 @@ export const QUESTIONS = [
     opts: [
       { id: "a", t: { zh: "神。认真的", en: "A god. I mean it." }, g: 1, m: 0, c: 2, l: 2 },
       { id: "b", t: { zh: "一部很糙的电影", en: "A janky movie." }, g: 0, m: 0, c: 2, l: 0 },
-      { id: "c", t: { zh: "一个点位，一个盼头", en: "A number. A hope." }, g: 2, m: 1, c: 0, l: 2 },
+      { id: "c", t: { zh: "一个盼头，一个数字", en: "A hope. A number." }, g: 2, m: 1, c: 0, l: 2 },
       { id: "d", t: { zh: "一种传染病", en: "It's catching." }, g: 1, m: 1, c: 1, l: 1 },
     ],
   },
   {
     id: "flex",
-    q: { zh: "朋友圈有人晒盈利，你？", en: "Someone posts a win. You?" },
+    q: { zh: "朋友晒赢了，你？", en: "Someone posts a win. You?" },
     opts: [
       { id: "a", t: { zh: "点赞。手在抖", en: "Like it. Hands shaking." }, g: 1, m: 1, c: 0, l: 1 },
       { id: "b", t: { zh: "回一句「牛」。关掉", en: "Type “nice.” Close it." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "翻自己的账户，确认还活着", en: "Check if you're still alive." }, g: 2, m: 2, c: 1, l: 1 },
-      { id: "d", t: { zh: "决定明天也去赌一把", en: "Tomorrow you bet too." }, g: 2, m: 1, c: 1, l: 2 },
+      { id: "c", t: { zh: "翻自己口袋，确认还活着", en: "Check your own pocket." }, g: 2, m: 2, c: 1, l: 1 },
+      { id: "d", t: { zh: "决定明天也去搏一把", en: "Tomorrow you try too." }, g: 2, m: 1, c: 1, l: 2 },
     ],
   },
   {
@@ -53,21 +53,21 @@ export const QUESTIONS = [
   },
   {
     id: "pick",
-    q: { zh: "股票翻倍，和暗恋回消息，先要哪个？", en: "Double the stock, or they text back?" },
+    q: { zh: "暗恋回消息，和突然发财，先要哪个？", en: "They text back, or a sudden fortune?" },
     opts: [
-      { id: "a", t: { zh: "翻倍。人可以再找", en: "Double it. People can wait." }, g: 2, m: 2, c: 0, l: 2 },
-      { id: "b", t: { zh: "回消息。盘可以再等", en: "The text. Charts can wait." }, g: 0, m: 0, c: 1, l: 1 },
+      { id: "a", t: { zh: "发财。人可以再找", en: "The money. People can wait." }, g: 2, m: 2, c: 0, l: 2 },
+      { id: "b", t: { zh: "回消息。钱可以再等", en: "The text. Money can wait." }, g: 0, m: 0, c: 1, l: 1 },
       { id: "c", t: { zh: "都要。我贪", en: "Both. I'm greedy." }, g: 2, m: 1, c: 1, l: 2 },
       { id: "d", t: { zh: "都是幻觉，但我两个都想", en: "Both fake. Want both." }, g: 1, m: 0, c: 2, l: 1 },
     ],
   },
   {
     id: "come",
-    q: { zh: "如果牛市真的来了，你第一件事？", en: "If the bull actually shows?" },
+    q: { zh: "要是好运真的来了，你第一件事？", en: "If the luck actually shows?" },
     opts: [
-      { id: "a", t: { zh: "加杠杆。来都来了", en: "Leverage. We're already here." }, g: 2, m: 2, c: 1, l: 2 },
-      { id: "b", t: { zh: "先出一半。怕它走", en: "Sell half. It might leave." }, g: 0, m: 1, c: 0, l: 0 },
-      { id: "c", t: { zh: "去影院再看一遍《牛来》", en: "Rewatch the movie." }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "a", t: { zh: "加码。来都来了", en: "Double down. We're already here." }, g: 2, m: 2, c: 1, l: 2 },
+      { id: "b", t: { zh: "先收一半。怕它走", en: "Take half. It might leave." }, g: 0, m: 1, c: 0, l: 0 },
+      { id: "c", t: { zh: "去把《牛来》再看一遍", en: "Rewatch the movie." }, g: 1, m: 0, c: 2, l: 2 },
       { id: "d", t: { zh: "不信。再等等", en: "Don't buy it. Wait." }, g: 0, m: 0, c: 1, l: 0 },
     ],
   },
@@ -94,6 +94,27 @@ type TypeCard = {
   verdict: Line;
   rec: WishId;
   read: { face: Line; die: Line; live: Line; yes: Line; no: Line; mouth: Line };
+};
+
+/** One line a non-trader can get. Shown under the type name. */
+export const PLAIN: Record<string, Line> = {
+  GMCL: { zh: "盯着一个数，不到不睡。", en: "A number. You won't sleep till it hits." },
+  GMCD: { zh: "陷进去了，假装没这回事。", en: "Stuck. Pretending it isn't happening." },
+  GMXL: { zh: "别人收工，你才开工。", en: "They clock out. You clock in." },
+  GMXD: { zh: "弯不弯无所谓，抽象就完了。", en: "Bent or not. Abstract is the point." },
+  GKCL: { zh: "没上车，眼红。", en: "Missed it. Jealous." },
+  GKCD: { zh: "先冲。理由后面再说。", en: "Launch first. Reasons later." },
+  GKXL: { zh: "先问为什么，再动手。", en: "Ask why. Then move." },
+  GKXD: { zh: "该冲的时候没冲。", en: "Never charged when it counted." },
+  SMCL: { zh: "先织网，再等人来。", en: "Spin the web. Wait." },
+  SMCD: { zh: "不当普通人，要当王。", en: "Not retail. The king." },
+  SMXL: { zh: "没人赐，自己加班。", en: "No blessing. You overtime." },
+  SMXD: { zh: "不是拿着，是放不下。", en: "Not holding. Can't let go." },
+  SKCL: { zh: "倒了，还是牛。", en: "Fell. Still a bull." },
+  SKCD: { zh: "我先走。你们继续耗。", en: "I leave. You stay in it." },
+  SKXL: { zh: "节奏慢，但还在跳。", en: "Slow. Still dancing." },
+  SKXD: { zh: "开一天，谢一天。", en: "Bloom a day. Fold a day." },
+  NLBN: { zh: "隐藏款。就是它本人。", en: "Hidden. The original." },
 };
 
 export const TYPES: Record<string, TypeCard> = {

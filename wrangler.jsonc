@@ -4,5 +4,11 @@
   "compatibility_date": "2026-08-17",
   "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
   "main": "src/worker-entry.ts",
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none"
+  }
 }

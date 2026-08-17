@@ -89,17 +89,57 @@ function toSql(run: Run): Sql {
 
 function createNeonSql(): Promise<Sql> {
   globalRef.__pgSqlPromise__ ??= (async () => {
-    // Regular Postgres driver: node-postgres (`pg`) — works directly with Neon's
-    // pooled endpoint. One pool per process; warm serverless instances reuse it.
-    const { Pool, types } = await import("pg");
-    types.setTypeParser(OID_INT8, Number);
-    types.setTypeParser(OID_DATE, identity);
-    types.setTypeParser(OID_INTERVAL, identity);
-    const pool = new Pool({ connectionString: getDatabaseUrl() });
-    return toSql(async <T>(text: string, params: unknown[]) => {
-      const res = await pool.query(text, params);
-      return res.rows as T[];
-    });
+    const connectionString = getDatabaseUrl();
+    if (!connectionString) {
+      throw new Error("DATABASE_URL is missing");
+    }
+
+    let run: Run;
+    if (isCloudflareWorker()) {
+      const { neon } = await import("@neondatabase/serverless");
+      const query = neon(connectionString);
+      run = async <T>(text: string, params: unknown[]) => {
+        const rows = params.length ? await query(text, params) : await query(text);
+        return rows as T[];
+      };
+    } else {
+      const { Pool, types } = await import("pg");
+      types.setTypeParser(OID_INT8, Number);
+      types.setTypeParser(OID_DATE, identity);
+      types.setTypeParser(OID_INTERVAL, identity);
+      const pool = new Pool({ connectionString });
+      run = async <T>(text: string, params: unknown[]) => {
+        const res = await pool.query(text, params);
+        return res.rows as T[];
+      };
+    }
+
+    const sql = toSql(run);
+    await sql.query(
+      "CREATE TABLE IF NOT EXISTS _migrations (name TEXT PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())",
+    );
+    const migrations = import.meta.glob("/migrations/*.sql", {
+      query: "?raw",
+      import: "default",
+      eager: true,
+    }) as Record<string, string>;
+    const doneRows = await sql.query<{ name: string }>("SELECT name FROM _migrations");
+    const done = new Set(doneRows.map((r) => r.name));
+    for (const [path, text] of Object.entries(migrations).sort(([a], [b]) =>
+      a.localeCompare(b),
+    )) {
+      const name = path.split("/").pop() as string;
+      if (done.has(name)) continue;
+      const statements = text
+        .split(";")
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0 && /[a-zA-Z]/.test(s));
+      for (const statement of statements) {
+        await sql.query(statement);
+      }
+      await sql.query("INSERT INTO _migrations (name) VALUES ($1)", [name]);
+    }
+    return sql;
   })().catch((err) => {
     globalRef.__pgSqlPromise__ = undefined;
     throw err;

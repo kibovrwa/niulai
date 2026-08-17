@@ -14,15 +14,7 @@ PAPER = (255, 244, 214)
 
 
 def font(n):
-    for p in (
-        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
-        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
-    ):
-        try:
-            return ImageFont.truetype("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc", n)
-        except OSError:
-            continue
-    return ImageFont.load_default()
+    return ImageFont.truetype("/workspace/fonts/NotoSerifSC-Bold.otf", n)
 
 
 def cow():

@@ -12,7 +12,7 @@ INK = (18, 14, 10)
 GOLD = (232, 186, 74)
 CINN = (176, 42, 28)
 PAPER = (255, 244, 214)
-FONT = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
+FONT = "/workspace/fonts/NotoSerifSC-Bold.otf"
 
 
 def font(n: int) -> ImageFont.FreeTypeFont:

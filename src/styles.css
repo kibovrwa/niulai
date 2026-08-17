@@ -20,9 +20,9 @@
   --color-smoke: #d9d2c3;
   --color-muted: #6b5a42;
   --color-halo: #ffd36a;
-  --font-display: "ZCOOL XiaoWei", "Noto Serif SC", "Songti SC", serif;
+  --font-display: "Noto Serif SC", "ZCOOL XiaoWei", "Songti SC", serif;
   --font-serif: "Noto Serif SC", "Songti SC", serif;
-  --font-brush: "Ma Shan Zheng", "ZCOOL XiaoWei", cursive;
+  --font-brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
   --radius-sm: 0.15rem;
   --radius: 0.25rem;
   --shadow-plaque:

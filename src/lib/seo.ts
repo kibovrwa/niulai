@@ -63,7 +63,7 @@ export function seoHead({
       { property: "og:url", content: url },
       { property: "og:site_name", content: BRAND },
       { property: "og:locale", content: "zh_CN" },
-      { property: "og:image", content: `${SITE}/og-card.jpg?v=qr` },
+      { property: "og:image", content: `${SITE}/og-card.jpg?v=hui` },
       { property: "og:image:width", content: "800" },
       { property: "og:image:height", content: "800" },
       { property: "og:image:alt", content: named },

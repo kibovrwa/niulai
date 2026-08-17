@@ -143,10 +143,17 @@ export function Shrine({
         <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
           <button
             type="button"
-            onClick={onOffer}
+            onClick={
+              incense.owned.length
+                ? onOffer
+                : () => {
+                    setIncense(claimFreeStick());
+                    setSaid("香领了。有香才能许愿。");
+                  }
+            }
             className="min-h-11 rounded-sm bg-paper font-display tracking-widest text-ink"
           >
-            许一个
+            {incense.owned.length ? "许一个" : "先领香"}
           </button>
           <Link
             to="/qian"

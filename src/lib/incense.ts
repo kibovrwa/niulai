@@ -107,6 +107,10 @@ export function touchIncense(): Incense {
   return next;
 }
 
+export function hasStick(state = loadIncense()) {
+  return state.owned.length > 0;
+}
+
 export function incenseLine(inc: Incense) {
   const stick = stickById(inc.on)?.name ?? "草香";
   if (!inc.owned.length) return "进池免费领一炷。后面再换。";

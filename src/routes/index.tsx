@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Certificate } from "@/components/certificate";
 import { Ledger } from "@/components/ledger";
 import { TotemOrbits } from "@/components/orbit";
@@ -8,6 +8,7 @@ import { Shrine } from "@/components/shrine";
 import { SiteChrome } from "@/components/site-chrome";
 import { WishBox } from "@/components/wish-box";
 import { addSlip, loadBooklet } from "@/lib/booklet";
+import { hasStick } from "@/lib/incense";
 import { isRepaid } from "@/lib/repay";
 import { readCult } from "@/lib/cult-fns";
 import { addGongde } from "@/lib/gongde";
@@ -49,6 +50,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const initial = Route.useLoaderData();
+  const navigate = useNavigate();
   const { g } = Route.useSearch();
   const fromUrl = g && isWishId(g) ? g : null;
   const [picked, setPicked] = useState<WishId | null>(fromUrl);
@@ -76,6 +78,10 @@ function Home() {
   }, []);
 
   function offer(wishId?: WishId) {
+    if (!hasStick()) {
+      void navigate({ to: "/xiang" });
+      return;
+    }
     setError(null);
     if (wishId) setPicked(wishId);
     setOpen(true);

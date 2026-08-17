@@ -5,27 +5,27 @@ export const QUESTIONS = [
     id: "loss",
     q: { zh: "事情砸了的第一夜，你？", en: "The night it went wrong — you?" },
     opts: [
-      { id: "a", t: { zh: "翻来覆去，想是谁害的", en: "Stay up. Blame someone." }, g: 2, m: 2, c: 0, l: 1 },
+      { id: "a", t: { zh: "翻来覆去，想是谁害的", en: "Stay up. Blame someone." }, g: 1, m: 1, c: 0, l: 1 },
       { id: "b", t: { zh: "睡了。反正已经这样了", en: "Sleep. It's already gone." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "再压一把。它必须回来", en: "Double down. It has to come back." }, g: 2, m: 2, c: 1, l: 2 },
-      { id: "d", t: { zh: "发条消息，求一句安慰", en: "Send a text. Need a hug." }, g: 1, m: 1, c: 2, l: 1 },
+      { id: "c", t: { zh: "再压一把。它必须回来", en: "Double down. It has to come back." }, g: 2, m: 2, c: 0, l: 2 },
+      { id: "d", t: { zh: "发条消息，求一句安慰", en: "Send a text. Need a hug." }, g: 0, m: 1, c: 2, l: 1 },
     ],
   },
   {
     id: "pos",
     q: { zh: "你现在的日子，更像？", en: "Your days look like?" },
     opts: [
-      { id: "a", t: { zh: "满得睡不着", en: "Maxed. Can't sleep." }, g: 2, m: 2, c: 1, l: 1 },
+      { id: "a", t: { zh: "满得睡不着", en: "Maxed. Can't sleep." }, g: 1, m: 2, c: 0, l: 1 },
       { id: "b", t: { zh: "空得心慌", en: "Empty. Heart racing." }, g: 1, m: 0, c: 0, l: 1 },
-      { id: "c", t: { zh: "撑着，装镇定", en: "Holding. Faking calm." }, g: 1, m: 1, c: 0, l: 0 },
-      { id: "d", t: { zh: "躺平。草比人旺", en: "Lie flat. The grass is winning." }, g: 0, m: 0, c: 2, l: 1 },
+      { id: "c", t: { zh: "撑着，装镇定", en: "Holding. Faking calm." }, g: 0, m: 1, c: 0, l: 0 },
+      { id: "d", t: { zh: "躺平。草比人旺", en: "Lie flat. The grass is winning." }, g: 0, m: 0, c: 2, l: 0 },
     ],
   },
   {
     id: "what",
     q: { zh: "你觉得牛来到底是什么？", en: "What is Niulai, really?" },
     opts: [
-      { id: "a", t: { zh: "神。认真的", en: "A god. I mean it." }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "a", t: { zh: "神。认真的", en: "A god. I mean it." }, g: 0, m: 0, c: 2, l: 2 },
       { id: "b", t: { zh: "一部很糙的电影", en: "A janky movie." }, g: 0, m: 0, c: 2, l: 0 },
       { id: "c", t: { zh: "一个盼头，一个数字", en: "A hope. A number." }, g: 2, m: 1, c: 0, l: 2 },
       { id: "d", t: { zh: "一种传染病", en: "It's catching." }, g: 1, m: 1, c: 1, l: 1 },
@@ -35,9 +35,9 @@ export const QUESTIONS = [
     id: "flex",
     q: { zh: "朋友晒赢了，你？", en: "Someone posts a win. You?" },
     opts: [
-      { id: "a", t: { zh: "点赞。手在抖", en: "Like it. Hands shaking." }, g: 1, m: 1, c: 0, l: 1 },
+      { id: "a", t: { zh: "点赞。手在抖", en: "Like it. Hands shaking." }, g: 0, m: 1, c: 0, l: 1 },
       { id: "b", t: { zh: "回一句「牛」。关掉", en: "Type “nice.” Close it." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "翻自己口袋，确认还活着", en: "Check your own pocket." }, g: 2, m: 2, c: 1, l: 1 },
+      { id: "c", t: { zh: "翻自己口袋，确认还活着", en: "Check your own pocket." }, g: 1, m: 2, c: 0, l: 1 },
       { id: "d", t: { zh: "决定明天也去搏一把", en: "Tomorrow you try too." }, g: 2, m: 1, c: 1, l: 2 },
     ],
   },
@@ -45,9 +45,9 @@ export const QUESTIONS = [
     id: "fall",
     q: { zh: "概念神要是绊倒了？", en: "If the god trips?" },
     opts: [
-      { id: "a", t: { zh: "笑出声，先截图", en: "Laugh. Screenshot." }, g: 1, m: 0, c: 2, l: 1 },
-      { id: "b", t: { zh: "跟着一起倒", en: "Fall with it." }, g: 1, m: 1, c: 2, l: 1 },
-      { id: "c", t: { zh: "把它扶起来，当自己没倒过", en: "Help it up. Never happened." }, g: 1, m: 2, c: 0, l: 1 },
+      { id: "a", t: { zh: "笑出声，先截图", en: "Laugh. Screenshot." }, g: 0, m: 0, c: 2, l: 1 },
+      { id: "b", t: { zh: "跟着一起倒", en: "Fall with it." }, g: 1, m: 1, c: 2, l: 0 },
+      { id: "c", t: { zh: "把它扶起来，当自己没倒过", en: "Help it up. Never happened." }, g: 0, m: 2, c: 0, l: 1 },
       { id: "d", t: { zh: "倒了才像真的。更信了", en: "The fall made it real." }, g: 2, m: 1, c: 2, l: 2 },
     ],
   },
@@ -55,19 +55,19 @@ export const QUESTIONS = [
     id: "pick",
     q: { zh: "暗恋回消息，和突然发财，先要哪个？", en: "They text back, or a sudden fortune?" },
     opts: [
-      { id: "a", t: { zh: "发财。人可以再找", en: "The money. People can wait." }, g: 2, m: 2, c: 0, l: 2 },
+      { id: "a", t: { zh: "发财。人可以再找", en: "The money. People can wait." }, g: 2, m: 2, c: 0, l: 1 },
       { id: "b", t: { zh: "回消息。钱可以再等", en: "The text. Money can wait." }, g: 0, m: 0, c: 1, l: 1 },
       { id: "c", t: { zh: "都要。我贪", en: "Both. I'm greedy." }, g: 2, m: 1, c: 1, l: 2 },
-      { id: "d", t: { zh: "都是幻觉，但我两个都想", en: "Both fake. Want both." }, g: 1, m: 0, c: 2, l: 1 },
+      { id: "d", t: { zh: "都是幻觉，但我两个都想", en: "Both fake. Want both." }, g: 1, m: 0, c: 2, l: 0 },
     ],
   },
   {
     id: "come",
     q: { zh: "要是好运真的来了，你第一件事？", en: "If the luck actually shows?" },
     opts: [
-      { id: "a", t: { zh: "加码。来都来了", en: "Double down. We're already here." }, g: 2, m: 2, c: 1, l: 2 },
+      { id: "a", t: { zh: "加码。来都来了", en: "Double down. We're already here." }, g: 2, m: 2, c: 0, l: 2 },
       { id: "b", t: { zh: "先收一半。怕它走", en: "Take half. It might leave." }, g: 0, m: 1, c: 0, l: 0 },
-      { id: "c", t: { zh: "去把《牛来》再看一遍", en: "Rewatch the movie." }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "c", t: { zh: "去把《牛来》再看一遍", en: "Rewatch the movie." }, g: 0, m: 0, c: 2, l: 2 },
       { id: "d", t: { zh: "不信。再等等", en: "Don't buy it. Wait." }, g: 0, m: 0, c: 1, l: 0 },
     ],
   },
@@ -75,9 +75,9 @@ export const QUESTIONS = [
     id: "why",
     q: { zh: "你来测这套，其实是？", en: "You opened this because?" },
     opts: [
-      { id: "a", t: { zh: "我要一个能晒的结果", en: "I want something to post." }, g: 2, m: 1, c: 1, l: 2 },
+      { id: "a", t: { zh: "我要一个能晒的结果", en: "I want something to post." }, g: 2, m: 1, c: 0, l: 2 },
       { id: "b", t: { zh: "我要看自己有多贪", en: "To see how greedy I am." }, g: 1, m: 1, c: 1, l: 1 },
-      { id: "c", t: { zh: "朋友甩过来的，我跟", en: "A friend sent it. I followed." }, g: 1, m: 0, c: 1, l: 1 },
+      { id: "c", t: { zh: "朋友甩过来的，我跟", en: "A friend sent it. I followed." }, g: 0, m: 0, c: 1, l: 1 },
       { id: "d", t: { zh: "概念神托梦喊我来的", en: "The god showed up in a dream." }, g: 1, m: 0, c: 2, l: 2 },
     ],
   },
@@ -478,9 +478,18 @@ export function scoreNbti(answers: AnswerMap) {
     hash = (hash * 33 + pick.id.charCodeAt(0)) >>> 0;
   }
   const rare = hash % 888 === 8;
+  const gCut = 5;
+  const mCut = 7;
+  const cCut = 8;
+  const lCut = 9;
+  function side(score: number, cut: number, bit: number) {
+    if (score > cut) return true;
+    if (score < cut) return false;
+    return (hash & (1 << bit)) !== 0;
+  }
   const letters = rare
     ? "NLBN"
-    : `${g >= 8 ? "G" : "S"}${m >= 6 ? "M" : "K"}${c >= 8 ? "C" : "X"}${l >= 8 ? "L" : "D"}`;
+    : `${side(g, gCut, 0) ? "G" : "S"}${side(m, mCut, 1) ? "M" : "K"}${side(c, cCut, 2) ? "C" : "X"}${side(l, lCut, 3) ? "L" : "D"}`;
   const type = TYPES[letters] ?? TYPES.SKCD;
   const fate = FATE[letters] ?? FATE.SKCD;
   const index = rare ? 8888 : 2888 + g * 210 + m * 140 + c * 80 + l * 260 + (hash % 88);

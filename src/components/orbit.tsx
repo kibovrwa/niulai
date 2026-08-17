@@ -27,10 +27,9 @@ export function TotemOrbits({
   const ranked = rankWishes(counts).slice(0, 5);
   const max = Math.max(1, ranked[0]?.n ?? 1);
   const filed = Object.values(counts).reduce((s, n) => s + n, 0);
-  const typeRank = Object.entries(types)
-    .map(([k, n]) => ({ k, n, name: TYPES[k]?.name.zh ?? k }))
-    .sort((a, b) => b.n - a.n)
-    .slice(0, 4);
+  const typeRank = Object.keys(TYPES)
+    .map((k) => ({ k, n: types[k] ?? 0, name: TYPES[k]?.name.zh ?? k }))
+    .sort((a, b) => b.n - a.n);
 
   return (
     <section className="bg-ink px-4 py-12 text-paper sm:px-6">
@@ -127,11 +126,14 @@ export function TotemOrbits({
             </div>
           </div>
           {typeRank.length ? (
-            <ul className="mt-5 space-y-1 text-sm">
+            <ul className="mt-5 flex flex-wrap gap-2">
               {typeRank.map((r) => (
-                <li key={r.k} className="flex justify-between gap-3">
-                  <span>{r.name}</span>
-                  <span className="tabular-nums text-gold-soft">{r.n} 人</span>
+                <li
+                  key={r.k}
+                  className="rounded-sm border border-gold-soft/35 px-2 py-1 text-xs tracking-widest text-gold-soft"
+                >
+                  {r.name}
+                  <span className="ml-1 tabular-nums text-paper/50">{r.n}</span>
                 </li>
               ))}
             </ul>
@@ -144,9 +146,9 @@ export function TotemOrbits({
           <p className="mt-2 max-w-md text-sm text-paper/70">{t(locale, "nbtiTeaseSub")}</p>
           <Link
             to="/ce"
-            className="mt-5 inline-flex min-h-12 items-center rounded-sm bg-paper px-5 font-display tracking-widest text-ink no-underline"
+            className="mt-5 inline-flex min-h-11 items-center text-sm tracking-widest text-gold-soft/80 no-underline"
           >
-            {t(locale, "nbtiCta")}
+            顺手测测你的 NBTI
           </Link>
         </div>
       </div>

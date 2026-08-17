@@ -7,12 +7,14 @@ export function ShareBar({
   saveLabel,
   onSave,
   saving,
+  compact,
 }: {
   payload: SharePayload;
   onShared?: () => void;
   saveLabel?: string;
   onSave?: () => void;
   saving?: boolean;
+  compact?: boolean;
 }) {
   const [state, setState] = useState<"idle" | "shared" | "copied" | "failed">("idle");
 
@@ -33,12 +35,13 @@ export function ShareBar({
 
   return (
     <div className="space-y-2">
-      <div className="rounded-sm bg-paper-deep px-4 py-3 text-left text-ink">
-        <p className="text-[11px] tracking-widest text-cinnabar">发出去的就是这几句</p>
-        <p className="mt-2 whitespace-pre-wrap font-display text-base leading-relaxed">
+      <div className="rounded-sm bg-paper-deep px-3 py-2.5 text-left text-ink">
+        {!compact ? (
+          <p className="text-[11px] tracking-widest text-cinnabar">发出去的就是这几句</p>
+        ) : null}
+        <p className={`whitespace-pre-wrap font-display leading-relaxed ${compact ? "text-sm" : "mt-2 text-base"}`}>
           {payload.lines.join("\n")}
         </p>
-        <p className="mt-2 break-all text-xs text-muted">{payload.url}</p>
       </div>
       <button
         type="button"
@@ -56,9 +59,11 @@ export function ShareBar({
           {saving ? "在出图…" : saveLabel ?? "保存这张图"}
         </button>
       ) : null}
-      <p className="text-center text-[11px] leading-relaxed text-muted">
-        链接只是尾巴。朋友先读上面那几句。
-      </p>
+      {compact ? null : (
+        <p className="text-center text-[11px] leading-relaxed text-muted">
+          链接只是尾巴。朋友先读上面那几句。
+        </p>
+      )}
     </div>
   );
 }

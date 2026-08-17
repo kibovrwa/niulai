@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type Ref } from "react";
 import { QrMark } from "@/components/qr-mark";
 import { ShareBar } from "@/components/share-bar";
@@ -36,33 +35,27 @@ export function Certificate({ wish, sameCount, onClose, onAgain }: CertificatePr
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink/80 p-3 sm:items-center">
-      <div className="w-full max-w-sm">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-ink/80 px-3 pb-6 pt-14 sm:flex sm:items-center sm:justify-center sm:pt-6">
+      <div className="mx-auto w-full max-w-sm">
         <ShareSlip posterRef={poster} wish={wish} sameCount={sameCount} playUrl={url} />
-        <div className="flex flex-col gap-2 rounded-b-sm bg-paper px-4 py-4 text-ink">
+        <div className="flex flex-col gap-2 rounded-b-sm bg-paper px-4 py-3 text-ink">
           <p className="text-center font-brush text-lg text-cinnabar">{cow.name}</p>
           <p className="text-center text-sm text-muted">{spec.roast}</p>
           <ShareBar
+            compact
             payload={wishShare({ serial: wish.serial, label: wish.label, id: wish.id })}
             saveLabel="保存这张单"
             saving={saving}
             onSave={() => void save()}
           />
           <div className="grid grid-cols-2 gap-2">
-            <Link
-              to="/w/$code"
-              params={{ code: wish.id }}
-              className="inline-flex min-h-11 items-center justify-center rounded-sm bg-paper-deep font-display text-ink no-underline"
-            >
-              打开晒单
-            </Link>
             <button type="button" onClick={onAgain} className="min-h-11 rounded-sm bg-paper-deep font-display">
-              再贪一个
+              再许一个
+            </button>
+            <button type="button" onClick={onClose} className="min-h-11 rounded-sm bg-paper-deep font-display text-muted">
+              留下看号
             </button>
           </div>
-          <button type="button" onClick={onClose} className="min-h-11 text-sm text-muted">
-            留下看号
-          </button>
         </div>
       </div>
     </div>
@@ -93,24 +86,24 @@ export function ShareSlip({
   }, [playUrl, wish.id]);
 
   return (
-    <div ref={posterRef} className="relative bg-grass px-5 pb-5 pt-6 text-center text-paper">
-      <p className="font-brush text-gold-soft">牛来纪 · 第 {wish.serial} 号</p>
+    <div ref={posterRef} className="relative bg-grass px-4 pb-4 pt-4 text-center text-paper">
+      <p className="font-brush text-gold-soft">第 {wish.serial} 号</p>
       <img
         src="/logo.png"
         alt=""
-        className="mx-auto mt-3 h-20 w-20 rounded-full object-cover"
+        className="mx-auto mt-2 h-14 w-14 rounded-full object-cover"
         crossOrigin="anonymous"
       />
-      <p className="mt-3 font-display text-3xl leading-tight">{wish.label}</p>
-      <p className="mt-2 text-xs text-gold-soft/90">
+      <p className="mt-2 font-display text-2xl leading-tight">{wish.label}</p>
+      <p className="mt-1 text-xs text-gold-soft/90">
         {sameCount} 人同一贪 · {wish.nickname}
       </p>
-      <span className="absolute right-3 top-6 rotate-12 border-2 border-cinnabar-bright px-2 py-0.5 font-brush text-cinnabar-bright">
+      <span className="absolute right-2 top-3 rotate-12 border-2 border-cinnabar-bright px-2 py-0.5 font-brush text-cinnabar-bright">
         {lucky ?? spec.stamp}
       </span>
       {url ? (
-        <div className="mt-4">
-          <QrMark url={url} label="扫码，也向神贪一个" size={200} />
+        <div className="mt-3">
+          <QrMark url={url} label="扫码也来许一个" size={128} />
         </div>
       ) : null}
     </div>

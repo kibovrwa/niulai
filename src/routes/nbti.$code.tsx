@@ -154,7 +154,7 @@ function NbtiPage() {
                 : ""}
             </p>
             <div className="mt-4">
-              <QrMark url={playUrl} label="扫码测你的 NBTI" size={200} />
+              <QrMark url={playUrl} label="扫码测你的" size={128} />
             </div>
           </div>
 
@@ -212,6 +212,7 @@ function NbtiPage() {
             </section>
 
             <ShareBar
+              compact
               payload={nbtiShare({
                 code: r.code,
                 name: r.type.name.zh,

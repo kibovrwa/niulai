@@ -419,6 +419,10 @@ export function decodeAnswers(code: string): AnswerMap | null {
   return out;
 }
 
+export function typeArt(code: string) {
+  return `/art/types/${code}.jpg`;
+}
+
 export function scoreNbti(answers: AnswerMap) {
   let g = 0;
   let m = 0;

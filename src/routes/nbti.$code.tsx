@@ -7,7 +7,7 @@ import { saveNbti } from "@/lib/booklet";
 import { getCult, passFire, recordCast, type CultStats } from "@/lib/cult-fns";
 import { awardSeal } from "@/lib/seals";
 import { addGongde } from "@/lib/gongde";
-import { decodeAnswers, formatIndex, scoreNbti } from "@/lib/nbti";
+import { decodeAnswers, formatIndex, scoreNbti, typeArt } from "@/lib/nbti";
 import { ShareBar } from "@/components/share-bar";
 import { seoHead } from "@/lib/seo";
 import { nbtiShare, publicUrl } from "@/lib/share";
@@ -119,9 +119,9 @@ function NbtiPage() {
             <h1 className="mt-2 font-display text-5xl leading-none">{r.type.name[locale]}</h1>
             <p className="mt-2 font-display text-3xl tracking-[0.18em] text-cinnabar">{r.code}</p>
             <img
-              src="/art/totem-god.jpg"
+              src={typeArt(r.code)}
               alt=""
-              className="mx-auto mt-4 w-44"
+              className="mx-auto mt-4 w-full max-w-[280px]"
               style={{ outline: "none" }}
             />
             <p className="mt-4 text-left text-sm text-muted">{r.type.punch[locale]}</p>

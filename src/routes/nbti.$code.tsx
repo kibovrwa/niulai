@@ -219,6 +219,9 @@ function NbtiPage() {
                 }}
               />
             </div>
+            <Link to="/qian" className="mt-2 flex min-h-11 items-center justify-center rounded-sm bg-wood font-display text-paper no-underline">
+              今日签还没抽
+            </Link>
             <Link
               to="/"
               search={{ g: rec.id }}
@@ -226,6 +229,9 @@ function NbtiPage() {
             >
               向神登记「{rec.label}」
             </Link>
+            <p className="mt-2 text-center text-xs text-muted">
+              {r.code === "NLBN" ? "本尊在了。明日来续香。" : "本牛约 1/888。香火明日再来，别灭。"}
+            </p>
             <Link to="/ce" className="mt-1 block min-h-11 text-center text-sm text-muted">
               再测一次
             </Link>

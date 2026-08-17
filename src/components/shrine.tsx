@@ -4,6 +4,7 @@ import { TotemStage } from "@/components/totem-dress";
 import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
+import { incenseLine, touchIncense, type Incense } from "@/lib/incense";
 import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
 
@@ -30,12 +31,14 @@ export function Shrine({
   const [bowing, setBowing] = useState(false);
   const [said, setSaid] = useState("点神像，磕一个");
   const [gongde, setGongde] = useState(0);
+  const [incense, setIncense] = useState<Incense>({ last: "", streak: 0, best: 0 });
   const [fits, setFits] = useState<FitId[]>([]);
 
   useEffect(() => {
     const b = loadBooklet();
     if (b.nbti) setMine(`${b.nbti.name} · ${b.nbti.letters}`);
     setSeals(markReturn());
+    setIncense(touchIncense());
     setGongde(loadGongde());
     setFits(equippedList(loadFits()).map((f) => f.id));
   }, []);
@@ -143,6 +146,7 @@ export function Shrine({
         <p className="mt-3 text-center text-xs text-gold-soft/80">
           今日 · {todayLabel} · 已叩 {seals.bows}
         </p>
+        <p className="mt-1 text-center text-xs text-gold-soft">{incenseLine(incense)}</p>
       </div>
     </section>
   );

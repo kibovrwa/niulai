@@ -71,6 +71,17 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             {locale === "zh" ? "EN" : "中"}
           </button>
         </nav>
+        <nav className="mt-3 flex flex-wrap items-center justify-center gap-4 text-paper/50">
+          <Link to="/about" className="min-h-11 py-2 no-underline">
+            关于
+          </Link>
+          <Link to="/privacy" className="min-h-11 py-2 no-underline">
+            隐私
+          </Link>
+          <Link to="/mian" className="min-h-11 py-2 no-underline">
+            免责
+          </Link>
+        </nav>
         <p className="mt-3">{t(locale, "footerSub")}</p>
       </footer>
     </div>

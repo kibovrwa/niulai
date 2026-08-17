@@ -10,14 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as BangRouteImport } from './routes/bang'
 import { Route as CeRouteImport } from './routes/ce'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MianRouteImport } from './routes/mian'
 import { Route as PaiRouteImport } from './routes/pai'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QianRouteImport } from './routes/qian'
 import { Route as ShiRouteImport } from './routes/shi'
 import { Route as WallRouteImport } from './routes/wall'
 import { Route as YiRouteImport } from './routes/yi'
+import { Route as ApiPingRouteImport } from './routes/api/ping'
 import { Route as NbtiCodeRouteImport } from './routes/nbti.$code'
 import { Route as WCodeRouteImport } from './routes/w.$code'
 import { Route as XiangIdRouteImport } from './routes/xiang.$id'
@@ -26,6 +30,11 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BangRoute = BangRouteImport.update({
@@ -43,9 +52,19 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MianRoute = MianRouteImport.update({
+  id: '/mian',
+  path: '/mian',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PaiRoute = PaiRouteImport.update({
   id: '/pai',
   path: '/pai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QianRoute = QianRouteImport.update({
@@ -66,6 +85,11 @@ const WallRoute = WallRouteImport.update({
 const YiRoute = YiRouteImport.update({
   id: '/yi',
   path: '/yi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPingRoute = ApiPingRouteImport.update({
+  id: '/api/ping',
+  path: '/api/ping',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NbtiCodeRoute = NbtiCodeRouteImport.update({
@@ -91,14 +115,18 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/bang': typeof BangRoute
   '/ce': typeof CeRoute
   '/login': typeof LoginRoute
+  '/mian': typeof MianRoute
   '/pai': typeof PaiRoute
+  '/privacy': typeof PrivacyRoute
   '/qian': typeof QianRoute
   '/shi': typeof ShiRoute
   '/wall': typeof WallRoute
   '/yi': typeof YiRoute
+  '/api/ping': typeof ApiPingRoute
   '/nbti/$code': typeof NbtiCodeRoute
   '/w/$code': typeof WCodeRoute
   '/xiang/$id': typeof XiangIdRoute
@@ -106,14 +134,18 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/bang': typeof BangRoute
   '/ce': typeof CeRoute
   '/login': typeof LoginRoute
+  '/mian': typeof MianRoute
   '/pai': typeof PaiRoute
+  '/privacy': typeof PrivacyRoute
   '/qian': typeof QianRoute
   '/shi': typeof ShiRoute
   '/wall': typeof WallRoute
   '/yi': typeof YiRoute
+  '/api/ping': typeof ApiPingRoute
   '/nbti/$code': typeof NbtiCodeRoute
   '/w/$code': typeof WCodeRoute
   '/xiang/$id': typeof XiangIdRoute
@@ -122,14 +154,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/bang': typeof BangRoute
   '/ce': typeof CeRoute
   '/login': typeof LoginRoute
+  '/mian': typeof MianRoute
   '/pai': typeof PaiRoute
+  '/privacy': typeof PrivacyRoute
   '/qian': typeof QianRoute
   '/shi': typeof ShiRoute
   '/wall': typeof WallRoute
   '/yi': typeof YiRoute
+  '/api/ping': typeof ApiPingRoute
   '/nbti/$code': typeof NbtiCodeRoute
   '/w/$code': typeof WCodeRoute
   '/xiang/$id': typeof XiangIdRoute
@@ -139,14 +175,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/bang'
     | '/ce'
     | '/login'
+    | '/mian'
     | '/pai'
+    | '/privacy'
     | '/qian'
     | '/shi'
     | '/wall'
     | '/yi'
+    | '/api/ping'
     | '/nbti/$code'
     | '/w/$code'
     | '/xiang/$id'
@@ -154,14 +194,18 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/bang'
     | '/ce'
     | '/login'
+    | '/mian'
     | '/pai'
+    | '/privacy'
     | '/qian'
     | '/shi'
     | '/wall'
     | '/yi'
+    | '/api/ping'
     | '/nbti/$code'
     | '/w/$code'
     | '/xiang/$id'
@@ -169,14 +213,18 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/bang'
     | '/ce'
     | '/login'
+    | '/mian'
     | '/pai'
+    | '/privacy'
     | '/qian'
     | '/shi'
     | '/wall'
     | '/yi'
+    | '/api/ping'
     | '/nbti/$code'
     | '/w/$code'
     | '/xiang/$id'
@@ -185,14 +233,18 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BangRoute: typeof BangRoute
   CeRoute: typeof CeRoute
   LoginRoute: typeof LoginRoute
+  MianRoute: typeof MianRoute
   PaiRoute: typeof PaiRoute
+  PrivacyRoute: typeof PrivacyRoute
   QianRoute: typeof QianRoute
   ShiRoute: typeof ShiRoute
   WallRoute: typeof WallRoute
   YiRoute: typeof YiRoute
+  ApiPingRoute: typeof ApiPingRoute
   NbtiCodeRoute: typeof NbtiCodeRoute
   WCodeRoute: typeof WCodeRoute
   XiangIdRoute: typeof XiangIdRoute
@@ -206,6 +258,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bang': {
@@ -229,11 +288,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mian': {
+      id: '/mian'
+      path: '/mian'
+      fullPath: '/mian'
+      preLoaderRoute: typeof MianRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pai': {
       id: '/pai'
       path: '/pai'
       fullPath: '/pai'
       preLoaderRoute: typeof PaiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/qian': {
@@ -262,6 +335,13 @@ declare module '@tanstack/react-router' {
       path: '/yi'
       fullPath: '/yi'
       preLoaderRoute: typeof YiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ping': {
+      id: '/api/ping'
+      path: '/api/ping'
+      fullPath: '/api/ping'
+      preLoaderRoute: typeof ApiPingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nbti/$code': {
@@ -297,14 +377,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BangRoute: BangRoute,
   CeRoute: CeRoute,
   LoginRoute: LoginRoute,
+  MianRoute: MianRoute,
   PaiRoute: PaiRoute,
+  PrivacyRoute: PrivacyRoute,
   QianRoute: QianRoute,
   ShiRoute: ShiRoute,
   WallRoute: WallRoute,
   YiRoute: YiRoute,
+  ApiPingRoute: ApiPingRoute,
   NbtiCodeRoute: NbtiCodeRoute,
   WCodeRoute: WCodeRoute,
   XiangIdRoute: XiangIdRoute,

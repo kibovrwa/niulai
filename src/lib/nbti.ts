@@ -173,9 +173,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKCD: {
-    name: { zh: "闲牛", en: "Idle Bull" },
-    line: { zh: "先看看别人许的。", en: "Watch others file first." },
-    punch: { zh: "我不贪。我只是盯着榜。", en: "Not greedy. Just staring." },
+    name: { zh: "牛斯克", en: "Niusk" },
+    line: { zh: "推特先于开盘。", en: "Tweet first. Tape later." },
+    punch: { zh: "我先发射。仓自己会来。", en: "Launch first. The book will follow." },
     verdict: { zh: "神批：证人里，数你看得最勤。", en: "Keenest witness in the yard." },
     rec: "caitou",
     read: {
@@ -377,7 +377,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GKCD: {
     past: { zh: "庙门口看热闹的。从不进去。", en: "Watched from the gate." },
-    now: { zh: "纯闲牛。还是不进。", en: "Still not going in." },
+    now: { zh: "牛斯克。发射完再看榜。", en: "Launch. Then check the board." },
   },
   GKXL: {
     past: { zh: "求签不看解。响一下就走。", en: "Drew a lot, skipped the reading." },

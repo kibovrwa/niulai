@@ -18,7 +18,7 @@ SEALS = {
     "GMXL": "大海",
     "GMXD": "抽象",
     "GKCL": "踏空",
-    "GKCD": "闲",
+    "GKCD": "斯克",
     "GKXL": "老道",
     "GKXD": "阉",
     "SMCL": "接刀",

@@ -308,10 +308,10 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXL: {
-    name: { zh: "搭子牛", en: "Buddy Bull" },
-    line: { zh: "谁跟你一起走，比点位重要。", en: "Company beats the level." },
-    punch: { zh: "发这张，就是在招人。", en: "I posted this to recruit." },
-    verdict: { zh: "神批：丢脸最好成双。", en: "Embarrassment prefers pairs." },
+    name: { zh: "牛大腿", en: "Cow Thigh" },
+    line: { zh: "腿比脑子先到。", en: "The leg arrives first." },
+    punch: { zh: "我不是仓。我是腿。", en: "Not a book. A thigh." },
+    verdict: { zh: "神批：先到的不是手，是腿。", en: "The thigh beats the hand." },
     rec: "reply",
     read: {
       face: { zh: "一个人看盘会心虚。两个人看盘叫研究。", en: "Alone it's anxiety. Together it's research." },
@@ -413,7 +413,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKXL: {
     past: { zh: "结拜。酒比血浓。", en: "Sworn brothers. Wine thicker than blood." },
-    now: { zh: "搭子牛。截图比收益浓。", en: "Screenshots thicker than returns." },
+    now: { zh: "牛大腿。腿比仓先到。", en: "The thigh beats the book." },
   },
   SKXD: {
     past: { zh: "戏园子看客。看到一半上台。", en: "An audience member who climbed onstage." },

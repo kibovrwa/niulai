@@ -28,7 +28,7 @@ CARDS = {
     "SMXD": ("犟牛", "不卖是品德。账单更硬。", "Holding is virtue. The bill is harder."),
     "SKCL": ("绊倒牛", "倒了。还是牛。", "Fell. Still a bull."),
     "SKCD": ("牛跃亭", "我先走。你们在粪里拿着。", "I leave. You hold the dung."),
-    "SKXL": ("搭子牛", "发这张，就是在招人。", "I posted this to recruit."),
+    "SKXL": ("牛大腿", "我不是仓。我是腿。", "Not a book. A thigh."),
     "SKXD": ("牵牛花", "我开花。你来牵。", "I bloom. You pull."),
     "NLBN": ("牛来本牛", "我就是它。", "I am it."),
 }

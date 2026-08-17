@@ -8,7 +8,7 @@ export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
       title: "测你是哪种牛",
-      desc: "核动力牛 · 美股大海牛 · 套死牛",
+      desc: "八题测出核动力牛、美股大海牛、套死牛。许愿、抽签，号只增不减。",
       path: "/",
     });
     return {
@@ -51,7 +51,7 @@ export const Route = createRootRoute({
               name: "牛来图腾",
               url: "https://niulai.org",
               inLanguage: "zh-CN",
-              description: "民间造神。测 NBTI，向概念神挂号。",
+              description: "牛来图腾。测 NBTI，许愿抽签。号只增不减。",
             }),
           }}
         />

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/ce")({
   head: () =>
     seoHead({
       title: "测你是哪种牛",
-      desc: "核动力牛 · 美股大海牛 · 套死牛",
+      desc: "八题。核动力牛、美股大海牛、套死牛。测完来对。",
       path: "/ce",
     }),
   component: CePage,

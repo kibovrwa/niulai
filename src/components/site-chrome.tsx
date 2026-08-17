@@ -29,13 +29,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             onClick={() => void fireShare(homeShare())}
             className="min-h-11 px-3 py-2 font-display tracking-widest text-gold-soft"
           >
-            分享
+            {t(locale, "navShare")}
           </button>
           <Link
             to="/ce"
             className="min-h-11 px-3 py-2 font-display tracking-widest text-cow no-underline"
           >
-            NBTI
+            {t(locale, "navNbti")}
           </Link>
         </div>
       </header>
@@ -46,19 +46,19 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <p className="mt-1">自立像第八千八百八十八号起 · 号不回零</p>
         <nav className="mt-4 flex flex-wrap items-center justify-center gap-4 text-gold-soft">
           <Link to="/yi" className="min-h-11 py-2 no-underline">
-            上供
+            {t(locale, "navOffer")}
           </Link>
           <Link to="/qian" className="min-h-11 py-2 no-underline">
-            抽签
+            {t(locale, "navLot")}
           </Link>
           <Link to="/pai" className="min-h-11 py-2 no-underline">
-            香牌
+            {t(locale, "navSeal")}
           </Link>
           <Link to="/shi" className="min-h-11 py-2 no-underline">
-            前生今世
+            {t(locale, "navStory")}
           </Link>
           <Link to="/bang" className="min-h-11 py-2 no-underline">
-            {locale === "zh" ? "贪榜" : "Board"}
+            {t(locale, "navBoard")}
           </Link>
           <Link to="/wall" className="min-h-11 py-2 no-underline">
             {t(locale, "navBook")}
@@ -73,13 +73,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         </nav>
         <nav className="mt-3 flex flex-wrap items-center justify-center gap-4 text-paper/50">
           <Link to="/about" className="min-h-11 py-2 no-underline">
-            关于
+            {t(locale, "navAbout")}
           </Link>
           <Link to="/privacy" className="min-h-11 py-2 no-underline">
-            隐私
+            {t(locale, "navPrivacy")}
           </Link>
           <Link to="/mian" className="min-h-11 py-2 no-underline">
-            免责
+            {t(locale, "navTerms")}
           </Link>
         </nav>
         <p className="mt-3">{t(locale, "footerSub")}</p>

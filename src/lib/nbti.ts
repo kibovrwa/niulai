@@ -3,42 +3,42 @@ import type { WishId } from "@/lib/wish-data";
 export const QUESTIONS = [
   {
     id: "loss",
-    q: { zh: "亏了的第一夜，你？", en: "The first night after a loss?" },
+    q: { zh: "亏了的第一夜，你？", en: "Night you blew up — you?" },
     opts: [
-      { id: "a", t: { zh: "复盘到天亮，找谁害的", en: "Post-mortem till dawn" }, g: 2, m: 2, c: 0, l: 1 },
-      { id: "b", t: { zh: "睡了。反正已经亏了", en: "Sleep. Already lost." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "加仓。它必须回来", en: "Add. It must come back." }, g: 2, m: 2, c: 1, l: 2 },
-      { id: "d", t: { zh: "截图发群，求一句安慰", en: "Screenshot the group chat" }, g: 1, m: 1, c: 2, l: 1 },
+      { id: "a", t: { zh: "复盘到天亮，找谁害的", en: "Stay up. Blame someone." }, g: 2, m: 2, c: 0, l: 1 },
+      { id: "b", t: { zh: "睡了。反正已经亏了", en: "Sleep. It's already gone." }, g: 0, m: 0, c: 1, l: 0 },
+      { id: "c", t: { zh: "加仓。它必须回来", en: "Add more. It has to come back." }, g: 2, m: 2, c: 1, l: 2 },
+      { id: "d", t: { zh: "截图发群，求一句安慰", en: "Send the screenshot. Need a hug." }, g: 1, m: 1, c: 2, l: 1 },
     ],
   },
   {
     id: "pos",
-    q: { zh: "现在的仓位，更像？", en: "Your position is closer to…" },
+    q: { zh: "现在的仓位，更像？", en: "Your book looks like?" },
     opts: [
-      { id: "a", t: { zh: "满得睡不着", en: "Full. Can't sleep." }, g: 2, m: 2, c: 1, l: 1 },
-      { id: "b", t: { zh: "空得心慌", en: "Flat. Heart racing." }, g: 1, m: 0, c: 0, l: 1 },
-      { id: "c", t: { zh: "半仓，装镇定", en: "Half. Performing calm." }, g: 1, m: 1, c: 0, l: 0 },
-      { id: "d", t: { zh: "仓位是草，草是仓位", en: "Position is grass." }, g: 0, m: 0, c: 2, l: 1 },
+      { id: "a", t: { zh: "满得睡不着", en: "Maxed. Can't sleep." }, g: 2, m: 2, c: 1, l: 1 },
+      { id: "b", t: { zh: "空得心慌", en: "Cash. Heart racing." }, g: 1, m: 0, c: 0, l: 1 },
+      { id: "c", t: { zh: "半仓，装镇定", en: "Half. Faking calm." }, g: 1, m: 1, c: 0, l: 0 },
+      { id: "d", t: { zh: "仓位是草，草是仓位", en: "The grass is the position." }, g: 0, m: 0, c: 2, l: 1 },
     ],
   },
   {
     id: "what",
-    q: { zh: "你觉得牛来到底是什么？", en: "What is Niulai, actually?" },
+    q: { zh: "你觉得牛来到底是什么？", en: "What is Niulai, really?" },
     opts: [
-      { id: "a", t: { zh: "神。认真的", en: "A god. Seriously." }, g: 1, m: 0, c: 2, l: 2 },
-      { id: "b", t: { zh: "一部很糙的电影", en: "A very crude movie" }, g: 0, m: 0, c: 2, l: 0 },
-      { id: "c", t: { zh: "一个点位，一个盼头", en: "A level. A hope." }, g: 2, m: 1, c: 0, l: 2 },
-      { id: "d", t: { zh: "一种传染病", en: "A contagious condition" }, g: 1, m: 1, c: 1, l: 1 },
+      { id: "a", t: { zh: "神。认真的", en: "A god. I mean it." }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "b", t: { zh: "一部很糙的电影", en: "A janky movie." }, g: 0, m: 0, c: 2, l: 0 },
+      { id: "c", t: { zh: "一个点位，一个盼头", en: "A number. A hope." }, g: 2, m: 1, c: 0, l: 2 },
+      { id: "d", t: { zh: "一种传染病", en: "It's catching." }, g: 1, m: 1, c: 1, l: 1 },
     ],
   },
   {
     id: "flex",
-    q: { zh: "朋友圈有人晒盈利，你？", en: "A friend flexes a win. You…" },
+    q: { zh: "朋友圈有人晒盈利，你？", en: "Someone posts a win. You?" },
     opts: [
       { id: "a", t: { zh: "点赞。手在抖", en: "Like it. Hands shaking." }, g: 1, m: 1, c: 0, l: 1 },
-      { id: "b", t: { zh: "回一句「牛」。关掉", en: "Reply “nice”. Close it." }, g: 0, m: 0, c: 1, l: 0 },
-      { id: "c", t: { zh: "翻自己的账户，确认还活着", en: "Check your own account" }, g: 2, m: 2, c: 1, l: 1 },
-      { id: "d", t: { zh: "决定明天也去赌一把", en: "Decide to bet tomorrow" }, g: 2, m: 1, c: 1, l: 2 },
+      { id: "b", t: { zh: "回一句「牛」。关掉", en: "Type “nice.” Close it." }, g: 0, m: 0, c: 1, l: 0 },
+      { id: "c", t: { zh: "翻自己的账户，确认还活着", en: "Check if you're still alive." }, g: 2, m: 2, c: 1, l: 1 },
+      { id: "d", t: { zh: "决定明天也去赌一把", en: "Tomorrow you bet too." }, g: 2, m: 1, c: 1, l: 2 },
     ],
   },
   {
@@ -46,39 +46,39 @@ export const QUESTIONS = [
     q: { zh: "概念神要是绊倒了？", en: "If the god trips?" },
     opts: [
       { id: "a", t: { zh: "笑出声，先截图", en: "Laugh. Screenshot." }, g: 1, m: 0, c: 2, l: 1 },
-      { id: "b", t: { zh: "跟着一起倒", en: "Fall with it" }, g: 1, m: 1, c: 2, l: 1 },
+      { id: "b", t: { zh: "跟着一起倒", en: "Fall with it." }, g: 1, m: 1, c: 2, l: 1 },
       { id: "c", t: { zh: "把它扶起来，当自己没倒过", en: "Help it up. Never happened." }, g: 1, m: 2, c: 0, l: 1 },
-      { id: "d", t: { zh: "倒了才像真的。更信了", en: "The fall made it real" }, g: 2, m: 1, c: 2, l: 2 },
+      { id: "d", t: { zh: "倒了才像真的。更信了", en: "The fall made it real." }, g: 2, m: 1, c: 2, l: 2 },
     ],
   },
   {
     id: "pick",
-    q: { zh: "股票翻倍，和暗恋回消息，先要哪个？", en: "Double the stock, or a text back?" },
+    q: { zh: "股票翻倍，和暗恋回消息，先要哪个？", en: "Double the stock, or they text back?" },
     opts: [
       { id: "a", t: { zh: "翻倍。人可以再找", en: "Double it. People can wait." }, g: 2, m: 2, c: 0, l: 2 },
       { id: "b", t: { zh: "回消息。盘可以再等", en: "The text. Charts can wait." }, g: 0, m: 0, c: 1, l: 1 },
-      { id: "c", t: { zh: "都要。我贪", en: "Both. I am greedy." }, g: 2, m: 1, c: 1, l: 2 },
-      { id: "d", t: { zh: "都是幻觉，但我两个都想", en: "Both illusions. Want both." }, g: 1, m: 0, c: 2, l: 1 },
+      { id: "c", t: { zh: "都要。我贪", en: "Both. I'm greedy." }, g: 2, m: 1, c: 1, l: 2 },
+      { id: "d", t: { zh: "都是幻觉，但我两个都想", en: "Both fake. Want both." }, g: 1, m: 0, c: 2, l: 1 },
     ],
   },
   {
     id: "come",
-    q: { zh: "如果牛市真的来了，你第一件事？", en: "If the bull really comes?" },
+    q: { zh: "如果牛市真的来了，你第一件事？", en: "If the bull actually shows?" },
     opts: [
-      { id: "a", t: { zh: "加杠杆。来都来了", en: "Leverage. We're here." }, g: 2, m: 2, c: 1, l: 2 },
-      { id: "b", t: { zh: "先出一半。怕它走", en: "Sell half. Afraid it leaves." }, g: 0, m: 1, c: 0, l: 0 },
-      { id: "c", t: { zh: "去影院再看一遍《牛来》", en: "Rewatch the movie" }, g: 1, m: 0, c: 2, l: 2 },
-      { id: "d", t: { zh: "不信。再等等", en: "Don't believe it. Wait." }, g: 0, m: 0, c: 1, l: 0 },
+      { id: "a", t: { zh: "加杠杆。来都来了", en: "Leverage. We're already here." }, g: 2, m: 2, c: 1, l: 2 },
+      { id: "b", t: { zh: "先出一半。怕它走", en: "Sell half. It might leave." }, g: 0, m: 1, c: 0, l: 0 },
+      { id: "c", t: { zh: "去影院再看一遍《牛来》", en: "Rewatch the movie." }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "d", t: { zh: "不信。再等等", en: "Don't buy it. Wait." }, g: 0, m: 0, c: 1, l: 0 },
     ],
   },
   {
     id: "why",
-    q: { zh: "你来测这套，其实是？", en: "You took this test because…" },
+    q: { zh: "你来测这套，其实是？", en: "You opened this because?" },
     opts: [
-      { id: "a", t: { zh: "我要一个能晒的结果", en: "I want a result to flex" }, g: 2, m: 1, c: 1, l: 2 },
-      { id: "b", t: { zh: "我要看自己有多贪", en: "To see how greedy I am" }, g: 1, m: 1, c: 1, l: 1 },
+      { id: "a", t: { zh: "我要一个能晒的结果", en: "I want something to post." }, g: 2, m: 1, c: 1, l: 2 },
+      { id: "b", t: { zh: "我要看自己有多贪", en: "To see how greedy I am." }, g: 1, m: 1, c: 1, l: 1 },
       { id: "c", t: { zh: "朋友甩过来的，我跟", en: "A friend sent it. I followed." }, g: 1, m: 0, c: 1, l: 1 },
-      { id: "d", t: { zh: "概念神托梦喊我来的", en: "The god dreamed me here" }, g: 1, m: 0, c: 2, l: 2 },
+      { id: "d", t: { zh: "概念神托梦喊我来的", en: "The god showed up in a dream." }, g: 1, m: 0, c: 2, l: 2 },
     ],
   },
 ] as const;
@@ -98,7 +98,7 @@ type TypeCard = {
 
 export const TYPES: Record<string, TypeCard> = {
   GMCL: {
-    name: { zh: "六千牛", en: "Six-thousand bull" },
+    name: { zh: "六千牛", en: "Six-Thousand" },
     line: { zh: "点位许了，人就踏实了。", en: "Name a level, then breathe." },
     punch: { zh: "你信六千，不信人。", en: "You trust 6000, not people." },
     verdict: { zh: "神批：分析是烟。你跪的是一个整数。", en: "You kneel to an integer." },
@@ -113,7 +113,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMCD: {
-    name: { zh: "套死牛", en: "Trapped-dead bull" },
+    name: { zh: "套死牛", en: "Bagged Bull" },
     line: { zh: "仓位比人先睡着。", en: "The position fell asleep first." },
     punch: { zh: "满了。然后装没开盘。", en: "Full. Then play dead." },
     verdict: { zh: "神批：这不叫淡定，叫不敢看。", en: "Not calm. Won't look." },
@@ -128,7 +128,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXL: {
-    name: { zh: "美股大海牛", en: "US-ocean bull" },
+    name: { zh: "美股大海牛", en: "Ocean Bull" },
     line: { zh: "A股是池塘。那边才是海。", en: "A-shares are a pond. That's the ocean." },
     punch: { zh: "你的白天，是别人的收盘。", en: "Your morning is their close." },
     verdict: { zh: "神批：海会涨。你会失眠。两件事都真。", en: "The ocean rises. You don't sleep. Both true." },
@@ -143,7 +143,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXD: {
-    name: { zh: "抽象牛", en: "Abstract mule" },
+    name: { zh: "抽象牛", en: "Abstract Bull" },
     line: { zh: "先确认这世界够荒诞，再打开行情。", en: "Confirm the joke. Then open the tape." },
     punch: { zh: "看懂了荒诞，还是想翻倍。", en: "Got the joke. Still want 2x." },
     verdict: { zh: "神批：你来证明世界配得上这么糙的神。证明完，手还是伸向涨跌。", en: "You came for the joke. Stayed for the tape." },
@@ -158,7 +158,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKCL: {
-    name: { zh: "踏空牛", en: "Missed-it bull" },
+    name: { zh: "踏空牛", en: "Sideline Bull" },
     line: { zh: "空着。看着别人赚。手在抖。", en: "Flat. Watching others win." },
     punch: { zh: "你怕的不是亏，是别人赚。", en: "Not loss. Others winning." },
     verdict: { zh: "神批：空仓的人香火最急。", en: "The flat pray hardest." },
@@ -173,7 +173,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKCD: {
-    name: { zh: "围观牛", en: "Spectator bull" },
+    name: { zh: "围观牛", en: "Spectator" },
     line: { zh: "先看看别人许的。", en: "Watch others file first." },
     punch: { zh: "装不贪。眼睛没离开榜。", en: "Pretend not to want." },
     verdict: { zh: "神批：证人里，数你看得最勤。", en: "Keenest witness in the yard." },
@@ -188,7 +188,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXL: {
-    name: { zh: "彩头牛", en: "Omen bull" },
+    name: { zh: "彩头牛", en: "Charm Bull" },
     line: { zh: "先图个彩头，再谈点位。", en: "Omen first. Levels later." },
     punch: { zh: "你要的是门票，不是策略。", en: "You want a ticket, not a plan." },
     verdict: { zh: "神批：这尊神就是你下周的门票。", en: "This god is next week's ticket." },
@@ -203,7 +203,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXD: {
-    name: { zh: "躺平牛", en: "Flat mule" },
+    name: { zh: "躺平牛", en: "Flat Bull" },
     line: { zh: "先吃草。行情自己来。", en: "Eat grass. The tape will come." },
     punch: { zh: "把「来」全交给时间。", en: "You left Come to time." },
     verdict: { zh: "神批：像修行，也像拖。", en: "Looks like zen. Also delay." },
@@ -218,7 +218,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMCL: {
-    name: { zh: "接刀牛", en: "Knife-catch mule" },
+    name: { zh: "接刀牛", en: "Knife Catcher" },
     line: { zh: "有人在后面托着。也许是你。", en: "Someone is catching. Maybe you." },
     punch: { zh: "英雄和接盘，同一张脸。", en: "Hero and bagholder, one face." },
     verdict: { zh: "神批：勋章和套牢通知，同一天到。", en: "Medal and bag, same day." },
@@ -233,7 +233,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMCD: {
-    name: { zh: "讨债牛", en: "The-tape-owes-me mule" },
+    name: { zh: "讨债牛", en: "Owed Bull" },
     line: { zh: "被砸过，还在盘里。", en: "Got smashed. Still in." },
     punch: { zh: "你觉得这盘欠你的。", en: "You think it owes you." },
     verdict: { zh: "神批：亏过的人最难走，也最像信徒。", en: "The hurt make the best believers." },
@@ -248,7 +248,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMXL: {
-    name: { zh: "核动力牛", en: "Nuclear mule" },
+    name: { zh: "核动力牛", en: "Nuclear Bull" },
     line: { zh: "许完愿就开始搬。电池是假的，班是真的。", en: "File the wish. Then haul." },
     punch: { zh: "神不用赐福。你自己会加班。", en: "No blessing needed. You'll overtime." },
     verdict: { zh: "神批：这种人，神少操点心。", en: "This one, the god can ignore." },
@@ -263,7 +263,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMXD: {
-    name: { zh: "死拿牛", en: "Never-sell mule" },
+    name: { zh: "死拿牛", en: "Never-Sell" },
     line: { zh: "回撤来了也不让。", en: "Drawdown came. You didn't." },
     punch: { zh: "你把不卖，当成了品德。", en: "Not selling became a virtue." },
     verdict: { zh: "神批：回撤不收道德。", en: "Drawdown doesn't take virtue." },
@@ -278,7 +278,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKCL: {
-    name: { zh: "绊倒牛", en: "Trip mule" },
+    name: { zh: "绊倒牛", en: "Trip Bull" },
     line: { zh: "倒了就倒了，站起来还是牛。", en: "Fell. Stood. Still a bull." },
     punch: { zh: "你跟这尊神，摔的是同一种跤。", en: "You and the god fell the same way." },
     verdict: { zh: "神批：糙，是因为摔过还敢当神。", en: "Crude, because it stood back up." },
@@ -293,7 +293,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKCD: {
-    name: { zh: "盖章牛", en: "Stamp mule" },
+    name: { zh: "盖章牛", en: "Stamp Bull" },
     line: { zh: "号先领了，灵不灵以后说。", en: "Take the number. Faith later." },
     punch: { zh: "你要的不是灵，是来过。", en: "Not magic. Proof you came." },
     verdict: { zh: "神批：号是唯一诚实的东西。", en: "The number is the only honest thing." },
@@ -308,7 +308,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXL: {
-    name: { zh: "搭子牛", en: "Buddy mule" },
+    name: { zh: "搭子牛", en: "Buddy Bull" },
     line: { zh: "谁跟你一起走，比点位重要。", en: "Company beats the level." },
     punch: { zh: "你发这张单，就是在招人。", en: "You posted this to recruit." },
     verdict: { zh: "神批：丢脸最好成双。", en: "Embarrassment prefers pairs." },
@@ -323,7 +323,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXD: {
-    name: { zh: "看戏牛", en: "Spectator-then-buy mule" },
+    name: { zh: "看戏牛", en: "Watcher" },
     line: { zh: "嘴上只负责看。手已经伸出去了。", en: "You said you'd watch. The hand moved." },
     punch: { zh: "旁观是假的。伸手是真的。", en: "Watching was the lie." },
     verdict: { zh: "神批：安全最贵。你还是买了。", en: "Safety is expensive. You still bought." },
@@ -350,7 +350,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GMXL: {
     past: { zh: "渡海的船工。夜里才敢开船。", en: "A night ferryman." },
-    now: { zh: "美股大海牛。你的白天是别人的收盘。", en: "US-ocean bull. Your morning is their close." },
+    now: { zh: "美股大海牛。你的白天是别人的收盘。", en: "Ocean Bull. Your morning is their close." },
   },
   GMXD: {
     past: { zh: "写经写歪的和尚。歪了反而成派。", en: "A monk who wrote the sutra crooked." },

@@ -89,7 +89,7 @@ export function ShareSlip({
     <div ref={posterRef} className="relative bg-grass px-4 pb-4 pt-4 text-center text-paper">
       <p className="font-brush text-gold-soft">第 {wish.serial} 号</p>
       <img
-        src="/logo.png"
+        src="/art/totem-god.jpg"
         alt=""
         className="mx-auto mt-2 h-14 w-14 rounded-full object-cover"
         crossOrigin="anonymous"

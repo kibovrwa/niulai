@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SealAltar } from "@/components/seals";
+import { Hall } from "@/components/hall";
 import { SiteChrome } from "@/components/site-chrome";
 import { loadBooklet } from "@/lib/booklet";
 import { loadSeals, type SealState } from "@/lib/seals";
@@ -33,28 +34,23 @@ function PaiPage() {
 
   return (
     <SiteChrome>
-      <main className="bg-paper px-4 pb-16 pt-24 text-ink sm:px-6">
-        <div className="mx-auto max-w-md">
-          <p className="font-brush text-cinnabar">香牌</p>
-          <h1 className="mt-1 font-display text-4xl tracking-widest">你在庙里的章</h1>
-          <p className="mt-2 text-sm text-muted">
-            不是积分。是磕过、许过、传过留下的印。空的章，是还没来。
-          </p>
-          {name ? <p className="mt-4 font-display text-xl text-cinnabar">{name}</p> : null}
-          <p className="mt-1 text-sm">
-            功德 {gongde} · {rankOf(gongde).name} · 已叩 {seals.bows} 次
-          </p>
-          <div className="mt-8">
-            <SealAltar state={seals} />
-          </div>
-          <div className="mt-8">
-            <ShareBar payload={paiShare({ name: name || undefined, bows: seals.bows })} />
-          </div>
-          <Link to="/" className="mt-4 block text-center text-sm text-muted">
-            回去叩
-          </Link>
+      <Hall>
+        <p className="text-center font-brush text-gold-soft">香牌</p>
+        <h1 className="text-center font-display text-4xl tracking-widest">你在庙里的章</h1>
+        {name ? <p className="mt-3 text-center font-display text-xl text-cow">{name}</p> : null}
+        <p className="mt-1 text-center text-sm text-paper/70">
+          功德 {gongde} · {rankOf(gongde).name} · 已叩 {seals.bows} 次
+        </p>
+        <div className="mt-6 rounded-sm bg-paper px-4 py-5 text-ink">
+          <SealAltar state={seals} />
         </div>
-      </main>
+        <div className="mt-6">
+          <ShareBar compact payload={paiShare({ name: name || undefined, bows: seals.bows })} />
+        </div>
+        <Link to="/" className="mt-4 block text-center text-sm text-gold-soft">
+          回去叩
+        </Link>
+      </Hall>
     </SiteChrome>
   );
 }

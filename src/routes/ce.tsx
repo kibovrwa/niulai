@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteChrome } from "@/components/site-chrome";
+import { Hall } from "@/components/hall";
 import { useLocale } from "@/lib/i18n";
 import { QUESTIONS, decodeAnswers, encodeAnswers, scoreNbti, formatIndex, type AnswerMap } from "@/lib/nbti";
 import { passFire } from "@/lib/cult-fns";
@@ -69,20 +70,15 @@ function CePage() {
 
   return (
     <SiteChrome>
-      <main className="relative z-10 min-h-dvh bg-grass px-4 pb-16 pt-24 text-paper sm:px-6">
-        <div className="mx-auto max-w-md">
+      <Hall totem={false}>
+        <div>
           {phase === "intro" ? (
             <Intro locale={locale} rival={rival} onStart={() => setPhase("ask")} />
           ) : null}
 
           {phase === "marking" ? (
-            <div className="pt-16 text-center">
-              <img
-                src="/logo.png"
-                alt=""
-                className="mx-auto h-32 w-32 rounded-full object-cover"
-                crossOrigin="anonymous"
-              />
+            <div className="pt-8 text-center">
+              <GodFace />
               <p className="mt-6 font-brush text-2xl text-gold-soft">神在批卷</p>
               <p className="mt-2 text-sm text-paper/70">指数在跳。别刷新。</p>
             </div>
@@ -90,9 +86,9 @@ function CePage() {
 
           {phase === "ask" && q ? (
             <>
-              <p className="font-brush text-gold-soft">NBTI</p>
-              <p className="mt-1 text-sm text-paper/75">
-                {step + 1} / {QUESTIONS.length} · 选完不能改口，像下单
+              <p className="text-center font-brush text-gold-soft">神问你</p>
+              <p className="mt-1 text-center text-sm text-paper/75">
+                {step + 1} / {QUESTIONS.length}
               </p>
               <div className="mt-3 h-1 overflow-hidden rounded-full bg-ink/40">
                 <div
@@ -100,13 +96,8 @@ function CePage() {
                   style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }}
                 />
               </div>
-              <img
-                src="/logo.png"
-                alt=""
-                className="mx-auto mt-5 h-24 w-24 rounded-full object-cover"
-                crossOrigin="anonymous"
-              />
-              <h1 className="mt-5 font-display text-2xl leading-snug">{q.q[locale]}</h1>
+              <GodFace />
+              <h1 className="mt-5 text-center font-display text-2xl leading-snug">{q.q[locale]}</h1>
               <div className="relative z-20 mt-4 grid gap-2">
                 {q.opts.map((o) => {
                   const on = pressed === o.id;
@@ -131,7 +122,7 @@ function CePage() {
             </>
           ) : null}
         </div>
-      </main>
+      </Hall>
     </SiteChrome>
   );
 }
@@ -146,15 +137,10 @@ function Intro({
   onStart: () => void;
 }) {
   return (
-    <div className="pt-4 text-center">
-      <img
-        src="/logo.png"
-        alt=""
-        className="mx-auto h-32 w-32 rounded-full object-cover"
-        crossOrigin="anonymous"
-      />
-      <p className="mt-5 font-brush text-gold-soft">概念神出的卷</p>
-      <h1 className="mt-1 font-display text-5xl tracking-widest">NBTI</h1>
+    <div className="pt-2 text-center">
+      <GodFace large />
+      <p className="mt-5 font-brush text-gold-soft">神出的卷</p>
+      <h1 className="mt-1 font-display text-5xl tracking-widest">测你是哪种牛</h1>
       {rival ? (
         <div className="mt-5 rounded-sm bg-ink/35 px-4 py-4 text-left">
           <p className="text-xs tracking-widest text-gold-soft">有人甩给你一张单</p>
@@ -178,6 +164,23 @@ function Intro({
       <Link to="/" className="mt-4 inline-block min-h-11 text-sm text-gold-soft">
         回去看神
       </Link>
+    </div>
+  );
+}
+
+function GodFace({ large }: { large?: boolean }) {
+  return (
+    <div className="relative mx-auto mt-5 w-fit">
+      <span
+        className="halo-ring pointer-events-none absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-halo/40 blur-2xl"
+        aria-hidden
+      />
+      <img
+        src="/art/totem-god.jpg"
+        alt=""
+        className={`relative z-10 object-contain ${large ? "w-32" : "w-24"}`}
+        crossOrigin="anonymous"
+      />
     </div>
   );
 }

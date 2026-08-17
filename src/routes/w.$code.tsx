@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ShareSlip } from "@/components/certificate";
 import { ShareBar } from "@/components/share-bar";
+import { Hall } from "@/components/hall";
 import { SiteChrome } from "@/components/site-chrome";
 import { cowTypeById, greedierThan, wishById } from "@/lib/wish-data";
 import { seoHead } from "@/lib/seo";
@@ -46,11 +47,11 @@ function SlipPage() {
 
   return (
     <SiteChrome>
-      <main className="bg-ink px-4 pb-16 pt-20 sm:px-6">
-        <p className="mx-auto mb-4 max-w-sm text-center font-brush text-lg text-gold-soft">
-          有人在图腾前登记了「{wish.label}」
+      <Hall totem={false}>
+        <p className="mb-4 text-center font-brush text-lg text-gold-soft">
+          有人许了「{wish.label}」
         </p>
-        <div className="mx-auto max-w-sm overflow-hidden rounded-sm bg-paper shadow-plaque">
+        <div className="overflow-hidden rounded-sm bg-paper shadow-plaque">
           <ShareSlip wish={wish} sameCount={same} />
           <div className="space-y-3 px-5 py-5 text-center text-ink">
             <p className="font-brush text-2xl text-cinnabar">{cow.name}</p>
@@ -76,7 +77,7 @@ function SlipPage() {
             </Link>
           </div>
         </div>
-      </main>
+      </Hall>
     </SiteChrome>
   );
 }

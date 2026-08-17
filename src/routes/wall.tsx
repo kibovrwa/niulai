@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { Hall } from "@/components/hall";
 import { SiteChrome } from "@/components/site-chrome";
 import { WISHES } from "@/lib/wish-data";
 import { seoHead } from "@/lib/seo";
@@ -29,54 +30,46 @@ function Wall() {
 
   return (
     <SiteChrome>
-      <main className="bg-paper px-4 pb-16 pt-20 text-ink sm:px-6">
-        <div className="mx-auto max-w-3xl">
-          <p className="font-brush text-cinnabar">号簿</p>
-          <h1 className="font-display text-4xl tracking-widest">公开的贪</h1>
-          <p className="mt-2 text-sm text-muted">
-            已编到 {stats.lastSerial} 号。点进去就是别人的晒单。
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+      <Hall wide>
+        <p className="text-center font-brush text-gold-soft">号簿</p>
+        <h1 className="text-center font-display text-4xl tracking-widest">别人许过的</h1>
+        <p className="mt-2 text-center text-sm text-paper/70">已编到 {stats.lastSerial} 号</p>
+        <div className="mt-5 flex flex-wrap justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setFilter(null)}
+            className={`min-h-10 rounded-sm px-3 ${filter === null ? "bg-cinnabar text-paper" : "bg-paper text-ink"}`}
+          >
+            全部
+          </button>
+          {WISHES.map((w) => (
             <button
+              key={w.id}
               type="button"
-              onClick={() => setFilter(null)}
-              className={`min-h-10 rounded-sm px-3 ${filter === null ? "bg-cinnabar text-paper" : "bg-paper-deep"}`}
+              onClick={() => setFilter(w.id)}
+              className={`min-h-10 rounded-sm px-3 text-sm ${filter === w.id ? "bg-cinnabar text-paper" : "bg-paper text-ink"}`}
             >
-              全部
+              {w.label}
+              <span className="ml-1 tabular-nums opacity-70">{stats.counts[w.id] ?? 0}</span>
             </button>
-            {WISHES.map((w) => (
-              <button
-                key={w.id}
-                type="button"
-                onClick={() => setFilter(w.id)}
-                className={`min-h-10 rounded-sm px-3 text-sm ${filter === w.id ? "bg-cinnabar text-paper" : "bg-paper-deep"}`}
-              >
-                {w.label}
-                <span className="ml-1 tabular-nums opacity-70">
-                  {stats.counts[w.id] ?? 0}
-                </span>
-              </button>
-            ))}
-          </div>
-          <ul className="mt-8 divide-y divide-wood/15">
-            {shown.map((w) => (
-              <li key={w.id}>
-                <Link
-                  to="/w/$code"
-                  params={{ code: w.id }}
-                  className="block py-4 text-ink no-underline"
-                >
-                  <span className="font-display tabular-nums text-cinnabar">
-                    {w.serial}
-                  </span>
-                  <span className="ml-2 text-sm text-muted">{w.nickname}</span>
-                  <span className="mt-1 block font-display text-2xl">{w.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          ))}
         </div>
-      </main>
+        <ul className="mt-6 divide-y divide-wood/15 rounded-sm bg-paper px-4 text-ink">
+          {shown.map((w) => (
+            <li key={w.id}>
+              <Link
+                to="/w/$code"
+                params={{ code: w.id }}
+                className="block py-4 text-ink no-underline"
+              >
+                <span className="font-display tabular-nums text-cinnabar">{w.serial}</span>
+                <span className="ml-2 text-sm text-muted">{w.nickname}</span>
+                <span className="mt-1 block font-display text-2xl">{w.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Hall>
     </SiteChrome>
   );
 }

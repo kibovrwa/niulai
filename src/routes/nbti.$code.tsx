@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { QrMark } from "@/components/qr-mark";
+import { Hall } from "@/components/hall";
 import { SiteChrome } from "@/components/site-chrome";
 import { useLocale } from "@/lib/i18n";
 import { saveNbti } from "@/lib/booklet";
@@ -121,14 +122,13 @@ function NbtiPage() {
 
   return (
     <SiteChrome>
-      <main className="bg-ink px-4 pb-16 pt-20 sm:px-6">
-        <div className="mx-auto max-w-sm overflow-hidden rounded-sm shadow-plaque">
-          <div ref={poster} className="bg-grass px-5 pb-5 pt-6 text-center text-paper">
-            <p className="text-[11px] tracking-[0.4em] text-gold-soft">NBTI · 牛来纪</p>
+      <Hall totem={false}>
+        <div className="overflow-hidden rounded-sm shadow-plaque">
+          <div ref={poster} className="px-5 pb-5 pt-6 text-center text-paper" style={{ background: "#1c4324" }}>
             <img
-              src="/logo.png"
+              src="/art/totem-god.jpg"
               alt=""
-              className="mx-auto mt-3 h-20 w-20 rounded-full object-cover"
+              className="mx-auto h-20 w-20 rounded-full object-cover"
               crossOrigin="anonymous"
             />
             <p className="mt-3 font-display text-5xl tracking-[0.16em]">{r.code}</p>
@@ -244,7 +244,7 @@ function NbtiPage() {
             </Link>
           </div>
         </div>
-      </main>
+      </Hall>
     </SiteChrome>
   );
 }

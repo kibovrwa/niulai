@@ -128,7 +128,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GMXL: {
-    name: { zh: "美股大海牛", en: "Ocean Bull" },
+    name: { zh: "美牛牛", en: "US Cow" },
     line: { zh: "A股是池塘。那边才是海。", en: "A-shares are a pond. That's the ocean." },
     punch: { zh: "我的白天，是别人的收盘。", en: "My morning is their close." },
     verdict: { zh: "神批：海会涨。你会失眠。两件事都真。", en: "The ocean rises. You don't sleep. Both true." },
@@ -365,7 +365,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GMXL: {
     past: { zh: "渡海的船工。夜里才敢开船。", en: "A night ferryman." },
-    now: { zh: "美股大海牛。你的白天是别人的收盘。", en: "Ocean Bull. Your morning is their close." },
+    now: { zh: "美牛牛。你的白天是别人的收盘。", en: "US Cow. Your morning is their close." },
   },
   GMXD: {
     past: { zh: "写经写歪的和尚。歪了反而成派。", en: "A monk who wrote the sutra crooked." },

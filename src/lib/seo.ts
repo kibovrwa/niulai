@@ -2,7 +2,7 @@ import { SITE } from "@/lib/share";
 
 export const BRAND = "牛来庙";
 export const KEYWORDS =
-  "牛来,牛来庙,牛来图腾,niulai,NBTI,牛来指数,核动力牛,美股大海牛,套死牛,许愿,抽签";
+  "牛来,牛来庙,牛来图腾,niulai,NBTI,牛来指数,核动力牛,美牛牛,美股大海牛,套死牛,许愿,抽签";
 
 function withBrand(title: string) {
   const cleaned = title.replaceAll("牛来图腾", BRAND);

@@ -19,7 +19,7 @@ export function packShare(payload: SharePayload) {
 export function homeShare(): SharePayload {
   return {
     title: "测你是哪种牛",
-    lines: ["测你是哪种牛", "核动力 / 大海 / 套死"],
+    lines: ["测你是哪种牛", "核动力 / 美牛牛 / 套死"],
     url: publicUrl("/ce"),
   };
 }
@@ -29,7 +29,7 @@ export function ceShare(from?: string): SharePayload {
     title: "测你是哪种牛",
     lines: from
       ? ["有人把结果甩过来了", "你也测一个"]
-      : ["测你是哪种牛", "核动力 / 大海 / 套死"],
+      : ["测你是哪种牛", "核动力 / 美牛牛 / 套死"],
     url: publicUrl(from ? `/ce?from=${from}` : "/ce"),
   };
 }

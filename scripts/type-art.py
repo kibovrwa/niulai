@@ -211,6 +211,18 @@ def SKXD():
     return im
 
 
+def NLBN():
+    im = card((12, 10, 8, 255))
+    glow = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    gd.ellipse((80, 40, 720, 760), fill=(212, 160, 23, 70))
+    im = Image.alpha_composite(im, glow.filter(ImageFilter.GaussianBlur(28)))
+    paste_c(im, COW, (400, 420), 1.05)
+    d = ImageDraw.Draw(im)
+    d.ellipse((180, 40, 620, 200), outline=(212, 160, 23, 220), width=10)
+    return im
+
+
 FNS = {
     "GMCL": GMCL,
     "GMCD": GMCD,
@@ -228,6 +240,7 @@ FNS = {
     "SKCD": SKCD,
     "SKXL": SKXL,
     "SKXD": SKXD,
+    "NLBN": NLBN,
 }
 
 

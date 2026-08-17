@@ -337,6 +337,21 @@ export const TYPES: Record<string, TypeCard> = {
       mouth: { zh: "看戏的人里，就你买了票还进后台。", en: "You bought a ticket and went backstage." },
     },
   },
+  NLBN: {
+    name: { zh: "牛来本牛", en: "The Cow Itself" },
+    line: { zh: "不是像。是本尊。", en: "Not a likeness. The original." },
+    punch: { zh: "我就是它。", en: "I am it." },
+    verdict: { zh: "神批：十六型里没有这个。它自己来了。", en: "Not in the sixteen. It arrived." },
+    rec: "bandao",
+    read: {
+      face: { zh: "脸就是神的脸。不用再找。", en: "The face is the god's face." },
+      die: { zh: "不死。本尊没有死法。", en: "The original has no death." },
+      live: { zh: "别人测的是像。你测出了庙。", en: "They got a likeness. You got the shrine." },
+      yes: { zh: "许什么都算盖过章。号已经是你的。", en: "Any wish is already stamped." },
+      no: { zh: "别解释。越解释越像假的。", en: "Don't explain. It starts to look fake." },
+      mouth: { zh: "牛来见了你，也得叫一声本牛。", en: "Even the god nods." },
+    },
+  },
 };
 
 export const FATE: Record<string, { past: Line; now: Line }> = {
@@ -404,6 +419,10 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
     past: { zh: "戏园子看客。看到一半上台。", en: "An audience member who climbed onstage." },
     now: { zh: "看戏牛。嘴上路过，手里满仓。", en: "Watching with a full book." },
   },
+  NLBN: {
+    past: { zh: "庙还没起的时候，它已经站在那里。", en: "It stood before the shrine." },
+    now: { zh: "牛来本牛。不是像，是它。", en: "Not a likeness. It." },
+  },
 };
 
 export function encodeAnswers(answers: AnswerMap) {
@@ -437,12 +456,15 @@ export function scoreNbti(answers: AnswerMap) {
     l += pick.l;
     hash = (hash * 33 + pick.id.charCodeAt(0)) >>> 0;
   }
-  const letters = `${g >= 8 ? "G" : "S"}${m >= 6 ? "M" : "K"}${c >= 8 ? "C" : "X"}${l >= 8 ? "L" : "D"}`;
+  const rare = hash % 888 === 8;
+  const letters = rare
+    ? "NLBN"
+    : `${g >= 8 ? "G" : "S"}${m >= 6 ? "M" : "K"}${c >= 8 ? "C" : "X"}${l >= 8 ? "L" : "D"}`;
   const type = TYPES[letters] ?? TYPES.SKCD;
   const fate = FATE[letters] ?? FATE.SKCD;
-  const index = 2888 + g * 210 + m * 140 + c * 80 + l * 260 + (hash % 88);
-  const dec = hash % 2 === 0 ? 88 : 68;
-  const beat = 68 + (hash % 29);
+  const index = rare ? 8888 : 2888 + g * 210 + m * 140 + c * 80 + l * 260 + (hash % 88);
+  const dec = rare ? 88 : hash % 2 === 0 ? 88 : 68;
+  const beat = rare ? 99 : 68 + (hash % 29);
   const red = l >= 8 || g >= 10;
   return {
     code: letters,

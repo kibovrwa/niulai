@@ -133,7 +133,9 @@ function NbtiPage() {
               {r.code}（{r.type.name[locale]}）
             </p>
             <p className="mt-3 inline-block rounded-full bg-[#dce8d6] px-3 py-1 text-sm text-[#2f5a32]">
-              匹配度 {r.beat}% · 指数 {formatIndex(r.index, r.dec)}
+              {r.code === "NLBN"
+                ? "万中无一 · 本尊 · 约 1/888"
+                : `匹配度 ${r.beat}% · 指数 ${formatIndex(r.index, r.dec)}`}
             </p>
             {delta !== null && rival ? (
               <p className="mt-2 text-sm text-cinnabar">

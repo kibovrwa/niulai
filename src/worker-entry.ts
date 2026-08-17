@@ -69,7 +69,7 @@ export default {
       const mod = (await import("@tanstack/react-start/server-entry")) as {
         default: { fetch: (...args: unknown[]) => Promise<Response> };
       };
-      const res = await mod.default.fetch(request, env, ctx);
+      const res = await mod.default.fetch(request);
       if (res.status < 500) return res;
       const detail = await res.text();
       return new Response(shrinePage(detail), {

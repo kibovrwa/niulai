@@ -77,7 +77,7 @@ async function seedIfEmpty() {
   await sql`select setval('wish_serial_seq', (select coalesce(max(serial), 8887) from wishes))`;
 }
 
-export const getStats = createServerFn({ method: "GET" }).handler(async () => {
+export async function readStats() {
   await seedIfEmpty();
   const sql = await getSql();
   const [row] = await sql<{
@@ -94,48 +94,56 @@ export const getStats = createServerFn({ method: "GET" }).handler(async () => {
     lastSerial: row?.last_serial ?? 8887,
     counts,
   };
-});
+}
+
+export async function readWishes(input: { limit?: number; wishId?: string } = {}) {
+  const limit = Math.min(Math.max(input.limit ?? 36, 1), 80);
+  const wishId = input.wishId && isWishId(input.wishId) ? input.wishId : null;
+  await seedIfEmpty();
+  const sql = await getSql();
+  const rows = wishId
+    ? await sql<{
+        id: string;
+        serial: number;
+        nickname: string;
+        category: string;
+        message: string;
+        cow_type: string;
+        created_at: string;
+      }>`
+        select id, serial, nickname, category, message, cow_type, created_at
+        from wishes
+        where category = ${wishId}
+        order by serial desc
+        limit ${limit}
+      `
+    : await sql<{
+        id: string;
+        serial: number;
+        nickname: string;
+        category: string;
+        message: string;
+        cow_type: string;
+        created_at: string;
+      }>`
+        select id, serial, nickname, category, message, cow_type, created_at
+        from wishes
+        order by serial desc
+        limit ${limit}
+      `;
+  return rows.map(asWish);
+}
+
+export const emptyStats = { total: 0, lastSerial: 8887, counts: {} as Record<string, number> };
+
+export const getStats = createServerFn({ method: "GET" }).handler(() => readStats());
 
 export const listWishes = createServerFn({ method: "GET" })
   .validator((input: { limit?: number; wishId?: string } = {}) => ({
     limit: Math.min(Math.max(input.limit ?? 36, 1), 80),
     wishId: input.wishId && isWishId(input.wishId) ? input.wishId : null,
   }))
-  .handler(async ({ data }) => {
-    await seedIfEmpty();
-    const sql = await getSql();
-    const rows = data.wishId
-      ? await sql<{
-          id: string;
-          serial: number;
-          nickname: string;
-          category: string;
-          message: string;
-          cow_type: string;
-          created_at: string;
-        }>`
-          select id, serial, nickname, category, message, cow_type, created_at
-          from wishes
-          where category = ${data.wishId}
-          order by serial desc
-          limit ${data.limit}
-        `
-      : await sql<{
-          id: string;
-          serial: number;
-          nickname: string;
-          category: string;
-          message: string;
-          cow_type: string;
-          created_at: string;
-        }>`
-          select id, serial, nickname, category, message, cow_type, created_at
-          from wishes
-          order by serial desc
-          limit ${data.limit}
-        `;
-    return rows.map(asWish);
-  });
+  .handler(async ({ data }) => readWishes(data));
 
 export const getWish = createServerFn({ method: "GET" })
   .validator((id: string) => id.trim())

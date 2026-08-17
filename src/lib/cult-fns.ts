@@ -36,6 +36,8 @@ async function readCult(): Promise<CultStats> {
 
 export const getCult = createServerFn({ method: "GET" }).handler(() => readCult());
 
+export { readCult };
+
 export const passFire = createServerFn({ method: "POST" }).handler(async () => {
   await ensureCult();
   const sql = await getSql();

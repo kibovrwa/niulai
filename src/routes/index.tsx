@@ -8,12 +8,12 @@ import { Shrine } from "@/components/shrine";
 import { SiteChrome } from "@/components/site-chrome";
 import { WishBox } from "@/components/wish-box";
 import { addSlip } from "@/lib/booklet";
-import { getCult } from "@/lib/cult-fns";
-import { awardSeal } from "@/lib/seals";
+import { readCult } from "@/lib/cult-fns";
 import { addGongde } from "@/lib/gongde";
-import { isWishId, luckyMark, todayWishId, wishById, type WishId } from "@/lib/wish-data";
+import { awardSeal } from "@/lib/seals";
 import { seoHead } from "@/lib/seo";
-import { createWish, getStats, listWishes, type WishRow } from "@/lib/wish-fns";
+import { isWishId, luckyMark, todayWishId, wishById, type WishId } from "@/lib/wish-data";
+import { createWish, emptyStats, readStats, readWishes, type WishRow } from "@/lib/wish-fns";
 
 type HomeSearch = { g?: string };
 
@@ -28,12 +28,20 @@ export const Route = createFileRoute("/")({
       path: "/",
     }),
   loader: async () => {
-    const [stats, wishes, cult] = await Promise.all([
-      getStats(),
-      listWishes({ data: { limit: 8 } }),
-      getCult(),
-    ]);
-    return { stats, wishes, cult };
+    try {
+      const [stats, wishes, cult] = await Promise.all([
+        readStats(),
+        readWishes({ limit: 8 }),
+        readCult(),
+      ]);
+      return { stats, wishes, cult };
+    } catch {
+      return {
+        stats: emptyStats,
+        wishes: [] as WishRow[],
+        cult: { fire: 3188, casts: 0, types: {} },
+      };
+    }
   },
   component: Home,
 });

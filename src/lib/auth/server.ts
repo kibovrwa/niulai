@@ -33,7 +33,10 @@ import { bearer, genericOAuth } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { getCookie } from "@tanstack/react-start/server";
 import { randomBytes } from "node:crypto";
+import { createRequire } from "node:module";
 import { Pool as NeonPool } from "@neondatabase/serverless";
+import { getPglite } from "../db";
+import { pgliteDialect } from "./pglite-dialect";
 import { emailAndPasswordEnabled } from "./email-password";
 import { GROK_PROVIDERS } from "./providers";
 import {
@@ -133,16 +136,13 @@ const databaseUrl = env("DATABASE_URL");
 function resolveAuthDatabase(): unknown {
   if (databaseUrl) {
     if (onCloudflare()) return new NeonPool({ connectionString: databaseUrl });
-    // Node / Vercel: lazy require so the Worker bundle does not init `pg`.
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { Pool } = require("pg") as typeof import("pg");
+    const nodeRequire = createRequire(import.meta.url);
+    const { Pool } = nodeRequire("pg") as typeof import("pg");
     return new Pool({ connectionString: databaseUrl });
   }
   if (onCloudflare()) {
     return new NeonPool({ connectionString: "postgres://n:n@127.0.0.1/n" });
   }
-  const { getPglite } = require("../db") as typeof import("../db");
-  const { pgliteDialect } = require("./pglite-dialect") as typeof import("./pglite-dialect");
   return { dialect: pgliteDialect(() => getPglite()), type: "postgres" as const };
 }
 

@@ -173,7 +173,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKCD: {
-    name: { zh: "围观牛", en: "Spectator" },
+    name: { zh: "闲牛", en: "Idle Bull" },
     line: { zh: "先看看别人许的。", en: "Watch others file first." },
     punch: { zh: "我不贪。我只是盯着榜。", en: "Not greedy. Just staring." },
     verdict: { zh: "神批：证人里，数你看得最勤。", en: "Keenest witness in the yard." },
@@ -188,7 +188,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXL: {
-    name: { zh: "彩头牛", en: "Charm Bull" },
+    name: { zh: "香客牛", en: "Pilgrim Bull" },
     line: { zh: "先图个彩头，再谈点位。", en: "Omen first. Levels later." },
     punch: { zh: "我要的是门票，不是策略。", en: "I want a ticket, not a plan." },
     verdict: { zh: "神批：这尊神就是你下周的门票。", en: "This god is next week's ticket." },
@@ -203,9 +203,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXD: {
-    name: { zh: "躺平牛", en: "Flat Bull" },
-    line: { zh: "先吃草。行情自己来。", en: "Eat grass. The tape will come." },
-    punch: { zh: "草我吃了。单我没下。", en: "Ate the grass. No order." },
+    name: { zh: "大阉牛", en: "Cap Bull" },
+    line: { zh: "该顶的没顶。草倒是吃了。", en: "Didn't charge. Ate the grass." },
+    punch: { zh: "该顶的没顶。", en: "Never charged." },
     verdict: { zh: "神批：像修行，也像拖。", en: "Looks like zen. Also delay." },
     rec: "bandao",
     read: {
@@ -263,7 +263,7 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMXD: {
-    name: { zh: "死拿牛", en: "Never-Sell" },
+    name: { zh: "犟牛", en: "Stubborn Bull" },
     line: { zh: "回撤来了也不让。", en: "Drawdown came. You didn't." },
     punch: { zh: "不卖是品德。账单更硬。", en: "Holding is virtue. The bill is harder." },
     verdict: { zh: "神批：回撤不收道德。", en: "Drawdown doesn't take virtue." },
@@ -362,15 +362,15 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GKCD: {
     past: { zh: "庙门口看热闹的。从不进去。", en: "Watched from the gate." },
-    now: { zh: "纯围观牛。还是不进。", en: "Still not going in." },
+    now: { zh: "纯闲牛。还是不进。", en: "Still not going in." },
   },
   GKXL: {
     past: { zh: "求签不看解。响一下就走。", en: "Drew a lot, skipped the reading." },
-    now: { zh: "图彩头牛。响一下，算开始。", en: "An omen is a start." },
+    now: { zh: "香客牛。响一下，算开始。", en: "An omen is a start." },
   },
   GKXD: {
     past: { zh: "吃斋的懒和尚。斋在，功课无。", en: "A lazy monk with a clean bowl." },
-    now: { zh: "躺平牛。草在，单无。", en: "Grass yes. Orders no." },
+    now: { zh: "大阉牛。草在，单无。", en: "Grass yes. Orders no." },
   },
   SMCL: {
     past: { zh: "替人挡灾的。灾接完是自己的。", en: "Caught other people's disasters." },
@@ -386,7 +386,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SMXD: {
     past: { zh: "守城不肯开闸的。城在，人空。", en: "Wouldn't open the gate." },
-    now: { zh: "死拿牛。闸还是关着。", en: "The gate is still shut." },
+    now: { zh: "犟牛。闸还是关着。", en: "The gate is still shut." },
   },
   SKCL: {
     past: { zh: "摔跤的角斗士。倒了观众更爱。", en: "A wrestler. The fall was the show." },

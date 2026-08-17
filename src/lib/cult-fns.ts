@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getSql } from "@/lib/db";
+import { ensureHistory } from "@/lib/history";
 
 export type CultStats = {
   fire: number;
@@ -21,6 +22,7 @@ async function ensureCult() {
 
 async function readCult(): Promise<CultStats> {
   await ensureCult();
+  await ensureHistory();
   const sql = await getSql();
   const rows = await sql<{ k: string; n: number }>`select k, n from cult`;
   const types: Record<string, number> = {};

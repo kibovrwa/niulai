@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getSql } from "@/lib/db";
+import { ensureHistory, historyPads } from "@/lib/history";
 import {
   SEED_WISHES,
   isWishId,
@@ -79,6 +80,7 @@ async function seedIfEmpty() {
 
 export async function readStats() {
   await seedIfEmpty();
+  await ensureHistory();
   const sql = await getSql();
   const [row] = await sql<{
     total: number;
@@ -87,11 +89,13 @@ export async function readStats() {
   const byWish = await sql<{ category: string; n: number }>`
     select category, count(*)::int as n from wishes group by category
   `;
-  const counts: Record<string, number> = {};
-  for (const r of byWish) counts[r.category] = r.n;
+  const pad = await historyPads();
+  const counts: Record<string, number> = { ...pad.wishes };
+  for (const r of byWish) counts[r.category] = (counts[r.category] ?? 0) + r.n;
+  const total = Object.values(counts).reduce((s, n) => s + n, 0);
   return {
-    total: row?.total ?? 0,
-    lastSerial: row?.last_serial ?? 8887,
+    total,
+    lastSerial: Math.max(row?.last_serial ?? 8887, pad.serial || 8887),
     counts,
   };
 }

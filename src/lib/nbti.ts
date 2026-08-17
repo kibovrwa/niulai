@@ -188,9 +188,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   GKXL: {
-    name: { zh: "香客牛", en: "Pilgrim Bull" },
-    line: { zh: "先图个彩头，再谈点位。", en: "Omen first. Levels later." },
-    punch: { zh: "我要的是门票，不是策略。", en: "I want a ticket, not a plan." },
+    name: { zh: "牛鼻子老道", en: "Ox-Nose Daoist" },
+    line: { zh: "先烧柱香。点位以后说。", en: "Incense first. Levels later." },
+    punch: { zh: "我先问道。再开盘。", en: "Ask the dao. Then the tape." },
     verdict: { zh: "神批：这尊神就是你下周的门票。", en: "This god is next week's ticket." },
     rec: "caitou",
     read: {
@@ -366,7 +366,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   GKXL: {
     past: { zh: "求签不看解。响一下就走。", en: "Drew a lot, skipped the reading." },
-    now: { zh: "香客牛。响一下，算开始。", en: "An omen is a start." },
+    now: { zh: "牛鼻子老道。响一下，算开始。", en: "An omen is a start." },
   },
   GKXD: {
     past: { zh: "吃斋的懒和尚。斋在，功课无。", en: "A lazy monk with a clean bowl." },

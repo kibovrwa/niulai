@@ -218,9 +218,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SMCL: {
-    name: { zh: "接刀牛", en: "Knife Catcher" },
-    line: { zh: "有人在后面托着。也许是你。", en: "Someone is catching. Maybe you." },
-    punch: { zh: "我来托。托的是自己。", en: "I caught it. I caught myself." },
+    name: { zh: "牛蛛侠", en: "Spider Bull" },
+    line: { zh: "吊着就不算跌。", en: "Hanging is not falling." },
+    punch: { zh: "我先吐丝。再接盘。", en: "Web first. Then catch." },
     verdict: { zh: "神批：勋章和套牢通知，同一天到。", en: "Medal and bag, same day." },
     rec: "zhuli",
     read: {
@@ -389,7 +389,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SMCL: {
     past: { zh: "替人挡灾的。灾接完是自己的。", en: "Caught other people's disasters." },
-    now: { zh: "接刀牛。刀还是热的。", en: "The knife is still warm." },
+    now: { zh: "牛蛛侠。丝还是热的。", en: "The web is still warm." },
   },
   SMCD: {
     past: { zh: "讨债的。债主比债还硬。", en: "A collector. The debtor was harder." },

@@ -323,9 +323,9 @@ export const TYPES: Record<string, TypeCard> = {
     },
   },
   SKXD: {
-    name: { zh: "看戏牛", en: "Watcher" },
-    line: { zh: "嘴上只负责看。手已经伸出去了。", en: "You said you'd watch. The hand moved." },
-    punch: { zh: "我说看看。手已经买了。", en: "I said I'd watch. I already bought." },
+    name: { zh: "为牛粪窒息", en: "Dung Bull" },
+    line: { zh: "吸进去了。出不来。", en: "Inhaled. Can't leave." },
+    punch: { zh: "我不是看戏。我是埋进去了。", en: "Not watching. Buried." },
     verdict: { zh: "神批：安全最贵。你还是买了。", en: "Safety is expensive. You still bought." },
     rec: "caitou",
     read: {
@@ -417,7 +417,7 @@ export const FATE: Record<string, { past: Line; now: Line }> = {
   },
   SKXD: {
     past: { zh: "戏园子看客。看到一半上台。", en: "An audience member who climbed onstage." },
-    now: { zh: "看戏牛。嘴上路过，手里满仓。", en: "Watching with a full book." },
+    now: { zh: "为牛粪窒息。看一眼就埋进去了。", en: "One look. Buried." },
   },
   NLBN: {
     past: { zh: "庙还没起的时候，它已经站在那里。", en: "It stood before the shrine." },

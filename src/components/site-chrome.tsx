@@ -1,4 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { CreedMark } from "@/components/creed-mark";
 import { t, useLocale } from "@/lib/i18n";
 import { fireShare, homeShare } from "@/lib/share";
 
@@ -11,6 +12,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative min-h-dvh bg-ink text-paper">
+      {quizzing ? null : <CreedMark tone="dark" />}
       <header className="pointer-events-none absolute inset-x-0 top-0 z-30 flex h-14 items-center justify-between px-3 sm:px-6">
         <Link
           to="/"

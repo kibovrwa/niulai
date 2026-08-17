@@ -3,6 +3,6 @@
   "name": "niulai",
   "compatibility_date": "2026-08-17",
   "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
-  "main": "@tanstack/react-start/server-entry",
+  "main": "src/worker-entry.ts",
   "observability": { "enabled": true }
 }

@@ -79,7 +79,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           </p>
           <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-gold-soft">
             <Link to="/xiang" className="inline-flex min-h-10 items-center no-underline">
-              换香
+              {t(locale, "navXiang")}
             </Link>
             <Link to="/yi" className="inline-flex min-h-10 items-center no-underline">
               {t(locale, "navOffer")}

@@ -6,7 +6,7 @@ import { seoHead } from "@/lib/seo";
 export const Route = createFileRoute("/privacy")({
   head: () =>
     seoHead({
-      title: "隐私 · 牛来庙",
+      title: "隐私 · 牛来许愿池",
       desc: "功德和章存在你手机里。许愿只记那一句和编号。",
       path: "/privacy",
     }),

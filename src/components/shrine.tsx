@@ -5,6 +5,7 @@ import { loadBooklet } from "@/lib/booklet";
 import { equippedList, loadFits, type FitId } from "@/lib/fits";
 import { addBow, loadSeals, markReturn, type SealState } from "@/lib/seals";
 import { TYPES } from "@/lib/nbti";
+import { t, useLocale } from "@/lib/i18n";
 import { claimFreeStick, incenseLine, playMama, touchIncense, type Incense } from "@/lib/incense";
 import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
@@ -30,6 +31,7 @@ export function Shrine({
   onOffer,
   onRepay,
 }: ShrineProps) {
+  const locale = useLocale((s) => s.locale) === "en" ? "en" : "zh";
   const [src, setSrc] = useState("/art/totem-god.jpg");
   const [mine, setMine] = useState<string | null>(null);
   const [seals, setSeals] = useState<SealState>({ bows: 0, earned: {} });
@@ -97,7 +99,7 @@ export function Shrine({
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
-        <h1 className="font-display text-3xl tracking-widest text-paper">测你是哪种牛</h1>
+        <h1 className="font-display text-3xl tracking-widest text-paper">{t(locale, "quizTitle")}</h1>
 
         <button
           type="button"
@@ -118,12 +120,12 @@ export function Shrine({
         <p
           className={`mt-1 font-display text-5xl tabular-nums leading-none text-cow sm:text-6xl ${flashing ? "number-flash" : ""}`}
         >
-          {serial.toLocaleString("zh-CN")}
-          <span className="ml-1 font-brush text-xl text-gold-soft">号</span>
+          {serial.toLocaleString(locale === "en" ? "en-US" : "zh-CN")}
+          <span className="ml-1 font-brush text-xl text-gold-soft">{t(locale, "numberUnit") || "No."}</span>
         </p>
 
         <div className="mt-3 flex flex-wrap justify-center gap-2">
-          {["核动力", "美牛牛", "牛跃亭"].map((n) => (
+          {(locale === "en" ? ["Nuclear", "Meiniuniu", "Yueting"] : ["核动力", "美牛牛", "牛跃亭"]).map((n) => (
             <span
               key={n}
               className="rounded-sm border border-cow/70 px-2.5 py-1 font-display text-sm tracking-widest text-cow"
@@ -138,7 +140,7 @@ export function Shrine({
           to="/ce"
           className="mt-4 flex min-h-12 w-full max-w-xs items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper no-underline"
         >
-          开测
+          {t(locale, "startQuiz")}
         </Link>
         <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
           <button
@@ -153,13 +155,13 @@ export function Shrine({
             }
             className="min-h-11 rounded-sm bg-paper font-display tracking-widest text-ink"
           >
-            {incense.owned.length ? "许一个" : "先领香"}
+            {incense.owned.length ? t(locale, "wishOne") : t(locale, "claimStick")}
           </button>
           <Link
             to="/qian"
             className="flex min-h-11 items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
           >
-            抽一支
+            {t(locale, "drawOne")}
           </Link>
         </div>
         {incense.owned.includes("cao") ? (
@@ -167,7 +169,7 @@ export function Shrine({
             to="/xiang"
             className="mt-2 flex min-h-11 w-full max-w-xs items-center justify-center rounded-sm border border-cow/70 font-display tracking-widest text-cow no-underline"
           >
-            换香
+            {t(locale, "swapStick")}
           </Link>
         ) : (
           <button
@@ -178,7 +180,7 @@ export function Shrine({
             }}
             className="mt-2 min-h-11 w-full max-w-xs rounded-sm bg-cow font-display tracking-widest text-ink"
           >
-            免费领香
+            {t(locale, "freeStick")}
           </button>
         )}
         {canRepay && onRepay ? (
@@ -187,7 +189,7 @@ export function Shrine({
             onClick={onRepay}
             className="mt-2 min-h-11 w-full max-w-xs rounded-sm border border-cow/70 font-display tracking-widest text-cow"
           >
-            灵了，还愿
+            {t(locale, "repayNow")}
           </button>
         ) : null}
         <p className="mt-3 text-center text-xs text-gold-soft/80">

@@ -6,7 +6,7 @@ import { seoHead } from "@/lib/seo";
 export const Route = createFileRoute("/mian")({
   head: () =>
     seoHead({
-      title: "免责 · 牛来庙",
+      title: "免责 · 牛来许愿池",
       desc: "玩的。不是投资建议。不是电影官方。",
       path: "/mian",
     }),

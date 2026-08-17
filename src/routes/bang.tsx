@@ -9,7 +9,7 @@ export const Route = createFileRoute("/bang")({
   loader: () => getStats(),
   head: () =>
     seoHead({
-      title: "贪榜 · 牛来庙",
+      title: "贪榜 · 牛来许愿池",
       desc: "概念神收下的贪。股票翻倍、美股是大海、大A六千。看哪一句香火最旺。",
       path: "/bang",
     }),

@@ -84,14 +84,14 @@ function CePage() {
           {phase === "marking" ? (
             <div className="pt-8 text-center">
               <GodFace />
-              <p className="mt-6 font-brush text-2xl text-gold-soft">神在批卷</p>
-              <p className="mt-2 text-sm text-paper/70">指数在跳。别刷新。</p>
+              <p className="mt-6 font-brush text-2xl text-gold-soft">{locale === "en" ? "The god is marking" : "神在批卷"}</p>
+              <p className="mt-2 text-sm text-paper/70">{locale === "en" ? "Don't refresh." : "指数在跳。别刷新。"}</p>
             </div>
           ) : null}
 
           {phase === "ask" && q ? (
             <>
-              <p className="text-center font-brush text-gold-soft">神问你</p>
+              <p className="text-center font-brush text-gold-soft">{locale === "en" ? "The god asks" : "神问你"}</p>
               <p className="mt-1 text-center text-sm text-paper/75">
                 {step + 1} / {QUESTIONS.length}
               </p>
@@ -141,18 +141,18 @@ function Intro({
   return (
     <div className="pt-2 text-center">
       <GodFace large />
-      <p className="mt-5 font-brush text-gold-soft">神出的卷</p>
-      <h1 className="mt-1 font-display text-5xl tracking-widest">测你是哪种牛</h1>
+      <p className="mt-5 font-brush text-gold-soft">{locale === "en" ? "The god's paper" : "神出的卷"}</p>
+      <h1 className="mt-1 font-display text-5xl tracking-widest">{locale === "en" ? "Which cow are you?" : "测你是哪种牛"}</h1>
       {rival ? (
         <div className="mt-5 rounded-sm bg-ink/35 px-4 py-4 text-left">
-          <p className="text-xs tracking-widest text-gold-soft">有人甩给你一张单</p>
+          <p className="text-xs tracking-widest text-gold-soft">{locale === "en" ? "Someone tossed you a slip" : "有人甩给你一张单"}</p>
           <p className="mt-1 font-display text-2xl">
             {rival.code} · {rival.type.name[locale]}
           </p>
           <p className="mt-1 font-display text-3xl tabular-nums text-cow">
             {formatIndex(rival.index, rival.dec)}
           </p>
-          <p className="mt-2 text-sm text-paper/75">你的指数，敢不敢比。</p>
+          <p className="mt-2 text-sm text-paper/75">{locale === "en" ? "Your index. Dare you." : "你的指数，敢不敢比。"}</p>
         </div>
       ) : null}
       <button
@@ -160,10 +160,10 @@ function Intro({
         onClick={() => onStart()}
         className="relative z-20 mt-8 flex min-h-12 w-full items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper"
       >
-        我来比
+        {locale === "en" ? "I'll take it" : "我来比"}
       </button>
       <Link to="/" className="mt-4 inline-block min-h-11 text-sm text-gold-soft">
-        回去看神
+        {locale === "en" ? "Back to the god" : "回去看神"}
       </Link>
     </div>
   );

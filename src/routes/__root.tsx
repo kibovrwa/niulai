@@ -51,7 +51,7 @@ export const Route = createRootRoute({
               name: "牛来许愿池",
               alternateName: [
                 "牛来",
-                "牛来庙",
+                "牛来许愿池",
                 "牛来图腾",
                 "niulai",
                 "NIULAI",

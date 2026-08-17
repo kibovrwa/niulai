@@ -18,8 +18,8 @@ export function packShare(payload: SharePayload) {
 
 export function homeShare(): SharePayload {
   return {
-    title: "测你是哪种牛 · 牛来许愿池",
-    lines: ["测你是哪种牛", "核动力 / 美牛牛 / 牛跃亭"],
+    title: "牛来许愿池",
+    lines: ["来许一个", "号只增不减"],
     url: publicUrl("/ce"),
   };
 }

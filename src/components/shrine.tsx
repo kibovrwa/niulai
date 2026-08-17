@@ -9,15 +9,17 @@ import { t, useLocale } from "@/lib/i18n";
 import { claimFreeStick, incenseLine, playMama, touchIncense, type Incense } from "@/lib/incense";
 import { addGongde, loadGongde } from "@/lib/gongde";
 import { drawLot } from "@/lib/lots";
+import type { WishId } from "@/lib/wish-data";
 
 type ShrineProps = {
   serial: number;
   fire: number;
   todayLabel: string;
+  todayId?: WishId;
   flashing?: boolean;
   receiving?: boolean;
   canRepay?: boolean;
-  onOffer: () => void;
+  onOffer: (wishId?: WishId) => void;
   onRepay?: () => void;
 };
 
@@ -25,6 +27,7 @@ export function Shrine({
   serial,
   fire,
   todayLabel,
+  todayId,
   flashing,
   receiving,
   canRepay,
@@ -99,7 +102,8 @@ export function Shrine({
       <div className="absolute inset-0 bg-linear-to-b from-ink/35 via-ink/10 to-ink/88" />
 
       <div className="relative z-10 flex w-full max-w-lg flex-1 flex-col items-center px-4 pb-6 pt-16 sm:pt-20">
-        <h1 className="font-display text-3xl tracking-widest text-paper">{t(locale, "quizTitle")}</h1>
+        <h1 className="font-display text-3xl tracking-widest text-paper">{t(locale, "shrineTitle")}</h1>
+        <p className="mt-1 text-sm text-gold-soft/90">{t(locale, "shrineLead")}</p>
 
         <button
           type="button"
@@ -124,39 +128,38 @@ export function Shrine({
           <span className="ml-1 font-brush text-xl text-gold-soft">{t(locale, "numberUnit") || "No."}</span>
         </p>
 
-        <div className="mt-3 flex flex-wrap justify-center gap-2">
-          {(locale === "en" ? ["Nuclear", "Meiniuniu", "Yueting"] : ["核动力", "美牛牛", "牛跃亭"]).map((n) => (
-            <span
-              key={n}
-              className="rounded-sm border border-cow/70 px-2.5 py-1 font-display text-sm tracking-widest text-cow"
-            >
-              {n}
-            </span>
-          ))}
-        </div>
+        <button
+          type="button"
+          onClick={() => onOffer(todayId)}
+          className="mt-3 rounded-sm border border-cow/70 px-3 py-1 font-display text-sm tracking-widest text-cow"
+        >
+          {locale === "en" ? "Today · " : "今日收下 · "}
+          {todayLabel}
+        </button>
         {mine ? <p className="mt-2 font-display text-sm text-cow">{mine}</p> : null}
 
-        <Link
-          to="/ce"
-          className="mt-4 flex min-h-12 w-full max-w-xs items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper no-underline"
+        <button
+          type="button"
+          onClick={
+            incense.owned.length
+              ? onOffer
+              : () => {
+                  setIncense(claimFreeStick());
+                  setSaid(locale === "en" ? "Incense claimed. Now wish." : "香领了。有香才能许愿。");
+                  window.setTimeout(onOffer, 280);
+                }
+          }
+          className="mt-4 flex min-h-12 w-full max-w-xs items-center justify-center rounded-sm bg-cinnabar font-display text-xl tracking-widest text-paper"
         >
-          {t(locale, "startQuiz")}
-        </Link>
+          {incense.owned.length ? t(locale, "wishOne") : t(locale, "claimStick")}
+        </button>
         <div className="mt-2 grid w-full max-w-xs grid-cols-2 gap-2">
-          <button
-            type="button"
-            onClick={
-              incense.owned.length
-                ? onOffer
-                : () => {
-                    setIncense(claimFreeStick());
-                    setSaid("香领了。有香才能许愿。");
-                  }
-            }
-            className="min-h-11 rounded-sm bg-paper font-display tracking-widest text-ink"
+          <Link
+            to="/ce"
+            className="flex min-h-11 items-center justify-center rounded-sm bg-paper font-display tracking-widest text-ink no-underline"
           >
-            {incense.owned.length ? t(locale, "wishOne") : t(locale, "claimStick")}
-          </button>
+            {t(locale, "startQuiz")}
+          </Link>
           <Link
             to="/qian"
             className="flex min-h-11 items-center justify-center rounded-sm bg-wood font-display tracking-widest text-paper no-underline"
@@ -204,7 +207,7 @@ export function Shrine({
         </p>
         <p className="mt-1 text-center text-xs text-gold-soft">{incenseLine(incense)}</p>
         <p className="mt-1 text-center text-xs text-gold-soft">
-          测完换香 · 转发换香 · 积福换香
+          许完传火 · 测完换香 · 积福换香
         </p>
       </div>
     </section>

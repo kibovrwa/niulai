@@ -25,8 +25,8 @@ export const Route = createFileRoute("/")({
   }),
   head: () =>
     seoHead({
-      title: "测你是哪种牛",
-      desc: "牛来许愿池。八题出美牛牛、牛跃亭、核动力牛。许愿、抽签。",
+      title: "牛来许愿池",
+      desc: "路边许愿池。选一句贪，领一个只增不减的号。也可以测你是哪种牛。",
       path: "/",
     }),
   loader: async () => {
@@ -134,6 +134,7 @@ function Home() {
         serial={stats.lastSerial}
         fire={initial.cult.fire}
         todayLabel={wishById(todayWishId()).label}
+        todayId={todayWishId()}
         flashing={flashing}
         receiving={receiving}
         onOffer={() => offer()}

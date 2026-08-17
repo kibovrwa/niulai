@@ -37,19 +37,19 @@ export function TotemOrbits({
       <div className="mx-auto max-w-3xl space-y-10">
         <div>
           <p className="font-brush text-gold-soft">造神模型</p>
-          <h2 className="mt-1 font-display text-3xl tracking-widest">测相 · 挂号 · 传火</h2>
+          <h2 className="mt-1 font-display text-3xl tracking-widest">许愿 · 挂号 · 传火</h2>
           <ol className="mt-5 grid gap-3 sm:grid-cols-3">
             <li className="rounded-sm bg-wood/40 px-4 py-4">
-              <p className="font-display text-lg">1 测相</p>
-              <p className="mt-1 text-sm text-paper/70">八题出牛马和指数。这是你在庙里的脸。</p>
+              <p className="font-display text-lg">1 许愿</p>
+              <p className="mt-1 text-sm text-paper/70">选一句贪，领一个只增不减的号。这是你在庙里的籍。</p>
             </li>
             <li className="rounded-sm bg-wood/40 px-4 py-4">
-              <p className="font-display text-lg">2 挂号</p>
-              <p className="mt-1 text-sm text-paper/70">选一句贪，领一个只增不减的号。</p>
-            </li>
-            <li className="rounded-sm bg-wood/40 px-4 py-4">
-              <p className="font-display text-lg">3 传火</p>
+              <p className="font-display text-lg">2 传火</p>
               <p className="mt-1 text-sm text-paper/70">把单甩出去。别人扫了，香火就长一截。</p>
+            </li>
+            <li className="rounded-sm bg-wood/40 px-4 py-4">
+              <p className="font-display text-lg">3 测相</p>
+              <p className="mt-1 text-sm text-paper/70">八题出你在庙里的脸。测完换香，不是进门第一件事。</p>
             </li>
           </ol>
         </div>

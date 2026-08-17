@@ -7,8 +7,8 @@ import appCss from "../styles.css?url";
 export const Route = createRootRoute({
   head: () => {
     const seo = seoHead({
-      title: "测你是哪种牛",
-      desc: "牛来许愿池。八题出美牛牛、牛跃亭、核动力牛。许愿、抽签。",
+      title: "牛来许愿池",
+      desc: "路边许愿池。选一句贪，领一个号。也可以测你是哪种牛。",
       path: "/",
     });
     return {
